@@ -19,7 +19,7 @@
 
     <header>
         <!-- top navbar -->
-        <nav class="nav-extended text-shadow orange lighten-1">
+        <nav class="nav-extended text-shadow orange darken-3">
             <div class="nav-wrapper">
                 <a href="#!" class="brand-logo">Trick That Though</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
@@ -27,7 +27,7 @@
                     <li><a href="#">Play Games</a></li>
                     <li><a href="{{ url_for('get_contenders') }}">Leaderboard</a></li>
                     <li><a href="#">Profile</a></li>
-                    <li><a href="#">Sign In</a></li>
+                    <li><a href="{{ url_for('sign_in') }}">Sign In</a></li>
                     <li><a href="{{ url_for('register') }}">Register</a></li>
                 </ul>
             </div>
@@ -36,12 +36,12 @@
         <!-- mobile collapsable -->
         <ul class="sidenav" id="mobile-demo">
             <li>
-                <h4 class="center-align light-blue-text text-darken-4">Trick That Though</h4>
+                <h4 class="center-align orange-text text-darken-4">Trick That Though</h4>
             </li>
             <li><a href="#">Play Games</a></li>
             <li><a href="{{ url_for('get_contenders') }}">Leaderboard</a></li>
             <li><a href="#">Profile</a></li>
-            <li><a href="#">Sign In</a></li>
+            <li><a href="{{ url_for('sign_in') }}">Sign In</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
         </ul>
     </header>
