@@ -25,6 +25,12 @@ def get_contenders():
     return render_template("leaderboard.html", contenders=contenders)
 
 
+@app.route("/")
+@app.route("/play")
+def play():
+    return render_template("play.html")
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
