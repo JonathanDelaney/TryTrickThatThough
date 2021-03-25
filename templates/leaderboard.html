@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2>I'm extending the base</h2>
+
+    {% for contender in contenders %}
+    {{ contender.contender_rank }}<br>
+    {{ contender.contender_name }}<br>
+    {{ contender.contender_score }}<br>
+    {% endfor %}
+
+{% endblock %}

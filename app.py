@@ -18,10 +18,10 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/get_comments")
-def get_comments():
-    comments = mongo.db.comments.find()
-    return render_template("comments.html", comments=comments)
+@app.route("/get_leaderboard")
+def get_contenders():
+    contenders = mongo.db.contenders.find()
+    return render_template("leaderboard.html", contenders=contenders)
 
 
 if __name__ == "__main__":
