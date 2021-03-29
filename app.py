@@ -28,7 +28,9 @@ def get_contenders():
 @app.route("/")
 @app.route("/play")
 def play():
-    return render_template("play.html")
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    return render_template("play.html", username=username)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -51,6 +53,8 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
+        return redirect(url_for(
+            "play", username=session["user"]))
     return render_template("register.html")
 
 
@@ -66,7 +70,10 @@ def sign_in():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}".format(request.form.get("username")))
+                    flash("Welcome, {}".format(
+                        request.form.get("username")))
+                    return redirect(url_for(
+                        "play", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
