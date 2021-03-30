@@ -1,4 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Let's Play {{ username }}</h1>
+    <h1>
+        {% if username %}
+        Let's Play {{ username }}
+        {% endif %}
+    </h1>
 {% endblock %}

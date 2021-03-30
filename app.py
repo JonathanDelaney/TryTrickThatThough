@@ -26,11 +26,13 @@ def get_contenders():
 
 
 @app.route("/")
-@app.route("/play")
+@app.route("/play", methods=["GET", "POST"])
 def play():
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("play.html", username=username)
+    if session["user"]:
+        return render_template("play.html", username=username)
+    return redirect(url_for("login"))
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -85,6 +87,14 @@ def sign_in():
             return redirect(url_for("sign_in"))
 
     return render_template("signin.html")
+
+
+@app.route("/sign_out")
+def sign_out():
+    # remove user from session cookie
+    flash("You have signed out")
+    session.pop("user")
+    return redirect(url_for("sign_in"))
 
 
 if __name__ == "__main__":
