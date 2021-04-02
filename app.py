@@ -25,24 +25,32 @@ def get_contenders():
     return render_template("leaderboard.html", contenders=contenders)
 
 
+coordinates = []
+
+
 @app.route("/")
 @app.route("/play", methods=["GET", "POST"])
 def play():
+    if request.method == "POST":
+        new_coord = list(request.form.get('coordinate').split(","))
+        coordinates.append(new_coord)
+        print(coordinates)
+
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     planes = 3
     rows = 3
     columns = 3
     segments = 3
-    select_status = [[0, 1, 1, 1], [0, 2, 0, 1]]
+
     if session["user"]:
         return render_template("play.html",
-                            username=username,
-                            planes=planes,
-                            rows=rows,
-                            columns=columns,
-                            segments=segments,
-                            select_status=select_status)
+                                username=username,
+                                planes=planes,
+                                rows=rows,
+                                columns=columns,
+                                segments=segments,
+                                coordinates=coordinates)
     return redirect(url_for("login"))
 
 
