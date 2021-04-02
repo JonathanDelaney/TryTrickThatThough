@@ -34,13 +34,15 @@ def play():
     rows = 3
     columns = 3
     segments = 3
+    select_status = [[0, 1, 1, 1], [0, 2, 0, 1]]
     if session["user"]:
         return render_template("play.html",
                             username=username,
                             planes=planes,
                             rows=rows,
                             columns=columns,
-                            segments=segments)
+                            segments=segments,
+                            select_status=select_status)
     return redirect(url_for("login"))
 
 

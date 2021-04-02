@@ -24,3 +24,19 @@
     width: 30%;
     text-align: center;
 }
+
+.rball {
+    border-radius: 50%;
+    background-color: red;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+}
+
+.bball {
+    border-radius: 50%;
+    background-color: blue;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+}
