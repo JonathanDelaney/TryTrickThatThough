@@ -25,18 +25,23 @@
     text-align: center;
 }
 
-.rball {
+.tic-button {
     border-radius: 50%;
-    background-color: red;
-    width: 15px;
-    height: 15px;
-    position: absolute;
+    width: 30px;
+    height: 30px;
 }
 
-.bball {
+.r-tic-button {
+    border-radius: 50%;
+    background-color: red;
+    width: 30px;
+    height: 30px;
+}
+
+.b-tic-button {
     border-radius: 50%;
     background-color: blue;
-    width: 15px;
-    height: 15px;
+    width: 30px;
+    height: 30px;
     position: absolute;
 }

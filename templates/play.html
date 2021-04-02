@@ -18,15 +18,22 @@
                 {% for h in range(segments) %}
                 <div class="segment">
                     {% if [i,j,k,h] in coordinates %}
-                    <div class="rball"></div>
-                    {% elif select_status == "blue" %}
-                    <div class="rball"></div>
-                    {% else %}
-                    {% endif %}
                     <form method="POST" action="{{ url_for('play') }}">
                         <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                        <input type="submit" value="({{ i }},{{ j }},{{ k }},{{ h }})">
+                        <input class="r-tic-button" type="submit" value="" disabled>
                     </form>
+                    {% elif select_status == "blue" %}
+                    <form method="POST" action="{{ url_for('play') }}">
+                        <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
+                        <input class="b-tic-button" type="submit" value="" disabled>
+                    </form>
+                    {% else %}
+                    <form method="POST" action="{{ url_for('play') }}">
+                        <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
+                        <input class="tic-button" type="submit" value="">
+                    </form>
+                    {% endif %}
+                    
                 </div>
                 {% endfor %}
             </div>

@@ -32,8 +32,10 @@ coordinates = []
 @app.route("/play", methods=["GET", "POST"])
 def play():
     if request.method == "POST":
-        new_coord = list(request.form.get('coordinate').split(","))
-        coordinates.append(new_coord)
+        coordinates.append(
+            list(map(int, request.form.get('coordinate').split(','))))
+        # print(new_coord)
+        # coordinates.append(new_coord)
         print(coordinates)
 
     username = mongo.db.users.find_one(
