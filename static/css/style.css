@@ -12,8 +12,15 @@
 
 .t-col {
     background-color: beige;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 3%;
 }
 
 .segment {
     background-color: burlywood;
+    width: 30%;
+    text-align: center;
 }
