@@ -2,7 +2,27 @@
 {% block content %}
     <h1>
         {% if username %}
-        Let's Play {{ username }}
+        Let's Play TicTacToe, {{ username }}
         {% endif %}
     </h1>
+    <div class="container">
+        {% for i in range(planes) %}
+            <div class="col-12 plane">
+                <h3>plane</h3>
+                {% for i in range(rows) %}
+                    <div class="row t-row">
+                        <h3>row</h3>
+                        {% for i in range(columns) %}
+                            <div class="col t-col">
+                                <h3>column</h3>
+                                {% for i in range(segments) %}
+                                    <div class="segment"><h3>segment</h3></div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

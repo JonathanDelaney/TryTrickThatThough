@@ -1,3 +1,19 @@
 .text-shadow {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 }
+
+.plane {
+    background-color: antiquewhite;
+}
+
+.t-row {
+    background-color: bisque;
+}
+
+.t-col {
+    background-color: beige;
+}
+
+.segment {
+    background-color: burlywood;
+}
