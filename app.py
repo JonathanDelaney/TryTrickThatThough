@@ -1,4 +1,5 @@
 import os
+import tictactoe
 from flask import (
     Flask, flash, render_template, 
     redirect, request, session, url_for)
@@ -28,25 +29,39 @@ def get_contenders():
 player_turn = "player1"
 player1coordinates = []
 player2coordinates = []
+Ds = 4
+width = 3
 
 
 @app.route("/")
 @app.route("/play", methods=["GET", "POST"])
 def play():
-    global player_turn
+    global player_turn, Ds, width
     new_coordinates = ""
     if request.method == "POST":
         if player_turn == "player1":
             new_coordinates = list(map(int, request.form.get(
                     'coordinate').split(',')))
+            tictactoe.GameResult(
+                player1coordinates,
+                new_coordinates,
+                player_turn,
+                Ds,
+                width)
             player1coordinates.append(new_coordinates)
-            print("Player1: " ,player1coordinates)
+            print("Player1: ", player1coordinates)
             player_turn = "player2"
         else:
             new_coordinates = list(map(int, request.form.get(
                     'coordinate').split(',')))
+            tictactoe.GameResult(
+                player2coordinates,
+                new_coordinates,
+                player_turn,
+                Ds,
+                width)
             player2coordinates.append(new_coordinates)
-            print("Player2: " ,player2coordinates)
+            print("Player2: ", player2coordinates)
             player_turn = "player1"
 
     username = mongo.db.users.find_one(
