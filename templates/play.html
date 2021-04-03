@@ -17,12 +17,12 @@
                 <h6>{{ i }},{{ j }},{{ k }}</h6>
                 {% for h in range(segments) %}
                 <div class="segment">
-                    {% if [i,j,k,h] in coordinates %}
+                    {% if [i,j,k,h] in player1coordinates %}
                     <form method="POST" action="{{ url_for('play') }}">
                         <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
                         <input class="r-tic-button" type="submit" value="" disabled>
                     </form>
-                    {% elif select_status == "blue" %}
+                    {% elif [i,j,k,h] in player2coordinates %}
                     <form method="POST" action="{{ url_for('play') }}">
                         <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
                         <input class="b-tic-button" type="submit" value="" disabled>

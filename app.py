@@ -25,18 +25,29 @@ def get_contenders():
     return render_template("leaderboard.html", contenders=contenders)
 
 
-coordinates = []
+player_turn = "player1"
+player1coordinates = []
+player2coordinates = []
 
 
 @app.route("/")
 @app.route("/play", methods=["GET", "POST"])
 def play():
+    global player_turn
+    new_coordinates = ""
     if request.method == "POST":
-        coordinates.append(
-            list(map(int, request.form.get('coordinate').split(','))))
-        # print(new_coord)
-        # coordinates.append(new_coord)
-        print(coordinates)
+        if player_turn == "player1":
+            new_coordinates = list(map(int, request.form.get(
+                    'coordinate').split(',')))
+            player1coordinates.append(new_coordinates)
+            print("Player1: " ,player1coordinates)
+            player_turn = "player2"
+        else:
+            new_coordinates = list(map(int, request.form.get(
+                    'coordinate').split(',')))
+            player2coordinates.append(new_coordinates)
+            print("Player2: " ,player2coordinates)
+            player_turn = "player1"
 
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -52,7 +63,9 @@ def play():
                                 rows=rows,
                                 columns=columns,
                                 segments=segments,
-                                coordinates=coordinates)
+                                player1coordinates=player1coordinates,
+                                player2coordinates=player2coordinates,
+                                player_turn=player_turn)
     return redirect(url_for("login"))
 
 

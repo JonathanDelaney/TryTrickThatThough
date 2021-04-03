@@ -29,6 +29,7 @@
     border-radius: 50%;
     width: 30px;
     height: 30px;
+    border: none;
 }
 
 .r-tic-button {
@@ -36,6 +37,7 @@
     background-color: red;
     width: 30px;
     height: 30px;
+    border: none;
 }
 
 .b-tic-button {
@@ -43,5 +45,5 @@
     background-color: blue;
     width: 30px;
     height: 30px;
-    position: absolute;
+    border: none;
 }
