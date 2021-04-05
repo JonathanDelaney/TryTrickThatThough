@@ -66,18 +66,11 @@ def play():
 
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    planes = 3
-    rows = 3
-    columns = 3
-    segments = 3
+    width = 3
 
     if session["user"]:
         return render_template("play.html",
-                                username=username,
-                                planes=planes,
-                                rows=rows,
-                                columns=columns,
-                                segments=segments,
+                                width=width,
                                 player1coordinates=player1coordinates,
                                 player2coordinates=player2coordinates,
                                 player_turn=player_turn)

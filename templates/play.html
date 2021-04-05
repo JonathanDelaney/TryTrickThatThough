@@ -6,16 +6,16 @@
     {% endif %}
 </h1>
 <div class="container">
-    {% for i in range(planes) %}
+    {% for i in range(width) %}
     <div class="col-12 plane">
         <h3>{{ i }}</h3>
-        {% for j in range(rows) %}
+        {% for j in range(width) %}
         <div class="row t-row">
             <h5>{{ i }},{{ j }}</h5>
-            {% for k in range(columns) %}
+            {% for k in range(width) %}
             <div class="col t-col">
                 <h6>{{ i }},{{ j }},{{ k }}</h6>
-                {% for h in range(segments) %}
+                {% for h in range(width) %}
                 <div class="segment">
                     {% if [i,j,k,h] in player1coordinates %}
                     <form method="POST" action="{{ url_for('play') }}">
