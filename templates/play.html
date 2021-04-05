@@ -5,6 +5,14 @@
     Let's Play TicTacToe, {{ username }}
     {% endif %}
 </h1>
+{% if result != "" %}
+<h1>{{ result }}</h1>
+<form method="POST" action="{{ url_for('play') }}">
+    <input type="text" name="width" pattern="^[3-4]{1,1}$" value="3" placeholder="Width">
+    <input type="text" name="dimensions" pattern="^[2-4]{1,1}$" value="4" placeholder="Dimensions">
+    <input type="submit" value="Set Board">
+</form>
+{% endif %}
 <div class="container">
     {% for i in range(width) %}
     <div class="col-12 plane">
@@ -33,7 +41,7 @@
                         <input class="tic-button" type="submit" value="">
                     </form>
                     {% endif %}
-                    
+
                 </div>
                 {% endfor %}
             </div>

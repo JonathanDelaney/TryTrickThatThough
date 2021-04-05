@@ -29,52 +29,66 @@ def get_contenders():
 player_turn = "player1"
 player1coordinates = []
 player2coordinates = []
-Ds = 4
+dimensions = 4
 width = 3
 
 
 @app.route("/")
 @app.route("/play", methods=["GET", "POST"])
 def play():
-    global player_turn, Ds, width
+    global player_turn, dimensions, width
+    global player1coordinates, player2coordinates
+    result = ""
     new_coordinates = ""
     if request.method == "POST":
+        if result != "":
+            width = request.form.get('width')
+            dimensions = request.form.get('dimensions')
         if player_turn == "player1":
             new_coordinates = list(map(int, request.form.get(
                     'coordinate').split(',')))
-            tictactoe.GameResult(
+            if tictactoe.GameResult(
                 player1coordinates,
                 new_coordinates,
                 player_turn,
-                Ds,
-                width)
-            player1coordinates.append(new_coordinates)
+                dimensions,
+                width):
+                result = "Victory for Player 1!"
+                player1coordinates = []
+                player2coordinates = []
+            else:
+                player1coordinates.append(new_coordinates)
             print("Player1: ", player1coordinates)
             player_turn = "player2"
         else:
             new_coordinates = list(map(int, request.form.get(
                     'coordinate').split(',')))
-            tictactoe.GameResult(
+            if tictactoe.GameResult(
                 player2coordinates,
                 new_coordinates,
                 player_turn,
-                Ds,
-                width)
-            player2coordinates.append(new_coordinates)
+                dimensions,
+                width):
+                result = "Victory for Player 2!"
+                player1coordinates = []
+                player2coordinates = []
+            else:
+                player2coordinates.append(new_coordinates)
             print("Player2: ", player2coordinates)
             player_turn = "player1"
 
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    width = 3
 
     if session["user"]:
         return render_template("play.html",
+                                result=result,
                                 width=width,
                                 player1coordinates=player1coordinates,
                                 player2coordinates=player2coordinates,
                                 player_turn=player_turn)
-    return redirect(url_for("login"))
+    else:
+        return redirect(url_for("login"))
 
 
 @app.route("/register", methods=["GET", "POST"])
