@@ -17,20 +17,20 @@
     {% for i in range(width) %}
     <div class="row justify-content-around plane">
         {% for j in range(width) %}
-        <div class="col-3 t-col">
+        <div class="col-3 justify-content-center t-col">
             {% for k in range(width) %}
-            <div class="row t-row">
+            <div class="row row-{{k}} t-row">
                 {% for h in range(width) %}
                 <div class="segment">
                     {% if [i,j,k,h] in player1coordinates %}
                     <form method="POST" action="{{ url_for('play') }}">
                         <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                        <input class="r-tic-button" type="submit" value="" disabled>
+                        <input class="r-tic r-{{ h }} tic-button" type="submit" value="" disabled>
                     </form>
                     {% elif [i,j,k,h] in player2coordinates %}
                     <form method="POST" action="{{ url_for('play') }}">
                         <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                        <input class="b-tic-button" type="submit" value="" disabled>
+                        <input class="b-tic b-{{ h }} tic-button" type="submit" value="" disabled>
                     </form>
                     {% else %}
                     <form method="POST" action="{{ url_for('play') }}">

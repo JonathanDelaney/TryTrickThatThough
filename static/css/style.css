@@ -19,6 +19,54 @@
     justify-content: space-evenly;
 }
 
+.row-0 {
+    width: 10vw;
+    margin-left: 3vw;
+}
+
+.row-1 {
+    width: 12vw;
+    margin-left: 2vw;
+}
+
+.row-2 {
+    width: 14vw;
+    margin-left: 1vw;
+}
+
+.row-3 {
+    width: 16vw;
+    margin-left: 0vw;
+}
+
+.row-0 .tic-button {
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    border: none;
+}
+
+.row-1 .tic-button {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    border: none;
+}
+
+.row-2 .tic-button {
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    border: none;
+}
+
+.row-3 .tic-button {
+    border-radius: 50%;
+    width: 31px;
+    height: 31px;
+    border: none;
+}
+
 .segment {
     background-color: burlywood;
     width: 34%;
@@ -36,18 +84,10 @@
     border: none;
 }
 
-.r-tic-button {
-    border-radius: 50%;
+.r-tic {
     background-color: red;
-    width: 25px;
-    height: 25px;
-    border: none;
 }
 
-.b-tic-button {
-    border-radius: 50%;
+.b-tic {
     background-color: blue;
-    width: 25px;
-    height: 25px;
-    border: none;
 }
