@@ -30,7 +30,7 @@ player_turn = "player1"
 player1coordinates = []
 player2coordinates = []
 dimensions = 4
-width = 3
+width = 4
 
 
 @app.route("/")

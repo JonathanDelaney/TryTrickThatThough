@@ -15,14 +15,11 @@
 {% endif %}
 <div class="container">
     {% for i in range(width) %}
-    <div class="col-12 plane">
-        <h3>{{ i }}</h3>
+    <div class="row justify-content-around plane">
         {% for j in range(width) %}
-        <div class="row t-row">
-            <h5>{{ i }},{{ j }}</h5>
+        <div class="col-3 t-col">
             {% for k in range(width) %}
-            <div class="col t-col">
-                <h6>{{ i }},{{ j }},{{ k }}</h6>
+            <div class="row t-row">
                 {% for h in range(width) %}
                 <div class="segment">
                     {% if [i,j,k,h] in player1coordinates %}
