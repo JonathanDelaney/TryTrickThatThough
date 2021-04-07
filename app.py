@@ -87,6 +87,7 @@ def play():
         return render_template("play.html",
                                 result=result,
                                 width=width,
+                                dimensions=dimensions,
                                 player1coordinates=player1coordinates,
                                 player2coordinates=player2coordinates,
                                 player_turn=player_turn)

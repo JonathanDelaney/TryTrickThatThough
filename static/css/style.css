@@ -3,13 +3,22 @@
     padding: 0px;
 }
 
+main {
+    width: 100%;
+}
+
 .text-shadow {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 }
 
 .plane {
-    clip-path: polygon(14% 0%, 80% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(14% 0%, 83% 0%, 100% 100%, 0% 100%);
     background-color: #e4e4cd;
+}
+
+.plane-spacer {
+    background-color: #a4a48d;
+    height: 10px;
 }
 
 .t-col {
@@ -28,31 +37,15 @@
 }
 
 .row-1 {
-    margin: 0px 9px;
+    margin: -5px 11px 0px;
 }
 
 .row-2 {
-    margin: 0px 16px;
+    margin: -3px 18px 0px;
 }
 
 .row-3 {
-    margin: 0px 23px;
-}
-
-.section-0 {
-    width: 250px
-}
-
-.section-1 {
-    width: 250px
-}
-
-.section-2 {
-    width: 250px
-}
-
-.section-3 {
-    width: 250px
+    margin: 0px 25px;
 }
 
 .segment {
@@ -67,7 +60,7 @@
 .tic-button {
     width: 100%;
     height: 25px;
-    border: 1px solid grey;
+    border: 1px solid black;
 }
 
 .row-0 .tic-button {

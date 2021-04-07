@@ -15,12 +15,34 @@
 {% endif %}
 <div class="container-fluid">
     {% for i in range(width) %}
-    <div class="col-10 offset-1 justify-content-around plane">
+    <div class="row">
+    {% if i >= 1 %}
+    <div class="col-1 border-right border-secondary"></div>
+    {% else %}
+    <div class="col-1"></div>
+    {% endif %}
+    <div class="col-10 justify-content-around plane">
         {% for j in range(width) %}
         <div class="row justify-content-center t-col">
+            {% if dimensions == 2 %}
+                <div>
+                    <form method="POST" action="{{ url_for('play') }}">
+                        <input type="hidden" name="coordinate" value="{{ i }},{{ j }}">
+                        <input class="tic-button" type="submit" value="">
+                    </form>
+                </div>
+            {% else %}
             {% for k in range(width) %}
             <div class="col-2 row-{{j}} t-row">
-                <div class="row section-{{j}} align-items-center">
+                <div class="row section section-{{j}} align-items-center">
+                {% if dimensions == 3 %}
+                <div>
+                    <form method="POST" action="{{ url_for('play') }}">
+                        <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
+                        <input class="tic-button" type="submit" value="">
+                    </form>
+                </div>
+                {% else %}
                 {% for h in range(width) %}
                     <div class="segment">
                         {% if h == 0 %}
@@ -77,11 +99,22 @@
                         {% endif %}
                     </div>
                 {% endfor %}
+                {% endif %}
                 </div>
             </div>
             {% endfor %}
+            {% endif %}
         </div>
         {% endfor %}
+    </div>
+    {% if i >= 1 %}
+    <div class="col-1 border-left border-secondary"></div>
+    {% else %}
+    <div class="col-1"></div>
+    {% endif %}
+    </div>
+    <div class="row">
+    <div class="col-10 offset-1 border-left border-right border-secondary plane-spacer"></div>
     </div>
     {% endfor %}
 </div>
