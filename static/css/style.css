@@ -8,20 +8,19 @@
 }
 
 .plane {
-    background-color: antiquewhite;
-    margin-bottom: 20px;
+    clip-path: polygon(14% 0%, 80% 0%, 100% 100%, 0% 100%);
+    background-color: #e4e4cd;
 }
 
 .t-col {
-    background-color: bisque;
 }
 
 .t-row {
-    background-color: beige;
     height: 8vh;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     display: flex;
     justify-content: space-evenly;
+    height: 30px;
 }
 
 .row-0 {
@@ -40,21 +39,35 @@
     margin: 0px 23px;
 }
 
+.section-0 {
+    width: 250px
+}
+
+.section-1 {
+    width: 250px
+}
+
+.section-2 {
+    width: 250px
+}
+
+.section-3 {
+    width: 250px
+}
+
 .segment {
-    background-color: burlywood;
     width: auto;
     text-align: center;
-    height: 3vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: -2px;
+    margin: 0px;
 }
 
 .tic-button {
     width: 100%;
     height: 25px;
-    border: none;
+    border: 1px solid grey;
 }
 
 .row-0 .tic-button {

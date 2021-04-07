@@ -32,7 +32,7 @@ player2coordinates = []
 partial_runsP1 = []
 partial_runsP2 = []
 dimensions = 4
-width = 3
+width = 4
 
 
 @app.route("/")

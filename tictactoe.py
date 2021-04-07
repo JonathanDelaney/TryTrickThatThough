@@ -23,13 +23,6 @@ def GameResult(prev_coords, new_coords, player, dimensions, width):
                                 or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-2])):
                 # If it does, add it to that partial run.
                         run.insert(-2, new_coords)
-                        if len(run) == (width*2 - 1):
-                            print("Player One wins!!! with : ", run)
-                            partial_runsP1 = []
-                            partial_runsP2 = []
-                            return "victory for player one"
-                        else:
-                            pass
                 elif width == 4:
                     if (([abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-1]
                         or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-2]
@@ -39,14 +32,14 @@ def GameResult(prev_coords, new_coords, player, dimensions, width):
                                         or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-3]):
                         run.insert(-3, new_coords)
                 # If its length is the width of the board plus the two displacement values
-                        # then it is a win scenario.
-                        if len(run) == (width*2 - 1):
-                            print("Player One wins!!! with : ", run)
-                            partial_runsP1 = []
-                            partial_runsP2 = []
-                            return "victory for player one"
-                        else:
-                            pass
+                # then it is a win scenario.
+                if len(run) == (width*2 - 1):
+                    print(player, " wins!!! with : ", run)
+                    partial_runsP1 = []
+                    partial_runsP2 = []
+                    return "victory for ", player
+                else:
+                    pass
         # Get the displacement values between the new point and all other previous points
         for coords in prev_coords:
             diff = [abs(c1-c2) for c1, c2 in zip(coords, new_coords)]
@@ -130,8 +123,8 @@ def GameResult(prev_coords, new_coords, player, dimensions, width):
                         or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-2]
                             or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-3])
                                 and ([abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-1]
-                                    or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-2])
-                                        or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-3]):
+                                    or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-2]
+                                        or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-3])):
                 # If it does, add it to that partial run.
                         run.insert(-3, new_coords)
                         if len(run) == (width*2 - 1):
