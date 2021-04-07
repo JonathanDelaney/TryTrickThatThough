@@ -29,8 +29,10 @@ def get_contenders():
 player_turn = "player1"
 player1coordinates = []
 player2coordinates = []
+partial_runsP1 = []
+partial_runsP2 = []
 dimensions = 4
-width = 4
+width = 3
 
 
 @app.route("/")
@@ -38,6 +40,7 @@ width = 4
 def play():
     global player_turn, dimensions, width
     global player1coordinates, player2coordinates
+    global partial_runsP1, partial_runsP2
     result = ""
     new_coordinates = ""
     if request.method == "POST":

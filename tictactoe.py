@@ -5,11 +5,13 @@ partial_runsP2 = []
 
 def GameResult(prev_coords, new_coords, player, dimensions, width):
     global partial_runsP1, partial_runsP2
-    diff = [] # Displacement
-    diff2 = [] # Displacement as a multiple or fraction of the first
-    ref = [] # Reference coordinate to check that the coordinates can exist in a run
+    diff = []  # Displacement
+    diff2 = []  # Displacement as a multiple or fraction of the first
+    diff3 = []  # Displacement as a multiple or fraction of the first
+    ref = []  # Reference coordinate to check that the coordinates
+    # can exist in a run.
     if (player == "player1"):
-        # Check if a run is completed.
+        # Check if a run is completed for player 1.
         if partial_runsP1:
             for run in partial_runsP1:
                 # Check if the new point has the same displacement
@@ -21,6 +23,13 @@ def GameResult(prev_coords, new_coords, player, dimensions, width):
                                 or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-2])):
                 # If it does, add it to that partial run.
                         run.insert(-2, new_coords)
+                        if len(run) == (width*2 - 1):
+                            print("Player One wins!!! with : ", run)
+                            partial_runsP1 = []
+                            partial_runsP2 = []
+                            return "victory for player one"
+                        else:
+                            pass
                 elif width == 4:
                     if (([abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-1]
                         or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-2]
@@ -30,14 +39,14 @@ def GameResult(prev_coords, new_coords, player, dimensions, width):
                                         or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-3]):
                         run.insert(-3, new_coords)
                 # If its length is the width of the board plus the two displacement values
-                # then it is a win scenario.
-                    if len(run) == (width*2 - 1):
-                        print("Player One wins!!! with : ", run)
-                        partial_runsP1 = []
-                        partial_runsP2 = []
-                        return "victory for player one"
-                    else:
-                        pass
+                        # then it is a win scenario.
+                        if len(run) == (width*2 - 1):
+                            print("Player One wins!!! with : ", run)
+                            partial_runsP1 = []
+                            partial_runsP2 = []
+                            return "victory for player one"
+                        else:
+                            pass
         # Get the displacement values between the new point and all other previous points
         for coords in prev_coords:
             diff = [abs(c1-c2) for c1, c2 in zip(coords, new_coords)]
@@ -93,8 +102,9 @@ def GameResult(prev_coords, new_coords, player, dimensions, width):
                     partial_runsP1.append([coords, new_coords, diff, diff2])
                 elif width == 4:
                     partial_runsP1.append([coords, new_coords, diff, diff2, diff3])
+            print("Partial runs for P1: ", partial_runsP1)
     else:
-        # Check if a run is completed.
+        # Check if a run is completed for Player 2.
         if partial_runsP2:
             for run in partial_runsP2:
                 # Check if the new point has the same displacement
@@ -106,6 +116,15 @@ def GameResult(prev_coords, new_coords, player, dimensions, width):
                                 or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-2])):
                 # If it does, add it to that partial run.
                         run.insert(-2, new_coords)
+                # If its length is the width of the board plus the two displacement values
+                # then it is a win scenario.
+                        if len(run) == (width*2 - 1):
+                            print("Player Two wins!!! with : ", run)
+                            partial_runsP1 = []
+                            partial_runsP2 = []
+                            return "victory for player two"
+                        else:
+                            pass
                 elif width == 4:
                     if (([abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-1]
                         or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-2]
@@ -115,15 +134,13 @@ def GameResult(prev_coords, new_coords, player, dimensions, width):
                                         or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-3]):
                 # If it does, add it to that partial run.
                         run.insert(-3, new_coords)
-                # If its length is the width of the board plus the two displacement values
-                # then it is a win scenario.
-                    if len(run) == (width*2 - 1):
-                        print("Player Two wins!!! with : ", run)
-                        partial_runsP1 = []
-                        partial_runsP2 = []
-                        return "victory for player two"
-                    else:
-                        pass
+                        if len(run) == (width*2 - 1):
+                            print("Player Two wins!!! with : ", run)
+                            partial_runsP1 = []
+                            partial_runsP2 = []
+                            return "victory for player two"
+                        else:
+                            pass
         # Get the displacement values between the new point and all other previous points
         for coords in prev_coords:
             diff = [abs(c1-c2) for c1, c2 in zip(coords, new_coords)]
@@ -181,3 +198,4 @@ def GameResult(prev_coords, new_coords, player, dimensions, width):
                     partial_runsP2.append([coords, new_coords, diff, diff2])
                 elif width == 4:
                     partial_runsP2.append([coords, new_coords, diff, diff2, diff3])
+            print("Partial runs for P1: ", partial_runsP1)
