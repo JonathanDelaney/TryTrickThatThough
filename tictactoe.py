@@ -57,7 +57,10 @@ def GameResult(prev_coords, new_coords, player, dimensions, width):
             for that line at the end for referencing against new points"""
             if (set([1, 2]).issubset(diff)
                 or set([1, 3]).issubset(diff)
-                    or set([2, 3]).issubset(diff)):
+                    or set([2, 3]).issubset(diff)
+                        or set([1, 4]).issubset(diff)
+                            or set([2, 4]).issubset(diff)
+                                or set([3, 4]).issubset(diff)):
                 pass
             elif (2 in diff and width == 3):
                 diff2 = [(abs(c1-c2))/2 for c1, c2 in zip(coords, new_coords)]
@@ -151,7 +154,10 @@ def GameResult(prev_coords, new_coords, player, dimensions, width):
             for that line at the end for referencing against new points"""
             if (set([1, 2]).issubset(diff)
                 or set([1, 3]).issubset(diff)
-                    or set([2, 3]).issubset(diff)):
+                    or set([2, 3]).issubset(diff)
+                        or set([1, 4]).issubset(diff)
+                            or set([2, 4]).issubset(diff)
+                                or set([3, 4]).issubset(diff)):
                 print("ineligable: ", ref, ", and relavent diff: ", diff,
                 ", and new_coords: ", new_coords, ", and other coords: ", coords)
                 pass

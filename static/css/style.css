@@ -33,19 +33,23 @@ main {
 }
 
 .row-0 {
-    margin: 0px 2px;
+    margin: 0px -18px;
 }
 
 .row-1 {
-    margin: -5px 11px 0px;
+    margin: -5px -13px 0px;
 }
 
 .row-2 {
-    margin: -3px 18px 0px;
+    margin: -3px -6px 0px;
 }
 
 .row-3 {
-    margin: 0px 25px;
+    margin: 0px 0px;
+}
+
+.row-4 {
+    margin: 0px 7px;
 }
 
 .segment {
@@ -84,6 +88,12 @@ main {
 .row-3 .tic-button {
     width: 31px;
     height: 31px;
+    border: none;
+}
+
+.row-4 .tic-button {
+    width: 32px;
+    height: 34px;
     border: none;
 }
 
