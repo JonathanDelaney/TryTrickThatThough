@@ -33,6 +33,7 @@ partial_runsP1 = []
 partial_runsP2 = []
 dimensions = 4
 width = 5
+result = ""
 
 
 @app.route("/")
@@ -40,22 +41,22 @@ width = 5
 def play():
     global player_turn, dimensions, width
     global player1coordinates, player2coordinates
-    global partial_runsP1, partial_runsP2
-    result = ""
+    global partial_runsP1, partial_runsP2, result
     new_coordinates = ""
     if request.method == "POST":
         if result != "":
-            width = request.form.get('width')
-            dimensions = request.form.get('dimensions')
-        if player_turn == "player1":
+            width = int(request.form.get('width'))
+            dimensions = int(request.form.get('dimensions'))
+        elif player_turn == "player1":
             new_coordinates = list(map(int, request.form.get(
                     'coordinate').split(',')))
             if tictactoe.GameResult(
-                player1coordinates,
-                new_coordinates,
-                player_turn,
-                dimensions,
-                width):
+                    player1coordinates,
+                    new_coordinates,
+                    player_turn,
+                    dimensions,
+                    width,
+                    partial_runsP1):
                 result = "Victory for Player 1!"
                 player1coordinates = []
                 player2coordinates = []
@@ -67,11 +68,12 @@ def play():
             new_coordinates = list(map(int, request.form.get(
                     'coordinate').split(',')))
             if tictactoe.GameResult(
-                player2coordinates,
-                new_coordinates,
-                player_turn,
-                dimensions,
-                width):
+                    player2coordinates,
+                    new_coordinates,
+                    player_turn,
+                    dimensions,
+                    width,
+                    partial_runsP2):
                 result = "Victory for Player 2!"
                 player1coordinates = []
                 player2coordinates = []
