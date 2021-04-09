@@ -98,11 +98,11 @@ main {
 }
 
 .right-button {
-    clip-path: polygon(100% 50%, 0 0, 0 100%);
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
 }
 
 .left-button {
-    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+    clip-path: polygon(25% 0%, 100% 1%, 100% 100%, 25% 100%, 0% 50%);
 }
 
 .r-tic {
