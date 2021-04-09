@@ -32,11 +32,10 @@ player2coordinates = []
 partial_runsP1 = []
 partial_runsP2 = []
 dimensions = 4
-width = 5
+width = 4
 result = ""
 
 
-@app.route("/")
 @app.route("/play", methods=["GET", "POST"])
 def play():
     global player_turn, dimensions, width
@@ -47,6 +46,7 @@ def play():
         if result != "":
             width = int(request.form.get('width'))
             dimensions = int(request.form.get('dimensions'))
+            result = ""
         elif player_turn == "player1":
             new_coordinates = list(map(int, request.form.get(
                     'coordinate').split(',')))
@@ -60,6 +60,8 @@ def play():
                 result = "Victory for Player 1!"
                 player1coordinates = []
                 player2coordinates = []
+                partial_runsP1 = []
+                partial_runsP2 = []
             else:
                 player1coordinates.append(new_coordinates)
             print("Player1: ", player1coordinates)
@@ -77,6 +79,8 @@ def play():
                 result = "Victory for Player 2!"
                 player1coordinates = []
                 player2coordinates = []
+                partial_runsP1 = []
+                partial_runsP2 = []
             else:
                 player2coordinates.append(new_coordinates)
             print("Player2: ", player2coordinates)

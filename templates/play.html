@@ -8,11 +8,11 @@
 {% if result != "" %}
 <h1>{{ result }}</h1>
 <form method="POST" action="{{ url_for('play') }}">
-    <input type="text" name="width" pattern="^[3-5]{1,1}$" value="3" placeholder="Width">
+    <input type="text" name="width" pattern="^[3-5]{1,1}$" value="4" placeholder="Width">
     <input type="text" name="dimensions" pattern="^[2-4]{1,1}$" value="4" placeholder="Dimensions">
     <input type="submit" value="Set Board">
 </form>
-{% endif %}
+{% else %}
 <div class="container-fluid">
     {% for i in range(width) %}
     <div class="row">
@@ -119,4 +119,5 @@
     </div>
     {% endfor %}
 </div>
+{% endif %}
 {% endblock %}
