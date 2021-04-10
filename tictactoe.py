@@ -1,3 +1,5 @@
+import random
+
 
 def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
     diff = []  # Displacement
@@ -111,3 +113,26 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
         elif width == 5:
             part_runs.append([coords, new_coords, diff, diff2, diff3, diff4])
     print("Partial runs for ", player, ": ", part_runs)
+
+
+def CompPlay(player_part_runs, width, dimensions):
+    print("CompPlay working...")
+    # number_list = [0,1,2,3,4][:width]
+    # ref_list = []
+    comp_coords = []
+    # comp_coords = [0, 1, 2, 3]
+    # if player_part_runs:
+    #     for run in player_part_runs:
+    #         if len(run) == ((width*2)-2):
+    #             for i in range(dimensions):
+    #                 if run[width-1][i] == 0:
+    #                     comp_coords.append(run[0][i])
+    #                 else:
+    #                     for j in range(width-1):
+    #                         ref_list.append(run[j][i])
+    #                     comp_coords.append(list(set(ref_list) - set(number_list)))
+    # else:
+    for i in range(dimensions):
+        n = random.randint(0, width-1)
+        comp_coords.append(n)
+    return comp_coords

@@ -1,4 +1,5 @@
 import os
+import random
 import tictactoe
 from flask import (
     Flask, flash, render_template, 
@@ -27,6 +28,7 @@ def get_contenders():
 
 
 player_turn = "player1"
+opponent = "player2"
 player1coordinates = []
 player2coordinates = []
 partial_runsP1 = []
@@ -38,14 +40,17 @@ result = "Set Board"
 
 @app.route("/play", methods=["GET", "POST"])
 def play():
-    global player_turn, dimensions, width
+    global player_turn, dimensions, width, opponent
     global player1coordinates, player2coordinates
     global partial_runsP1, partial_runsP2, result
     new_coordinates = ""
+    comp_coordinates = ""
     if request.method == "POST":
         if result != "":
             width = int(request.form.get('width'))
             dimensions = int(request.form.get('dimensions'))
+            opponent = request.form.get('opponent')
+            print(opponent)
             result = ""
         elif player_turn == "player1":
             new_coordinates = list(map(int, request.form.get(
@@ -62,11 +67,31 @@ def play():
                 player2coordinates = []
                 partial_runsP1 = []
                 partial_runsP2 = []
+            elif opponent == "computer":
+                player1coordinates.append(new_coordinates)
+                comp_coordinates = tictactoe.CompPlay(partial_runsP1,
+                                                        width, dimensions)
+                if tictactoe.GameResult(
+                        player2coordinates,
+                        comp_coordinates,
+                        "Computer",
+                        dimensions,
+                        width,
+                        partial_runsP2):
+                    result = "Victory for Computer!"
+                    player1coordinates = []
+                    player2coordinates = []
+                    partial_runsP1 = []
+                    partial_runsP2 = []
+                else:
+                    player2coordinates.append(comp_coordinates)
+                    print("Computer's: ", player2coordinates)
             else:
                 player1coordinates.append(new_coordinates)
-            print("Player1: ", player1coordinates)
-            player_turn = "player2"
-        else:
+                player_turn = "player2"
+            print("Player1's: ", player1coordinates)
+        elif player_turn == "player2":
+            print("please no")
             new_coordinates = list(map(int, request.form.get(
                     'coordinate').split(',')))
             if tictactoe.GameResult(
@@ -83,7 +108,7 @@ def play():
                 partial_runsP2 = []
             else:
                 player2coordinates.append(new_coordinates)
-            print("Player2: ", player2coordinates)
+            print("Player2's: ", player2coordinates)
             player_turn = "player1"
 
     username = mongo.db.users.find_one(
