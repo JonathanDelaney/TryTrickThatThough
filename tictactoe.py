@@ -23,8 +23,8 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
                     or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-2]
                         or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-3])
                             and ([abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-1]
-                                or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-2])
-                                    or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-3]):
+                                or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-2]
+                                    or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-3])):
                     run.insert(-3, new_coords)
             elif width == 5:
                 if (([abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-1]
@@ -76,9 +76,10 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
             diff3 = [((abs(c1-c2))/2)*3 for c1, c2 in zip(coords, new_coords)]
             diff4 = [((abs(c1-c2))/2)*4 for c1, c2 in zip(coords, new_coords)]
         elif 3 in diff:
+            print("Three in diff")
             diff2 = [(abs(c1-c2))/3 for c1, c2 in zip(coords, new_coords)]
-            diff3 = [((abs(c1-c2))/2)*2 for c1, c2 in zip(coords, new_coords)]
-            diff4 = [((abs(c1-c2))/2)*4 for c1, c2 in zip(coords, new_coords)]
+            diff3 = [((abs(c1-c2))/3)*2 for c1, c2 in zip(coords, new_coords)]
+            diff4 = [((abs(c1-c2))/3)*4 for c1, c2 in zip(coords, new_coords)]
         elif 4 in diff:
             diff2 = [(abs(c1-c2))/4 for c1, c2 in zip(coords, new_coords)]
             diff3 = [((abs(c1-c2))/4)*2 for c1, c2 in zip(coords, new_coords)]

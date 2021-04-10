@@ -33,7 +33,7 @@ partial_runsP1 = []
 partial_runsP2 = []
 dimensions = 4
 width = 4
-result = ""
+result = "Set Board"
 
 
 @app.route("/play", methods=["GET", "POST"])
