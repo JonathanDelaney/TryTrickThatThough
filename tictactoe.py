@@ -78,7 +78,6 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
             diff3 = [((abs(c1-c2))/2)*3 for c1, c2 in zip(coords, new_coords)]
             diff4 = [((abs(c1-c2))/2)*4 for c1, c2 in zip(coords, new_coords)]
         elif 3 in diff:
-            print("Three in diff")
             diff2 = [(abs(c1-c2))/3 for c1, c2 in zip(coords, new_coords)]
             diff3 = [((abs(c1-c2))/3)*2 for c1, c2 in zip(coords, new_coords)]
             diff4 = [((abs(c1-c2))/3)*4 for c1, c2 in zip(coords, new_coords)]
@@ -115,24 +114,49 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
     print("Partial runs for ", player, ": ", part_runs)
 
 
-def CompPlay(player_part_runs, width, dimensions):
+spent_runs = []
+
+
+def CompPlay(player_part_runs,
+            width,
+            dimensions):
+    global spent_runs
     print("CompPlay working...")
-    # number_list = [0,1,2,3,4][:width]
-    # ref_list = []
+    number_list = [0,1,2,3,4][:width]
+    ref_list = []
     comp_coords = []
-    # comp_coords = [0, 1, 2, 3]
-    # if player_part_runs:
-    #     for run in player_part_runs:
-    #         if len(run) == ((width*2)-2):
-    #             for i in range(dimensions):
-    #                 if run[width-1][i] == 0:
-    #                     comp_coords.append(run[0][i])
-    #                 else:
-    #                     for j in range(width-1):
-    #                         ref_list.append(run[j][i])
-    #                     comp_coords.append(list(set(ref_list) - set(number_list)))
-    # else:
-    for i in range(dimensions):
-        n = random.randint(0, width-1)
-        comp_coords.append(n)
-    return comp_coords
+    if player_part_runs:
+        print("there is a part run")
+        for run in player_part_runs:
+            print("per run")
+            if (len(run) == ((width*2)-2) and run not in spent_runs):
+                print("run is long enough")
+                for i in range(dimensions):
+                    print("per D")
+                    if run[width-1][i] == 0:
+                        comp_coords.append(run[0][i])
+                        print("comp_coords:", comp_coords)
+                        print("if 0")
+                    else:
+                        for j in range(width-1):
+                            ref_list.append(run[j][i])
+                        print("ref_list:", ref_list)
+                        print("number_list:", number_list)
+                        comp_coords.append(list(set(number_list) - set(ref_list))[0])
+                        print("comp_coords:", comp_coords)
+                        print("if appended")
+                        ref_list = []
+                print("Removing:", run)
+                spent_runs.append(run)
+                return comp_coords[:width]
+            else:
+                for i in range(dimensions):
+                    n = random.randint(0, width-1)
+                    comp_coords.append(n)
+            return comp_coords[:width]
+    else:
+        for i in range(dimensions):
+            n = random.randint(0, width-1)
+            comp_coords.append(n)
+        return comp_coords[:dimensions]
+    return comp_coords[:dimensions]

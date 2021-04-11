@@ -33,6 +33,7 @@ player1coordinates = []
 player2coordinates = []
 partial_runsP1 = []
 partial_runsP2 = []
+total_coords_list = []
 dimensions = 4
 width = 4
 result = "Set Board"
@@ -41,10 +42,10 @@ result = "Set Board"
 @app.route("/play", methods=["GET", "POST"])
 def play():
     global player_turn, dimensions, width, opponent
-    global player1coordinates, player2coordinates
-    global partial_runsP1, partial_runsP2, result
+    global player1coordinates, player2coordinates, player2coordinates
+    global partial_runsP1, partial_runsP2, result, total_coords_list
     new_coordinates = ""
-    comp_coordinates = ""
+    comp_coordinate = ""
     if request.method == "POST":
         if result != "":
             width = int(request.form.get('width'))
@@ -55,6 +56,7 @@ def play():
         elif player_turn == "player1":
             new_coordinates = list(map(int, request.form.get(
                     'coordinate').split(',')))
+            print("player1 success")
             if tictactoe.GameResult(
                     player1coordinates,
                     new_coordinates,
@@ -69,11 +71,18 @@ def play():
                 partial_runsP2 = []
             elif opponent == "computer":
                 player1coordinates.append(new_coordinates)
-                comp_coordinates = tictactoe.CompPlay(partial_runsP1,
-                                                        width, dimensions)
+                comp_coordinate = tictactoe.CompPlay(partial_runsP1,
+                                                    width,
+                                                    dimensions)
+                print("computer play success")
+                if (comp_coordinate in player1coordinates
+                    or comp_coordinate in player2coordinates):
+                    tictactoe.CompPlay(partial_runsP1,
+                                        width,
+                                        dimensions)
                 if tictactoe.GameResult(
                         player2coordinates,
-                        comp_coordinates,
+                        comp_coordinate,
                         "Computer",
                         dimensions,
                         width,
@@ -84,7 +93,7 @@ def play():
                     partial_runsP1 = []
                     partial_runsP2 = []
                 else:
-                    player2coordinates.append(comp_coordinates)
+                    player2coordinates.append(comp_coordinate)
                     print("Computer's: ", player2coordinates)
             else:
                 player1coordinates.append(new_coordinates)
