@@ -148,12 +148,11 @@ def CompPlay(player_part_runs,
                         ref_list = []
                 print("Removing:", run)
                 spent_runs.append(run)
-                return comp_coords[:width]
-            else:
-                for i in range(dimensions):
-                    n = random.randint(0, width-1)
-                    comp_coords.append(n)
-            return comp_coords[:width]
+                return comp_coords[:dimensions]
+        for i in range(dimensions):
+            n = random.randint(0, width-1)
+            comp_coords.append(n)
+        return comp_coords[:dimensions]
     else:
         for i in range(dimensions):
             n = random.randint(0, width-1)

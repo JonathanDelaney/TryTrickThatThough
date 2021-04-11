@@ -75,11 +75,16 @@ def play():
                                                     width,
                                                     dimensions)
                 print("computer play success")
-                if (comp_coordinate in player1coordinates
-                    or comp_coordinate in player2coordinates):
+                while (comp_coordinate in player1coordinates
+                        or comp_coordinate in player2coordinates):
                     tictactoe.CompPlay(partial_runsP1,
                                         width,
                                         dimensions)
+                    if (comp_coordinate in player1coordinates
+                            or comp_coordinate in player2coordinates):
+                        continue
+                    else:
+                        return comp_coordinate
                 if tictactoe.GameResult(
                         player2coordinates,
                         comp_coordinate,
