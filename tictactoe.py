@@ -34,9 +34,9 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
                         or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-3]
                             or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-4])
                                 and ([abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-1]
-                                    or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-2])
+                                    or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-2]
                                         or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-3]
-                                            or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-4]):
+                                            or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-4])):
                     run.insert(-4, new_coords)
             # If its length is the width of the board plus the two displacement values
             # then it is a win scenario.
