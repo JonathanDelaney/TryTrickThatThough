@@ -118,8 +118,9 @@ spent_runs = []
 
 
 def CompPlay(player_part_runs,
-            width,
-            dimensions):
+                computer_coords,
+                width,
+                dimensions):
     global spent_runs
     print("CompPlay working...")
     number_list = [0,1,2,3,4][:width]
@@ -127,8 +128,9 @@ def CompPlay(player_part_runs,
     comp_coords = []
     if player_part_runs:
         print("there is a part run")
-        for run in player_part_runs:
+        for run in reversed(player_part_runs):
             print("per run")
+            comp_coords = []
             if (len(run) == ((width*2)-2) and run not in spent_runs):
                 print("run is long enough")
                 for i in range(dimensions):
@@ -142,13 +144,18 @@ def CompPlay(player_part_runs,
                             ref_list.append(run[j][i])
                         print("ref_list:", ref_list)
                         print("number_list:", number_list)
-                        comp_coords.append(list(set(number_list) - set(ref_list))[0])
+                        comp_coords.append(list(set(
+                            number_list) - set(ref_list))[0])
                         print("comp_coords:", comp_coords)
                         print("if appended")
                         ref_list = []
-                print("Removing:", run)
-                spent_runs.append(run)
-                return comp_coords[:dimensions]
+                if comp_coords in computer_coords:
+                    print("Skip coords is working. Removing:", run)
+                    spent_runs.append(run)
+                else:
+                    print("Removing:", run)
+                    spent_runs.append(run)
+                    return comp_coords[:dimensions]
         for i in range(dimensions):
             n = random.randint(0, width-1)
             comp_coords.append(n)
