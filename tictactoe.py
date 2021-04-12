@@ -44,7 +44,7 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
                 print(player, " wins!!! with : ", run)
                 part_runs = []
                 prev_coords = []
-                return "victory for ", player
+                return player
             else:
                 pass
     # Get the displacement values between the new point and all other previous points

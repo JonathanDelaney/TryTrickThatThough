@@ -6,63 +6,69 @@
     {% endif %}
 </h1>
 {% if result != "" %}
-<h1>{{ result }}</h1>
-<form method="POST" id="set_board" action="{{ url_for('play') }}">
-    <label for="width">Width</label>
-    <input type="text" id="width" name="width" pattern="^[3-5]{1,1}$" value="4" placeholder="Width">
-    <label for="dimensions">Dimensions</label>
-    <input type="text" id="dimensions" name="dimensions" pattern="^[2-4]{1,1}$" value="4" placeholder="Dimensions"><label for="opponent">Choose an opponent:</label>
-    <select name="opponent" id="opponent" form="set_board">
-        <option value="computer">Computer</option>
-        <option value="player2">Local</option>
-    </select>
-    <input type="submit" value="Set Board">
-</form>
+<div class="result">
+    <h1>Victory for {{ player_turn }}</h1>
+    <form method="POST" id="set_board" action="{{ url_for('play') }}">
+        <label for="width">Width</label>
+        <input type="text" id="width" name="width" pattern="^[3-5]{1,1}$" value="4" placeholder="Width">
+        <label for="dimensions">Dimensions</label>
+        <input type="text" id="dimensions" name="dimensions" pattern="^[2-4]{1,1}$" value="4"
+            placeholder="Dimensions"><label for="opponent">Choose an opponent:</label>
+        <select name="opponent" id="opponent" form="set_board">
+            <option value="computer">Computer</option>
+            <option value="player2">Local</option>
+        </select>
+        <input type="submit" value="Set Board">
+    </form>
+</div>
 {% else %}
+<h1>{{ player_turn }}'s turn</h1>
 <div class="container-fluid pt-1 pb-5 px-0 mx-0">
     {% for i in range(width) %}
     <div class="row">
-    {% if i >= 1 %}
-    <div class="col-1 d-md-none d-lg-block border-right"></div>
-    {% else %}
-    <div class="col-1 d-md-none d-lg-block"></div>
-    {% endif %}
-    <div class="col-12 col-lg-10 justify-content-around plane">
-        {% for j in range(width) %}
-        <div class="row across-{{j}} justify-content-around t-col">
-            {% for k in range(width) %}
-            <div class="col px-0 row-{{j}} t-row">
-                <div class="row px-0 mx-0 section section-{{j}} align-items-center">
-                {% if dimensions == 3 %}
-                {% if [i,j,k] in player1coordinates %}
-                <form method="POST" action="{{ url_for('play') }}">
-                    <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                    <input class="r-tic tic-button border" type="submit" value="" disabled>
-                </form>
-                {% elif [i,j,k] in player2coordinates %}
-                <form method="POST" action="{{ url_for('play') }}">
-                    <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                    <input class="b-tic tic-button border" type="submit" value="" disabled>
-                </form>
-                {% else %}
-                <form method="POST" action="{{ url_for('play') }}">
-                    <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                    <input class="tic-button rounded border" type="submit" value="">
-                </form>
-                {% endif %}
-                {% else %}
-                {% for h in range(width) %}
-                    <div class="row px-0 mx-0 segment">
-                        {% if h == 0 %}
+        {% if i >= 1 %}
+        <div class="col-1 d-md-none d-lg-block border-right"></div>
+        {% else %}
+        <div class="col-1 d-md-none d-lg-block"></div>
+        {% endif %}
+        <div class="col-12 col-lg-10 justify-content-around plane">
+            {% for j in range(width) %}
+            <div class="row across-{{j}} justify-content-around t-col">
+                {% for k in range(width) %}
+                <div class="col px-0 row-{{j}} t-row">
+                    <div class="row px-0 mx-0 section section-{{j}} align-items-center">
+                        {% if dimensions == 3 %}
+                        {% if [i,j,k] in player1coordinates %}
+                        <form method="POST" action="{{ url_for('play') }}">
+                            <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
+                            <input class="r-tic tic-button border" type="submit" value="" disabled>
+                        </form>
+                        {% elif [i,j,k] in player2coordinates %}
+                        <form method="POST" action="{{ url_for('play') }}">
+                            <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
+                            <input class="b-tic tic-button border" type="submit" value="" disabled>
+                        </form>
+                        {% else %}
+                        <form method="POST" action="{{ url_for('play') }}">
+                            <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
+                            <input class="tic-button rounded border" type="submit" value="">
+                        </form>
+                        {% endif %}
+                        {% else %}
+                        {% for h in range(width) %}
+                        <div class="row px-0 mx-0 segment">
+                            {% if h == 0 %}
                             {% if [i,j,k,h] in player1coordinates %}
                             <form method="POST" class="col px-0" action="{{ url_for('play') }}">
                                 <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                <input class="r-tic r-{{ h }} tic-button left-button border border-left-0" type="submit" value="" disabled>
+                                <input class="r-tic r-{{ h }} tic-button left-button border border-left-0" type="submit"
+                                    value="" disabled>
                             </form>
                             {% elif [i,j,k,h] in player2coordinates %}
                             <form method="POST" class="col px-0" action="{{ url_for('play') }}">
                                 <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                <input class="b-tic b-{{ h }} tic-button left-button border border-left-0" type="submit" value="" disabled>
+                                <input class="b-tic b-{{ h }} tic-button left-button border border-left-0" type="submit"
+                                    value="" disabled>
                             </form>
                             {% else %}
                             <form method="POST" class="col px-0" action="{{ url_for('play') }}">
@@ -70,16 +76,18 @@
                                 <input class="tic-button left-button border border-left-0" type="submit" value="">
                             </form>
                             {% endif %}
-                        {% elif h == width-1 %}
+                            {% elif h == width-1 %}
                             {% if [i,j,k,h] in player1coordinates %}
                             <form method="POST" class="col px-0" action="{{ url_for('play') }}">
                                 <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                <input class="r-tic r-{{ h }} tic-button right-button border border-right-0" type="submit" value="" disabled>
+                                <input class="r-tic r-{{ h }} tic-button right-button border border-right-0"
+                                    type="submit" value="" disabled>
                             </form>
                             {% elif [i,j,k,h] in player2coordinates %}
                             <form method="POST" class="col px-0" action="{{ url_for('play') }}">
                                 <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                <input class="b-tic b-{{ h }} tic-button right-button border border-right-0" type="submit" value="" disabled>
+                                <input class="b-tic b-{{ h }} tic-button right-button border border-right-0"
+                                    type="submit" value="" disabled>
                             </form>
                             {% else %}
                             <form method="POST" class="col px-0" action="{{ url_for('play') }}">
@@ -87,16 +95,18 @@
                                 <input class="tic-button right-button border border-right-0" type="submit" value="">
                             </form>
                             {% endif %}
-                        {% else %}
+                            {% else %}
                             {% if [i,j,k,h] in player1coordinates %}
                             <form method="POST" class="col px-0" action="{{ url_for('play') }}">
                                 <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                <input class="r-tic r-{{ h }} tic-button rounded border" type="submit" value="" disabled>
+                                <input class="r-tic r-{{ h }} tic-button rounded border" type="submit" value=""
+                                    disabled>
                             </form>
                             {% elif [i,j,k,h] in player2coordinates %}
                             <form method="POST" class="col px-0" action="{{ url_for('play') }}">
                                 <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                <input class="b-tic b-{{ h }} tic-button rounded border" type="submit" value="" disabled>
+                                <input class="b-tic b-{{ h }} tic-button rounded border" type="submit" value=""
+                                    disabled>
                             </form>
                             {% else %}
                             <form method="POST" class="col px-0" action="{{ url_for('play') }}">
@@ -104,24 +114,24 @@
                                 <input class="tic-button rounded border" type="submit" value="">
                             </form>
                             {% endif %}
+                            {% endif %}
+                        </div>
+                        {% endfor %}
                         {% endif %}
                     </div>
-                {% endfor %}
-                {% endif %}
                 </div>
+                {% endfor %}
             </div>
             {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-    {% if i >= 1 %}
-    <div class="col-1 d-md-none d-lg-block border-left"></div>
-    {% else %}
-    <div class="col-1 d-md-none d-lg-block"></div>
-    {% endif %}
+        {% if i >= 1 %}
+        <div class="col-1 d-md-none d-lg-block border-left"></div>
+        {% else %}
+        <div class="col-1 d-md-none d-lg-block"></div>
+        {% endif %}
     </div>
     <div class="row">
-    <div class="col-12 col-lg-10 border-left offset-lg-1 border-right plane-spacer"></div>
+        <div class="col-12 col-lg-10 border-left offset-lg-1 border-right plane-spacer"></div>
     </div>
     {% endfor %}
 </div>

@@ -113,8 +113,8 @@ def play():
                 partial_runsP2 = []
             else:
                 player2coordinates.append(new_coordinates)
-            print("Player2's: ", player2coordinates)
-            player_turn = "player1"
+                print("Player2's: ", player2coordinates)
+                player_turn = "player1"
 
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]

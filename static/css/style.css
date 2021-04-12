@@ -7,6 +7,13 @@ main {
     width: 100%;
 }
 
+.result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .text-shadow {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 }
@@ -165,9 +172,9 @@ main {
 }
 
 .r-tic {
-    background-color: red;
+    background-color: rgb(197, 63, 45);
 }
 
 .b-tic {
-    background-color: blue;
+    background-color: rgb(28, 77, 211);
 }
