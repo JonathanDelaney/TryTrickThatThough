@@ -23,7 +23,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_leaderboard")
 def get_contenders():
-    contenders = mongo.db.contenders.find()
+    contenders = mongo.db.contenders.find().sort("score", 1)
     return render_template("leaderboard.html", contenders=contenders)
 
 
@@ -69,6 +69,11 @@ def play():
                 player2coordinates = []
                 partial_runsP1 = []
                 partial_runsP2 = []
+                player_file = mongo.db.users.find_one(
+                    {"username": session["user"]})
+                player_score = player_file['score']
+                print(player_score)
+
             elif opponent == "computer":
                 player1coordinates.append(new_coordinates)
                 comp_coordinate = tictactoe.CompPlay(partial_runsP1,
@@ -116,9 +121,6 @@ def play():
                 player2coordinates.append(new_coordinates)
                 print("Player2's: ", player2coordinates)
                 player_turn = "player1"
-
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
 
     if session["user"]:
         return render_template("play.html",

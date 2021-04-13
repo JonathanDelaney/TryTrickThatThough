@@ -165,13 +165,24 @@ def CompPlay(player_part_runs,
                     print("Removing:", run)
                     spent_runs.append(run)
                     return comp_coords[:dimensions]
-        for i in range(dimensions):
-            n = random.randint(0, width-1)
-            comp_coords.append(n)
-        return comp_coords[:dimensions]
+        while True:
+            for i in range(dimensions):
+                n = random.randint(0, width-1)
+                comp_coords.append(n)
+            if (comp_coords in computer_coords
+                    or comp_coords in human_coords):
+                comp_coords = []
+            else:
+                return comp_coords[:dimensions]
+
     else:
-        for i in range(dimensions):
-            n = random.randint(0, width-1)
-            comp_coords.append(n)
-        return comp_coords[:dimensions]
+        while True:
+            for i in range(dimensions):
+                n = random.randint(0, width-1)
+                comp_coords.append(n)
+            if (comp_coords in computer_coords
+                    or comp_coords in human_coords):
+                comp_coords = []
+            else:
+                return comp_coords[:dimensions]
     return comp_coords[:dimensions]
