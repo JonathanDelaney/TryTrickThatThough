@@ -112,18 +112,20 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
         elif width == 5:
             part_runs.append([coords, new_coords, diff, diff2, diff3, diff4])
     print("Partial runs for ", player, ": ", part_runs)
+    return "No result"
 
 
 spent_runs = []
 
 
 def CompPlay(player_part_runs,
+                human_coords,
                 computer_coords,
                 width,
                 dimensions):
     global spent_runs
     print("CompPlay working...")
-    number_list = [0,1,2,3,4][:width]
+    number_list = [0, 1, 2, 3, 4][:width]
     ref_list = []
     comp_coords = []
     if player_part_runs:
@@ -149,9 +151,16 @@ def CompPlay(player_part_runs,
                         print("comp_coords:", comp_coords)
                         print("if appended")
                         ref_list = []
-                if comp_coords in computer_coords:
+                if (comp_coords in computer_coords
+                        or comp_coords in human_coords):
                     print("Skip coords is working. Removing:", run)
                     spent_runs.append(run)
+                    comp_coords = []
+                    if len(computer_coords) == 1:
+                        for i in range(dimensions):
+                            n = random.randint(0, width-1)
+                            comp_coords.append(n)
+                        return comp_coords[:dimensions]
                 else:
                     print("Removing:", run)
                     spent_runs.append(run)

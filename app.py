@@ -63,8 +63,8 @@ def play():
                     player_turn,
                     dimensions,
                     width,
-                    partial_runsP1):
-                result = "Victory for Player 1!"
+                    partial_runsP1) == player_turn:
+                result = f'{session["user"]} wins!!'
                 player1coordinates = []
                 player2coordinates = []
                 partial_runsP1 = []
@@ -72,6 +72,7 @@ def play():
             elif opponent == "computer":
                 player1coordinates.append(new_coordinates)
                 comp_coordinate = tictactoe.CompPlay(partial_runsP1,
+                                                    player1coordinates,
                                                     player2coordinates,
                                                     width,
                                                     dimensions)
@@ -82,8 +83,8 @@ def play():
                         "Computer",
                         dimensions,
                         width,
-                        partial_runsP2):
-                    result = "Victory for Computer!"
+                        partial_runsP2) == "Computer":
+                    result = "c0mPuTer WiN!"
                     player1coordinates = []
                     player2coordinates = []
                     partial_runsP1 = []
@@ -105,8 +106,8 @@ def play():
                     player_turn,
                     dimensions,
                     width,
-                    partial_runsP2):
-                result = "Victory for Player 2!"
+                    partial_runsP2) == player_turn:
+                result = "The Guest wins!!"
                 player1coordinates = []
                 player2coordinates = []
                 partial_runsP1 = []

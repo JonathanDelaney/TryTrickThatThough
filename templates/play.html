@@ -7,7 +7,7 @@
 </h1>
 {% if result != "" %}
 <div class="result">
-    <h1>Victory for {{ player_turn }}</h1>
+    <h1>{{ result }}</h1>
     <form method="POST" id="set_board" action="{{ url_for('play') }}">
         <label for="width">Width</label>
         <input type="text" id="width" name="width" pattern="^[3-5]{1,1}$" value="4" placeholder="Width">
