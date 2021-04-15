@@ -23,7 +23,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_leaderboard")
 def get_contenders():
-    contenders = mongo.db.contenders.find().sort("score", 1)
+    contenders = mongo.db.users.find().sort('score', -1)
     return render_template("leaderboard.html", contenders=contenders)
 
 
@@ -33,6 +33,7 @@ player1coordinates = []
 player2coordinates = []
 partial_runsP1 = []
 partial_runsP2 = []
+spent_runs = []
 total_coords_list = []
 dimensions = 4
 width = 4
@@ -43,7 +44,8 @@ result = "Set Board"
 def play():
     global player_turn, dimensions, width, opponent
     global player1coordinates, player2coordinates, player2coordinates
-    global partial_runsP1, partial_runsP2, result, total_coords_list
+    global partial_runsP1, partial_runsP2, spent_runs
+    global result, total_coords_list
     new_coordinates = ""
     comp_coordinate = ""
     if request.method == "POST":
@@ -56,7 +58,7 @@ def play():
         elif player_turn == "player1":
             new_coordinates = list(map(int, request.form.get(
                     'coordinate').split(',')))
-            print("player1 success")
+            # print("player1 success")
             if tictactoe.GameResult(
                     player1coordinates,
                     new_coordinates,
@@ -69,19 +71,26 @@ def play():
                 player2coordinates = []
                 partial_runsP1 = []
                 partial_runsP2 = []
+                spent_runs = []
                 player_file = mongo.db.users.find_one(
                     {"username": session["user"]})
                 player_score = player_file['score']
-                print(player_score)
-
+                new_score = ((width**dimensions) + player_score)
+                player_update = {
+                                "score": new_score
+                                }
+                mongo.db.users.update_one(player_file, {"$set": player_update})
+                print(player_file)
+                print(player_score, "type of: ", type(player_score))
             elif opponent == "computer":
                 player1coordinates.append(new_coordinates)
                 comp_coordinate = tictactoe.CompPlay(partial_runsP1,
-                                                    player1coordinates,
-                                                    player2coordinates,
-                                                    width,
-                                                    dimensions)
-                print("computer play success")
+                                                        spent_runs,
+                                                        player1coordinates,
+                                                        player2coordinates,
+                                                        width,
+                                                        dimensions)
+                # print("computer play success")
                 if tictactoe.GameResult(
                         player2coordinates,
                         comp_coordinate,
@@ -94,6 +103,7 @@ def play():
                     player2coordinates = []
                     partial_runsP1 = []
                     partial_runsP2 = []
+                    spent_runs = []
                 else:
                     player2coordinates.append(comp_coordinate)
                     print("Computer's: ", player2coordinates)
@@ -147,7 +157,8 @@ def register():
 
         register = {
             "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "score": 0
         }
         mongo.db.users.insert_one(register)
 

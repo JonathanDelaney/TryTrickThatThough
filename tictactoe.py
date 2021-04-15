@@ -11,6 +11,7 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
     # First let's check if a run is completed.
     if part_runs:
         for run in part_runs:
+            print("considering ", player,"'s runs")
             # Check if the new point has the same displacement
             # as two ot more other points with qualifying displacements.
             if width == 3:
@@ -40,13 +41,14 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
                     run.insert(-4, new_coords)
             # If its length is the width of the board plus the two displacement values
             # then it is a win scenario.
+            print(run)
+            if len(run) == (width*3 - 1):
+                print("Almost full: ", run)
             if len(run) == (width*2 - 1):
                 print(player, " wins!!! with : ", run)
                 part_runs = []
                 prev_coords = []
                 return player
-            else:
-                pass
     # Get the displacement values between the new point and all other previous points
     for coords in prev_coords:
         diff = [abs(c1-c2) for c1, c2 in zip(coords, new_coords)]
@@ -68,7 +70,7 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
                     or set([2, 3]).issubset(diff)
                         or set([2, 4]).issubset(diff)
                             or set([3, 4]).issubset(diff)):
-            pass
+            continue
         elif 1 in diff:
             diff2 = [(abs(c1-c2))*2 for c1, c2 in zip(coords, new_coords)]
             diff3 = [(abs(c1-c2))*3 for c1, c2 in zip(coords, new_coords)]
@@ -102,8 +104,8 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
                             or set([0, 3]).issubset(ref) or set([1, 2]).issubset(ref)
                                 or set([1, 4]).issubset(ref) or set([2, 3]).issubset(ref)
                                     or set([2, 4]).issubset(ref) or set([3, 4]).issubset(ref)) and width == 5)):
-            print("ineligable: ", ref, ", and relavent diff: ", diff,
-            ", and new_coords: ", new_coords, ", and other coords: ", coords)
+            # print("ineligable: ", ref, ", and relavent diff: ", diff,
+            # ", and new_coords: ", new_coords, ", and other coords: ", coords)
             ref = []
         elif width == 3:
             part_runs.append([coords, new_coords, diff, diff2])
@@ -115,45 +117,42 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
     return "No result"
 
 
-spent_runs = []
-
-
 def CompPlay(player_part_runs,
+                spent_runs,
                 human_coords,
                 computer_coords,
                 width,
                 dimensions):
-    global spent_runs
-    print("CompPlay working...")
+    # print("CompPlay working...")
     number_list = [0, 1, 2, 3, 4][:width]
     ref_list = []
     comp_coords = []
     if player_part_runs:
-        print("there is a part run")
+        # print("there is a part run")
         for run in reversed(player_part_runs):
-            print("per run")
+            # print("per run")
             comp_coords = []
             if (len(run) == ((width*2)-2) and run not in spent_runs):
-                print("run is long enough")
+                print("run ", run, " is long enough")
                 for i in range(dimensions):
-                    print("per D")
+                    # print("per D")
                     if run[width-1][i] == 0:
                         comp_coords.append(run[0][i])
-                        print("comp_coords:", comp_coords)
-                        print("if 0")
+                        # print("comp_coords:", comp_coords)
+                        # print("if 0")
                     else:
                         for j in range(width-1):
                             ref_list.append(run[j][i])
                         print("ref_list:", ref_list)
-                        print("number_list:", number_list)
+                        # print("number_list:", number_list)
                         comp_coords.append(list(set(
                             number_list) - set(ref_list))[0])
                         print("comp_coords:", comp_coords)
-                        print("if appended")
+                        # print("if appended")
                         ref_list = []
                 if (comp_coords in computer_coords
                         or comp_coords in human_coords):
-                    print("Skip coords is working. Removing:", run)
+                    # print("Skip coords is working. Removing:", run)
                     spent_runs.append(run)
                     comp_coords = []
                     if len(computer_coords) == 1:
@@ -162,8 +161,6 @@ def CompPlay(player_part_runs,
                             comp_coords.append(n)
                         return comp_coords[:dimensions]
                 else:
-                    print("Removing:", run)
-                    spent_runs.append(run)
                     return comp_coords[:dimensions]
         while True:
             for i in range(dimensions):
@@ -174,7 +171,6 @@ def CompPlay(player_part_runs,
                 comp_coords = []
             else:
                 return comp_coords[:dimensions]
-
     else:
         while True:
             for i in range(dimensions):
