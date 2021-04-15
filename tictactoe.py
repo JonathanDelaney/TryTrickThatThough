@@ -51,7 +51,9 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
                 return player
     # Get the displacement values between the new point and all other previous points
     for coords in prev_coords:
+        print("comparing: ", new_coords," to prev-coords: ", coords)
         diff = [abs(c1-c2) for c1, c2 in zip(coords, new_coords)]
+        print("respective diff: ", diff)
         """
         Ignore a pairing of points that have an uneven
         displacement as they can't exist in a run. If any
@@ -104,16 +106,17 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
                             or set([0, 3]).issubset(ref) or set([1, 2]).issubset(ref)
                                 or set([1, 4]).issubset(ref) or set([2, 3]).issubset(ref)
                                     or set([2, 4]).issubset(ref) or set([3, 4]).issubset(ref)) and width == 5)):
-            # print("ineligable: ", ref, ", and relavent diff: ", diff,
-            # ", and new_coords: ", new_coords, ", and other coords: ", coords)
-            ref = []
+            print("ineligable: ", ref, ", and relavent diff: ", diff,
+            ", and new_coords: ", new_coords, ", and other coords: ", coords)
         elif width == 3:
             part_runs.append([coords, new_coords, diff, diff2])
         elif width == 4:
             part_runs.append([coords, new_coords, diff, diff2, diff3])
         elif width == 5:
             part_runs.append([coords, new_coords, diff, diff2, diff3, diff4])
+        ref = []
     print("Partial runs for ", player, ": ", part_runs)
+    ref = []
     return "No result"
 
 
