@@ -22,7 +22,11 @@
     </form>
 </div>
 {% else %}
-<h1>{{ player_turn }}'s turn</h1>
+{% if player_turn == "player1" %}
+<h1>{{ username }}'s turn</h1>
+{% elif player_turn == "player2" %}
+<h1>Guest's turn</h1>
+{% endif %}
 <div class="container-fluid pt-1 pb-5 px-0 mx-0">
     {% for i in range(width) %}
     <div class="row">

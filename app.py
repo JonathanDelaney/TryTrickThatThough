@@ -1,6 +1,7 @@
 import os
 import random
 import tictactoe
+from datetime import datetime
 from flask import (
     Flask, flash, render_template, 
     redirect, request, session, url_for)
@@ -21,10 +22,20 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/get_leaderboard")
+@app.route("/get_leaderboard", methods=["GET", "POST"])
 def get_contenders():
+    if request.method == "POST":
+        new_comment = {
+                "name": session["user"],
+                "message": request.form.get("message"),
+                "date": datetime.now()
+            }
+        mongo.db.comments.insert_one(new_comment)
     contenders = mongo.db.users.find().sort('score', -1)
-    return render_template("leaderboard.html", contenders=contenders)
+    comments = mongo.db.comments.find().sort('date', -1)
+    return render_template("leaderboard.html",
+                            contenders=contenders,
+                            comments=comments)
 
 
 player_turn = "player1"
@@ -131,9 +142,10 @@ def play():
                 player2coordinates.append(new_coordinates)
                 print("Player2's: ", player2coordinates)
                 player_turn = "player1"
-
+    username = session["user"]
     if session["user"]:
         return render_template("play.html",
+                                username=username,
                                 result=result,
                                 width=width,
                                 dimensions=dimensions,
