@@ -29,7 +29,7 @@
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     {% if session.user %}
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('play') }}">Play Games</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('get_contenders') }}">Leaderboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('discussion') }}">Discussion</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('sign_out') }}">Sign Out</a></li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('sign_in') }}">Sign In</a></li>

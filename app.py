@@ -22,18 +22,18 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/get_leaderboard", methods=["GET", "POST"])
-def get_contenders():
+@app.route("/discussion", methods=["GET", "POST"])
+def discussion():
     if request.method == "POST":
         new_comment = {
                 "name": session["user"],
                 "message": request.form.get("message"),
-                "date": datetime.now()
+                "date": datetime.now().strftime("%d-%m-%Y")
             }
         mongo.db.comments.insert_one(new_comment)
     contenders = mongo.db.users.find().sort('score', -1)
     comments = mongo.db.comments.find().sort('date', -1)
-    return render_template("leaderboard.html",
+    return render_template("discussion.html",
                             contenders=contenders,
                             comments=comments)
 
@@ -217,6 +217,13 @@ def sign_out():
     flash("You have signed out")
     session.pop("user")
     return redirect(url_for("sign_in"))
+
+
+@app.route("/delete_category/<comment_id>")
+def delete_comment(comment_id):
+    mongo.db.comments.remove({"_id": ObjectId(comment_id)})
+    flash("Comment Successfully Deleted")
+    return redirect(url_for("discussion"))
 
 
 if __name__ == "__main__":

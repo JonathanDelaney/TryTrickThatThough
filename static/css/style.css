@@ -3,6 +3,10 @@
     padding: 0px;
 }
 
+*:focus {
+    outline: none;
+}
+
 main {
     width: 100%;
 }
