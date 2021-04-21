@@ -45,7 +45,6 @@ player2coordinates = []
 partial_runsP1 = []
 partial_runsP2 = []
 spent_runs = []
-total_coords_list = []
 dimensions = 4
 width = 4
 result = "Set Board"
@@ -54,9 +53,10 @@ result = "Set Board"
 @app.route("/play", methods=["GET", "POST"])
 def play():
     global player_turn, dimensions, width, opponent
-    global player1coordinates, player2coordinates, player2coordinates
+    global player1coordinates, player2coordinates
     global partial_runsP1, partial_runsP2, spent_runs
-    global result, total_coords_list
+    global result
+    print(result)
     new_coordinates = ""
     comp_coordinate = ""
     if request.method == "POST":
@@ -154,6 +154,28 @@ def play():
                                player_turn=player_turn)
     else:
         return redirect(url_for("login"))
+
+
+@app.route("/reset_board")
+def reset_board():
+    global player1coordinates, player2coordinates, player_turn
+    global partial_runsP1, partial_runsP2, spent_runs
+    player_turn = "player1"
+    player1coordinates, player2coordinates = [], []
+    partial_runsP1, partial_runsP2, spent_runs = [], [], []
+    return redirect(url_for("play"))
+
+
+@app.route("/set_new_board")
+def set_new_board():
+    global player1coordinates, player2coordinates, player_turn
+    global partial_runsP1, partial_runsP2, spent_runs, result
+    result = "Set Board"
+    print(result)
+    player_turn = "player1"
+    player1coordinates, player2coordinates = [], []
+    partial_runsP1, partial_runsP2, spent_runs = [], [], []
+    return redirect(url_for("play", result=result))
 
 
 @app.route("/register", methods=["GET", "POST"])

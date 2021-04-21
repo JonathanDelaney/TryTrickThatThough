@@ -1,32 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>
+<h1 class="text-center">
     {% if username %}
-    Let's Play TicTacToe, {{ username }}
+    Let's Play TicTacToe, {{ username|upper }}
     {% endif %}
 </h1>
 {% if result != "" %}
-<div class="result">
-    <h1>{{ result }}</h1>
-    <form method="POST" id="set_board" action="{{ url_for('play') }}">
-        <label for="width">Width</label>
-        <input type="text" id="width" name="width" pattern="^[3-5]{1,1}$" value="4" placeholder="Width">
-        <label for="dimensions">Dimensions</label>
-        <input type="text" id="dimensions" name="dimensions" pattern="^[2-4]{1,1}$" value="4"
-            placeholder="Dimensions"><label for="opponent">Choose an opponent:</label>
+<div class="result row">
+    <h1 class="mb-3">{{ result }}</h1>
+    <form method="POST" id="set_board" class="col d-flex flex-column justify-content-around" action="{{ url_for('play') }}">
+        <div class="row d-flex flex-row justify-content-center"><label for="opponent">Choose board width:</label>
+        <select name="width" form="set_board">
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+        </select></div>
+        <div class="row d-flex flex-row justify-content-center"><label for="opponent">Choose number of dimensions:</label>
+        <select name="dimensions" form="set_board">
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+        </select></div>
+        <div class="row d-flex flex-row justify-content-center"><label for="opponent">Choose an opponent:</label>
         <select name="opponent" id="opponent" form="set_board">
             <option value="computer">Computer</option>
             <option value="player2">Local</option>
-        </select>
-        <input type="submit" value="Set Board">
+        </select></div>
+        <div class="row">
+            <input type="submit" class="offset-5 col-2 btn btn-outline-primary" value="Set Board">
+        </div>
     </form>
 </div>
 {% else %}
 {% if player_turn == "player1" %}
-<h1>{{ username }}'s turn</h1>
+<h1>{{ username|upper }}'s turn</h1>
 {% elif player_turn == "player2" %}
 <h1>Guest's turn</h1>
 {% endif %}
+<a href="{{ url_for('reset_board') }}" class="btn btn-outline-info">Reset Board</a>
+<a href="{{ url_for('set_new_board') }}" class="btn btn-outline-info">Set New Board</a>
 <div class="container-fluid pt-1 pb-5 px-0 mx-0">
     {% for i in range(width) %}
     <div class="row">
@@ -45,17 +56,17 @@
                         {% if [i,j,k] in player1coordinates %}
                         <form method="POST" action="{{ url_for('play') }}">
                             <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                            <input class="r-tic tic-button border" type="submit" value="" disabled>
+                            <input class="r-tic tic-button border rounded-circle" type="submit" value="" disabled>
                         </form>
                         {% elif [i,j,k] in player2coordinates %}
                         <form method="POST" action="{{ url_for('play') }}">
                             <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                            <input class="b-tic tic-button border" type="submit" value="" disabled>
+                            <input class="b-tic tic-button border rounded-circle" type="submit" value="" disabled>
                         </form>
                         {% else %}
                         <form method="POST" action="{{ url_for('play') }}">
                             <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                            <input class="tic-button rounded border" type="submit" value="">
+                            <input class="tic-button rounded border rounded-circle" type="submit" value="">
                         </form>
                         {% endif %}
                         {% else %}
