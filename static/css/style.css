@@ -182,3 +182,8 @@ main {
 .b-tic {
     background-color: rgb(28, 77, 211);
 }
+
+#edited_message {
+    height: 200px;
+    width: 100%;
+}

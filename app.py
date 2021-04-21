@@ -3,7 +3,7 @@ import random
 import tictactoe
 from datetime import datetime
 from flask import (
-    Flask, flash, render_template, 
+    Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -26,16 +26,16 @@ mongo = PyMongo(app)
 def discussion():
     if request.method == "POST":
         new_comment = {
-                "name": session["user"],
-                "message": request.form.get("message"),
-                "date": datetime.now().strftime("%d-%m-%Y")
-            }
+            "name": session["user"],
+            "message": request.form.get("message"),
+            "date": datetime.now().strftime("%d-%m-%Y")
+        }
         mongo.db.comments.insert_one(new_comment)
     contenders = mongo.db.users.find().sort('score', -1)
     comments = mongo.db.comments.find().sort('date', -1)
     return render_template("discussion.html",
-                            contenders=contenders,
-                            comments=comments)
+                           contenders=contenders,
+                           comments=comments)
 
 
 player_turn = "player1"
@@ -68,7 +68,7 @@ def play():
             result = ""
         elif player_turn == "player1":
             new_coordinates = list(map(int, request.form.get(
-                    'coordinate').split(',')))
+                'coordinate').split(',')))
             # print("player1 success")
             if tictactoe.GameResult(
                     player1coordinates,
@@ -88,19 +88,19 @@ def play():
                 player_score = player_file['score']
                 new_score = ((width**dimensions) + player_score)
                 player_update = {
-                                "score": new_score
-                                }
+                    "score": new_score
+                }
                 mongo.db.users.update_one(player_file, {"$set": player_update})
                 print(player_file)
                 print(player_score, "type of: ", type(player_score))
             elif opponent == "computer":
                 player1coordinates.append(new_coordinates)
                 comp_coordinate = tictactoe.CompPlay(partial_runsP1,
-                                                        spent_runs,
-                                                        player1coordinates,
-                                                        player2coordinates,
-                                                        width,
-                                                        dimensions)
+                                                     spent_runs,
+                                                     player1coordinates,
+                                                     player2coordinates,
+                                                     width,
+                                                     dimensions)
                 # print("computer play success")
                 if tictactoe.GameResult(
                         player2coordinates,
@@ -125,7 +125,7 @@ def play():
         elif player_turn == "player2":
             print("please no")
             new_coordinates = list(map(int, request.form.get(
-                    'coordinate').split(',')))
+                'coordinate').split(',')))
             if tictactoe.GameResult(
                     player2coordinates,
                     new_coordinates,
@@ -145,13 +145,13 @@ def play():
     username = session["user"]
     if session["user"]:
         return render_template("play.html",
-                                username=username,
-                                result=result,
-                                width=width,
-                                dimensions=dimensions,
-                                player1coordinates=player1coordinates,
-                                player2coordinates=player2coordinates,
-                                player_turn=player_turn)
+                               username=username,
+                               result=result,
+                               width=width,
+                               dimensions=dimensions,
+                               player1coordinates=player1coordinates,
+                               player2coordinates=player2coordinates,
+                               player_turn=player_turn)
     else:
         return redirect(url_for("login"))
 
@@ -192,12 +192,12 @@ def sign_in():
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}".format(
-                        request.form.get("username")))
-                    return redirect(url_for(
-                        "play", username=session["user"]))
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(
+                    request.form.get("username")))
+                return redirect(url_for(
+                    "play", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -219,7 +219,22 @@ def sign_out():
     return redirect(url_for("sign_in"))
 
 
-@app.route("/delete_category/<comment_id>")
+@app.route("/edit_comment/<comment_id>/<comment_date>",
+            methods=["GET", "POST"])
+def edit_comment(comment_id, comment_date):
+    if request.method == "POST":
+        edited = {
+            "name": session["user"],
+            "message": request.form.get("edited_message"),
+            "date": comment_date
+        }
+        mongo.db.comments.update({"_id": ObjectId(comment_id)}, edited)
+        flash("Comment Successfully Edited")
+
+    return redirect(url_for("discussion"))
+
+
+@app.route("/delete_comment/<comment_id>")
 def delete_comment(comment_id):
     mongo.db.comments.remove({"_id": ObjectId(comment_id)})
     flash("Comment Successfully Deleted")
