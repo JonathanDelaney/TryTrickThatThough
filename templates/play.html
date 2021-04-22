@@ -8,23 +8,42 @@
 {% if result != "" %}
 <div class="result row">
     <h1 class="mb-3">{{ result }}</h1>
-    <form method="POST" id="set_board" class="col d-flex flex-column justify-content-around" action="{{ url_for('play') }}">
-        <div class="row d-flex flex-row justify-content-center"><label for="opponent">Choose board width:</label>
-        <select name="width" form="set_board">
-            <option value="3">3</option>
-            <option value="4" selected>4</option>
-            <option value="5">5</option>
-        </select></div>
-        <div class="row d-flex flex-row justify-content-center"><label for="opponent">Choose number of dimensions:</label>
-        <select name="dimensions" form="set_board">
-            <option value="3">3</option>
-            <option value="4" selected>4</option>
-        </select></div>
-        <div class="row d-flex flex-row justify-content-center"><label for="opponent">Choose an opponent:</label>
-        <select name="opponent" id="opponent" form="set_board">
-            <option value="computer">Computer</option>
-            <option value="player2">Local</option>
-        </select></div>
+    <form method="POST" id="set_board" class="col d-flex flex-column justify-content-around"
+        action="{{ url_for('play') }}">
+        <div class="row d-flex flex-row justify-content-center"><label for="opponent" class="select-label">Choose board width:   </label>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light active board-options">
+                    <input type="radio" name="width" id="width1" value="3" checked> 3
+                </label>
+                <label class="btn btn-light board-options">
+                    <input type="radio" name="width" id="width2" value="4"> 4
+                </label>
+                <label class="btn btn-light board-options">
+                    <input type="radio" name="width" id="width3" value="5"> 5
+                </label>
+            </div>
+        </div>
+        <div class="row d-flex flex-row justify-content-center"><label for="opponent" class="select-label">Choose number of
+                dimensions:   </label>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light active board-options">
+                    <input type="radio" name="dimensions" id="dimension1" value="3" checked> 3
+                </label>
+                <label class="btn btn-light board-options">
+                    <input type="radio" name="dimensions" id="dimension2" value="4"> 4
+                </label>
+            </div>
+        </div>
+        <div class="row d-flex flex-row justify-content-center"><label for="opponent" class="select-label">Choose an opponent:   </label>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light active board-options">
+                    <input type="radio" name="opponent" id="opponent1" value="computer" checked> Computer
+                </label>
+                <label class="btn btn-light board-options">
+                    <input type="radio" name="opponent" id="opponent2" value="player2"> Local
+                </label>
+            </div>
+        </div>
         <div class="row">
             <input type="submit" class="offset-5 col-2 btn btn-outline-primary" value="Set Board">
         </div>
@@ -32,9 +51,9 @@
 </div>
 {% else %}
 {% if player_turn == "player1" %}
-<h1>{{ username|upper }}'s turn</h1>
+<h1 class="player-turn">{{ username|upper }}'s turn</h1>
 {% elif player_turn == "player2" %}
-<h1>Guest's turn</h1>
+<h1 class="player-turn">Guest's turn</h1>
 {% endif %}
 <a href="{{ url_for('reset_board') }}" class="btn btn-outline-info">Reset Board</a>
 <a href="{{ url_for('set_new_board') }}" class="btn btn-outline-info">Set New Board</a>

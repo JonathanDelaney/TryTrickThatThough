@@ -37,7 +37,6 @@ main {
 }
 
 .t-row {
-    height: 8vh;
     margin-bottom: 2px;
     display: flex;
     justify-content: space-evenly;
@@ -187,4 +186,12 @@ main {
 #edited_message {
     height: 200px;
     width: 100%;
+}
+
+.select-label {
+    margin-right: 1vh;
+}
+
+.board-options {
+    bottom: 1vh;
 }

@@ -1,4 +1,5 @@
 import random
+import time
 
 
 def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
@@ -113,7 +114,6 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
         ref = []
     print("Partial runs for ", player, ": ", part_runs)
     ref = []
-    return "No result"
 
 
 def CompPlay(player_part_runs,
@@ -125,6 +125,7 @@ def CompPlay(player_part_runs,
     number_list = [0, 1, 2, 3, 4][:width]
     ref_list = []
     comp_coords = []
+    time.sleep(0.5)
     if player_part_runs:
         for run in reversed(player_part_runs):
             comp_coords = []
