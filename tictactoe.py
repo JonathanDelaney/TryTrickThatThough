@@ -125,7 +125,7 @@ def CompPlay(player_part_runs,
     number_list = [0, 1, 2, 3, 4][:width]
     ref_list = []
     comp_coords = []
-    time.sleep(0.5)
+    # time.sleep(0.5)
     if player_part_runs:
         for run in reversed(player_part_runs):
             comp_coords = []

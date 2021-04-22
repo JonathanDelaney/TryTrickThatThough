@@ -8,7 +8,16 @@
 }
 
 main {
-    width: 100%;
+    width: 110%;
+}
+
+.space-bg {
+    display: none;
+    background: url('/static/images/space_bg.png') center, radial-gradient(circle at 50%, #eee, #888 40%, #333 75%, #222 95%);
+    background-blend-mode: multiply;
+    background-position: cover;
+    height: 110vh;
+    color: whitesmoke;
 }
 
 .result {
@@ -25,11 +34,13 @@ main {
 
 .plane {
     clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
-    background-color: #e4e4cd;
+    background: url('/static/images/nebula.png') center, radial-gradient(circle at 50%, rgba(210,210,210,100) 10%, rgba(2,2,2,0) 50%);
+    background-blend-mode: multiply;
+    background-size: cover;
 }
 
 .plane-spacer {
-    background-color: #a4a48d;
+    background-color: #797979;
     height: 10px;
 }
 
@@ -124,7 +135,9 @@ main {
     width: 100%;
     height: 25px;
     min-width: calc(5vw - 13px);
-    border: 1px solid black;
+    filter: brightness(0.5);
+    border: 2px solid white;
+    box-shadow: 0px 0px 52px 3px white;
 }
 
 .row-0 .tic-button {
@@ -132,7 +145,6 @@ main {
     height: 22px;
     min-width: 7px;
     max-width: 38px;
-    border: none;
 }
 
 .row-1 .tic-button {
@@ -140,7 +152,6 @@ main {
     height: 25px;
     min-width: 8px;
     max-width: 47px;
-    border: none;
 }
 
 .row-2 .tic-button {
@@ -148,7 +159,6 @@ main {
     height: 28px;
     min-width: 9px;
     max-width: 56px;
-    border: none;
 }
 
 .row-3 .tic-button {
@@ -156,7 +166,6 @@ main {
     height: 31px;
     min-width: 10px;
     max-width: 65px;
-    border: none;
 }
 
 .row-4 .tic-button {
@@ -164,7 +173,6 @@ main {
     height: 34px;
     min-width: 11px;
     max-width: 74px;
-    border: none;
 }
 
 .right-button {
@@ -176,11 +184,13 @@ main {
 }
 
 .r-tic {
-    background-color: rgb(197, 63, 45);
+    background-color: rgb(255, 103, 82);
+    filter: brightness(150%);
 }
 
 .b-tic {
-    background-color: rgb(28, 77, 211);
+    background-color: rgb(49, 104, 255);
+    filter: brightness(150%);
 }
 
 #edited_message {
@@ -194,4 +204,17 @@ main {
 
 .board-options {
     bottom: 1vh;
+}
+
+.spinner-cont {
+    height: 110vh;
+    background: url('/static/images/space_bg.png') center, radial-gradient(circle at 50%, #eee, #888 40%, #333 75%, #222 95%);
+    background-blend-mode: multiply;
+    background-position: cover;
+}
+
+.spinner-border {
+    margin-top: 30vh;
+    width: 50px;
+    height: 50px;
 }
