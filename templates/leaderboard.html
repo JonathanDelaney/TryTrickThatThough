@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="offset-5"><b>Leaderboard</b></h2>
+<a href="{{ url_for('discussion') }}">Discussions Page</a>
+
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th class="text-center" scope="col">Rank</th>
+            <th class="text-center" scope="col">Username</th>
+            <th class="text-center" scope="col">Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contender in contenders %}
+        <tr>
+            <td class="text-center">{{ loop.index }}</td>
+            <td class="text-center">{{ contender.username }}</td>
+            <td class="text-center">{{ contender.score }}</td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}

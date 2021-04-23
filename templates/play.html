@@ -1,63 +1,66 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="d-flex spinner-cont justify-content-center">
+<div class="spinner-cont">
     <div class="spinner-border text-info" role="status">
         <span class="sr-only">Loading...
         </span>
     </div>
 </div>
 <div class="space-bg">
-    <h1 class="text-center">
+    <h2 class="text-center">
         {% if username %}
         Let's Play TicTacToe, {{ username|upper }}
         {% endif %}
-    </h1>
+    </h2>
     {% if result != "" %}
     <div class="result row">
-        <h1 class="mb-3">{{ result }}</h1>
-        <form method="POST" id="set_board" class="col d-flex flex-column justify-content-around"
-            action="{{ url_for('play') }}">
-            <div class="row d-flex flex-row justify-content-center"><label for="opponent" class="select-label">Choose
-                    board width: </label>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-light active board-options">
-                        <input type="radio" name="width" id="width1" value="3"> 3
-                    </label>
-                    <label class="btn btn-light board-options">
-                        <input type="radio" name="width" id="width2" value="4" checked> 4
-                    </label>
-                    <label class="btn btn-light board-options">
-                        <input type="radio" name="width" id="width3" value="5"> 5
-                    </label>
+        <h1 class="offset-4 col-2">{{ result }}</h1>
+        <div class="board-set offset-4 col-4">
+            <form method="POST" id="set_board" action="{{ url_for('play') }}">
+                <div class="row">
+                    <div class="col-12"><label for="opponent" class="select-label">Choose
+                            board width: </label>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light active board-options">
+                                <input type="radio" name="width" id="width1" value="3"> 3
+                            </label>
+                            <label class="btn btn-light board-options">
+                                <input type="radio" name="width" id="width2" value="4" checked> 4
+                            </label>
+                            <label class="btn btn-light board-options">
+                                <input type="radio" name="width" id="width3" value="5"> 5
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12"><label for="opponent" class="select-label">Choose
+                            number of
+                            dimensions: </label>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light active board-options">
+                                <input type="radio" name="dimensions" id="dimension1" value="3"> 3
+                            </label>
+                            <label class="btn btn-light board-options">
+                                <input type="radio" name="dimensions" id="dimension2" value="4" checked> 4
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12"><label for="opponent" class="select-label">Choose an
+                            opponent: </label>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light active board-options">
+                                <input type="radio" name="opponent" id="opponent1" value="computer" checked> Computer
+                            </label>
+                            <label class="btn btn-light board-options">
+                                <input type="radio" name="opponent" id="opponent2" value="player2"> Local
+                            </label>
+                        </div>
+                    </div>
+                    <div class="offset-1 col-12">
+                        <input type="submit" class="col-6 btn btn-outline-primary" value="Set Board">
+                    </div>
                 </div>
-            </div>
-            <div class="row d-flex flex-row justify-content-center"><label for="opponent" class="select-label">Choose
-                    number of
-                    dimensions: </label>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-light active board-options">
-                        <input type="radio" name="dimensions" id="dimension1" value="3"> 3
-                    </label>
-                    <label class="btn btn-light board-options">
-                        <input type="radio" name="dimensions" id="dimension2" value="4" checked> 4
-                    </label>
-                </div>
-            </div>
-            <div class="row d-flex flex-row justify-content-center"><label for="opponent" class="select-label">Choose an
-                    opponent: </label>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-light active board-options">
-                        <input type="radio" name="opponent" id="opponent1" value="computer" checked> Computer
-                    </label>
-                    <label class="btn btn-light board-options">
-                        <input type="radio" name="opponent" id="opponent2" value="player2"> Local
-                    </label>
-                </div>
-            </div>
-            <div class="row">
-                <input type="submit" class="offset-5 col-2 btn btn-outline-primary" value="Set Board">
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
     {% else %}
     {% if player_turn == "player1" %}

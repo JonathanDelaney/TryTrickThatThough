@@ -38,6 +38,13 @@ def discussion():
                            comments=comments)
 
 
+@app.route("/leaderboard")
+def leaderboard():
+    contenders = mongo.db.users.find().sort('score', -1)
+    return render_template("leaderboard.html",
+                            contenders=contenders)
+
+
 player_turn = "player1"
 opponent = "player2"
 player1coordinates = []
