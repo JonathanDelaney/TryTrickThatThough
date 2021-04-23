@@ -7,18 +7,19 @@
     </div>
 </div>
 <div class="space-bg">
-    <h2 class="text-center">
+    <h2 class="lets-play-title text-center">
         {% if username %}
         Let's Play TicTacToe, {{ username|upper }}
         {% endif %}
     </h2>
     {% if result != "" %}
-    <div class="result row">
-        <h1 class="offset-4 col-2">{{ result }}</h1>
-        <div class="board-set offset-4 col-4">
-            <form method="POST" id="set_board" action="{{ url_for('play') }}">
-                <div class="row">
-                    <div class="col-12"><label for="opponent" class="select-label">Choose
+    <div class="result container-fluid">
+        <h1 class="col-12 text-center mt-5">{{ result }}</h1>
+        <div class="row">
+            <form method="POST" class="board-set offset-sm-1 offset-lg-3 col-sm-10 col-lg-6" id="set_board"
+                action="{{ url_for('play') }}">
+                <div class="row justify-content-around">
+                    <div class="mt-5 col-12 text-center"><label for="opponent" class="select-label">Choose
                             board width: </label>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             <label class="btn btn-light active board-options">
@@ -32,7 +33,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-12"><label for="opponent" class="select-label">Choose
+                    <div class="mt-5 col-12 text-center"><label for="opponent" class="select-label">Choose
                             number of
                             dimensions: </label>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -44,7 +45,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-12"><label for="opponent" class="select-label">Choose an
+                    <div class="mt-5 col-12 text-center"><label for="opponent" class="select-label">Choose an
                             opponent: </label>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             <label class="btn btn-light active board-options">
@@ -55,8 +56,8 @@
                             </label>
                         </div>
                     </div>
-                    <div class="offset-1 col-12">
-                        <input type="submit" class="col-6 btn btn-outline-primary" value="Set Board">
+                    <div class="mt-5 col-7">
+                        <input type="submit" class="btn btn-info col-12" value="Set Board">
                     </div>
                 </div>
             </form>

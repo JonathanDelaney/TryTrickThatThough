@@ -20,17 +20,20 @@ main {
     background: url('/static/images/space_bg.png') center, radial-gradient(circle at 50%, #eee, #888 40%, #333 75%, #222 95%);
     background-blend-mode: multiply;
     background-position: cover;
-    height: 110vh;
+    height: 147vh;
     color: whitesmoke;
 }
 
-.board-set {
-    height: 50vh;
-    background-color: rgba(46, 248, 204, 0.5);
+.lets-play-title {
+    text-shadow: 0px 1px 5px #491212, 0px 1px 6px #b61313, 0px 1px 7px #eb9545,
+    0px 1px 8px #c98c32, 0px 1px 9px #e9e62d, 0px 1px 10px #9eeb45,
+    0px 1px 14px #3fe41f;
 }
 
-.text-shadow {
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+.board-set {
+    border-radius: 7px;
+    height: 50vh;
+    background-color: rgba(46, 248, 204, 0.315);
 }
 
 .plane {
@@ -221,4 +224,24 @@ main {
     margin-top: 30vh;
     width: 5vw;
     height: 5vw;
+}
+
+@media only screen and (max-width: 700px) {
+
+    .space-bg {
+        height: 192vh;
+    }
+
+    .board-set {
+        height: 60vh;
+    }
+
+}
+
+@media only screen and (max-width: 470px) {
+
+    .heading-h1 {
+        font-size: 1.8rem;
+    }
+
 }
