@@ -15,12 +15,20 @@ main {
     width: 110%;
 }
 
+.alert {
+    margin-bottom: 0px;
+}
+
+.modal-dialog {
+    color: black;
+}
+
 .space-bg {
-    /* display: none; */
+    padding-top: 10px;
     background: url('/static/images/space_bg.png') center, radial-gradient(circle at 50%, #eee, #888 40%, #333 75%, #222 95%);
     background-blend-mode: multiply;
     background-position: cover;
-    height: 147vh;
+    height: 148vh;
     color: whitesmoke;
 }
 
@@ -33,6 +41,7 @@ main {
 .board-set {
     border-radius: 7px;
     height: 50vh;
+    font-size: 26px;
     background-color: rgba(46, 248, 204, 0.315);
 }
 
@@ -41,14 +50,12 @@ main {
     background: url('/static/images/nebula.png') center, radial-gradient(circle at 50%, rgba(210,210,210,100) 10%, rgba(2,2,2,0) 50%);
     background-blend-mode: multiply;
     background-size: cover;
+    box-shadow: 40px 30px 41px 4px rgb(1 1 1) inset;
 }
 
 .plane-spacer {
     background-color: #797979;
     height: 10px;
-}
-
-.t-col {
 }
 
 .t-row {
