@@ -83,7 +83,7 @@ def play():
                     player_turn,
                     dimensions,
                     width,
-                    partial_runsP1) == "player_turn":
+                    partial_runsP1) == player_turn:
                 result = f'{session["user"].upper()} wins!! +{width**dimensions}pts'
                 player1coordinates = []
                 player2coordinates = []

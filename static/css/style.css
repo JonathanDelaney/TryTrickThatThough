@@ -19,8 +19,19 @@ main {
     margin-bottom: 0px;
 }
 
+a{
+    text-decoration: none;
+    color: #4d555d;
+}
+
 .modal-dialog {
     color: black;
+}
+
+.modal-body img {
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 8px;
 }
 
 .space-bg {
@@ -204,6 +215,18 @@ main {
     filter: brightness(150%);
 }
 
+.yet-to-tic {
+    box-shadow: 0px 0px 52px 3px white;
+    transform: scale(1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, filter 0.2s ease-in-out;
+}
+
+.yet-to-tic:hover {
+    box-shadow: 0px 10px 52px 8px white;
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
 #edited_message {
     height: 200px;
     width: 100%;
@@ -236,11 +259,7 @@ main {
 @media only screen and (max-width: 700px) {
 
     .space-bg {
-        height: 192vh;
-    }
-
-    .board-set {
-        height: 60vh;
+        height: 194vh;
     }
 
 }
@@ -249,6 +268,10 @@ main {
 
     .heading-h1 {
         font-size: 1.8rem;
+    }
+
+    .board-set {
+        height: 92vh;
     }
 
 }

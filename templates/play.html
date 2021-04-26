@@ -13,21 +13,35 @@
         {% endif %}
     </h2>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn btn-info ml-1" data-toggle="modal" data-target="#instructionModal">
         Instructions
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="instructionModal" tabindex="-1" aria-labelledby="instructionModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
+                    <h3 class="text-center border-bottom">Valid Winnig Runs</h3>
+                    <p class="mb-2">The objective of the game is to get 3, 4 or 5 in a row depending on the width of the board.</p>
+                    Fill in a 4d section:
+                    <img src="/static/images/4drun.png" alt="4 d run">
+                    Same 4D point across 3D section:
+                    <img src="/static/images/3d-4d.png" alt="3d run in 4d">
+                    Corner to corner:
+                    <img src="/static/images/straight-run.png" alt="straight run">
+                    Reverse corner to corner:
+                    <img src="/static/images/reverse-run.png" alt="reverse run">
+                    Diagonal runs:
+                    <img src="/static/images/straight-diagonal.png" alt="straight diagonal run">
+                    <img src="/static/images/plane-diagonal.png" alt="plane diagonal run">
+                    <img src="/static/images/diagonal.png" alt="diagonal run">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -124,7 +138,7 @@
                             {% else %}
                             <form method="POST" action="{{ url_for('play') }}">
                                 <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                                <input class="tic-button rounded border-dark rounded-circle" type="submit" value="">
+                                <input class="tic-button yet-to-tic rounded border-dark rounded-circle" type="submit" value="">
                             </form>
                             {% endif %}
                             {% else %}
@@ -146,7 +160,7 @@
                                 {% else %}
                                 <form method="POST" class="col px-0" action="{{ url_for('play') }}">
                                     <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                    <input class="tic-button left-button border-dark border-left-0" type="submit"
+                                    <input class="tic-button yet-to-tic left-button border-dark border-left-0" type="submit"
                                         value="">
                                 </form>
                                 {% endif %}
@@ -166,7 +180,7 @@
                                 {% else %}
                                 <form method="POST" class="col px-0" action="{{ url_for('play') }}">
                                     <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                    <input class="tic-button right-button border-dark border-right-0" type="submit"
+                                    <input class="tic-button yet-to-tic right-button border-dark border-right-0" type="submit"
                                         value="">
                                 </form>
                                 {% endif %}
@@ -186,7 +200,7 @@
                                 {% else %}
                                 <form method="POST" class="col px-0" action="{{ url_for('play') }}">
                                     <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                    <input class="tic-button rounded border-dark" type="submit" value="">
+                                    <input class="tic-button yet-to-tic rounded border-dark" type="submit" value="">
                                 </form>
                                 {% endif %}
                                 {% endif %}

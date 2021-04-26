@@ -125,7 +125,7 @@ def CompPlay(player_part_runs,
     number_list = [0, 1, 2, 3, 4][:width]
     ref_list = []
     comp_coords = []
-    if player_part_runs == 1000:
+    if player_part_runs:
         for run in reversed(player_part_runs):
             comp_coords = []
             if (len(run) == ((width*2)-2) and run not in spent_runs):
