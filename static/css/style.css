@@ -39,7 +39,7 @@ a{
     background: url('/static/images/space_bg.png') center, radial-gradient(circle at 50%, #eee, #888 40%, #333 75%, #222 95%);
     background-blend-mode: multiply;
     background-position: cover;
-    height: 148vh;
+    height: 153vh;
     color: whitesmoke;
 }
 
@@ -58,9 +58,9 @@ a{
 
 .plane {
     clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
-    background: url('/static/images/nebula.png') center, radial-gradient(circle at 50%, rgba(210,210,210,100) 10%, rgba(2,2,2,0) 50%);
-    background-blend-mode: multiply;
+    background: url('/static/images/nebula.png') center;
     background-size: cover;
+    background-blend-mode: multiply;
     box-shadow: 40px 30px 41px 4px rgb(1 1 1) inset;
 }
 
@@ -158,8 +158,7 @@ a{
     height: 25px;
     min-width: calc(5vw - 13px);
     filter: brightness(0.5);
-    border: 2px solid white;
-    box-shadow: 0px 0px 52px 3px white;
+    border: 1px solid black;
 }
 
 .row-0 .tic-button {
@@ -167,6 +166,7 @@ a{
     height: 22px;
     min-width: 7px;
     max-width: 38px;
+    box-shadow: 0px;
 }
 
 .row-1 .tic-button {
@@ -174,6 +174,7 @@ a{
     height: 25px;
     min-width: 8px;
     max-width: 47px;
+    box-shadow: 0px 0px 52px 3px white;
 }
 
 .row-2 .tic-button {
@@ -181,6 +182,7 @@ a{
     height: 28px;
     min-width: 9px;
     max-width: 56px;
+    box-shadow: 0px 0px 52px 3px white;
 }
 
 .row-3 .tic-button {
@@ -188,6 +190,7 @@ a{
     height: 31px;
     min-width: 10px;
     max-width: 65px;
+    box-shadow: 0px 0px 52px 3px white;
 }
 
 .row-4 .tic-button {
@@ -195,6 +198,7 @@ a{
     height: 34px;
     min-width: 11px;
     max-width: 74px;
+    box-shadow: 0px 0px 52px 3px white;
 }
 
 .right-button {
@@ -216,13 +220,11 @@ a{
 }
 
 .yet-to-tic {
-    box-shadow: 0px 0px 52px 3px white;
     transform: scale(1);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, filter 0.2s ease-in-out;
 }
 
 .yet-to-tic:hover {
-    box-shadow: 0px 10px 52px 8px white;
     transform: scale(1.1);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
@@ -254,6 +256,18 @@ a{
     margin-top: 30vh;
     width: 5vw;
     height: 5vw;
+}
+
+@media only screen and (min-width: 1200px) {
+
+    .board-set {
+        max-height: 430px;
+    }
+
+    .space-bg {
+        max-height: 1600px;
+    }
+
 }
 
 @media only screen and (max-width: 700px) {

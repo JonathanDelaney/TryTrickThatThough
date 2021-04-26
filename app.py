@@ -31,7 +31,7 @@ def discussion():
             "date": datetime.now().strftime("%d-%m-%Y")
         }
         mongo.db.comments.insert_one(new_comment)
-    contenders = mongo.db.users.find().sort('score', -1)
+    contenders = mongo.db.users.find().sort('score', -1)[:10]
     comments = mongo.db.comments.find().sort('date', -1)
     return render_template("discussion.html",
                            contenders=contenders,

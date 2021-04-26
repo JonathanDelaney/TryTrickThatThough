@@ -14,13 +14,15 @@
         </tr>
     </thead>
     <tbody>
-        {% for i in range(10) %}
+        {% for contender in contenders %}
+        {% if loop.index <= 10 %}
         <tr>
             <td class="text-center">{{ loop.index }}</td>
-            <td class="text-center">{{ contenders[i].username }}</td>
-            <td class="text-center">{{ contenders[i].score }}</td>
-            {% endfor %}
+            <td class="text-center">{{ contender.username }}</td>
+            <td class="text-center">{{ contender.score }}</td>
         </tr>
+        {% endif %}
+        {% endfor %}
     </tbody>
 </table>
 
