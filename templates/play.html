@@ -6,226 +6,224 @@
         </span>
     </div>
 </div>
-<div class="space-bg">
-    <h2 class="lets-play-title text-center">
-        {% if username %}
-        Let's Play TicTacToe, {{ username|upper }}
-        {% endif %}
-    </h2>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-info ml-1" data-toggle="modal" data-target="#instructionModal">
-        Instructions
-    </button>
+<h2 class="lets-play-title text-center">
+    {% if username %}
+    Let's Play TicTacToe, {{ username|upper }}
+    {% endif %}
+</h2>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-info ml-1" data-toggle="modal" data-target="#instructionModal">
+    Instructions
+</button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="instructionModal" tabindex="-1" aria-labelledby="instructionModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h3 class="text-center border-bottom">Valid Winnig Runs</h3>
-                    <p class="mb-2">The objective of the game is to get 3, 4 or 5 in a row depending on the width of the board.</p>
-                    Fill in a 4d section:
-                    <img src="/static/images/4drun.png" alt="4 d run">
-                    Same 4D point across 3D section:
-                    <img src="/static/images/3d-4d.png" alt="3d run in 4d">
-                    Corner to corner:
-                    <img src="/static/images/straight-run.png" alt="straight run">
-                    Reverse corner to corner:
-                    <img src="/static/images/reverse-run.png" alt="reverse run">
-                    Diagonal runs:
-                    <img src="/static/images/straight-diagonal.png" alt="straight diagonal run">
-                    or
-                    <img src="/static/images/plane-diagonal.png" alt="plane diagonal run">
-                    or
-                    <img src="/static/images/diagonal.png" alt="diagonal run">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+<!-- Modal -->
+<div class="modal fade" id="instructionModal" tabindex="-1" aria-labelledby="instructionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 class="text-center border-bottom">Valid Winnig Runs</h3>
+                <p class="mb-2">The objective of the game is to get 3, 4 or 5 in a row depending on the width of the
+                    board.</p>
+                Fill in a 4d section:
+                <img src="/static/images/4drun.png" alt="4 d run">
+                Same 4D point across 3D section:
+                <img src="/static/images/3d-4d.png" alt="3d run in 4d">
+                Corner to corner:
+                <img src="/static/images/straight-run.png" alt="straight run">
+                Reverse corner to corner:
+                <img src="/static/images/reverse-run.png" alt="reverse run">
+                Diagonal runs:
+                <img src="/static/images/straight-diagonal.png" alt="straight diagonal run">
+                or
+                <img src="/static/images/plane-diagonal.png" alt="plane diagonal run">
+                or
+                <img src="/static/images/diagonal.png" alt="diagonal run">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-    {% if result != "" %}
-    <div class="result container-fluid">
-        <h1 class="col-12 text-center mt-5">{{ result }}</h1>
-        <div class="row">
-            <form method="POST" class="board-set offset-sm-1 offset-lg-3 col-sm-10 col-lg-6" id="set_board"
-                action="{{ url_for('play') }}">
-                <div class="row justify-content-around">
-                    <div class="mt-5 col-12 text-center"><label for="opponent" class="select-label">Choose
-                            board width: </label>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-light active board-options">
-                                <input type="radio" name="width" id="width1" value="3"> 3
-                            </label>
-                            <label class="btn btn-light board-options">
-                                <input type="radio" name="width" id="width2" value="4" checked> 4
-                            </label>
-                            <label class="btn btn-light board-options">
-                                <input type="radio" name="width" id="width3" value="5"> 5
-                            </label>
-                        </div>
-                    </div>
-                    <div class="mt-5 col-12 text-center"><label for="opponent" class="select-label">Choose
-                            number of
-                            dimensions: </label>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-light active board-options">
-                                <input type="radio" name="dimensions" id="dimension1" value="3"> 3
-                            </label>
-                            <label class="btn btn-light board-options">
-                                <input type="radio" name="dimensions" id="dimension2" value="4" checked> 4
-                            </label>
-                        </div>
-                    </div>
-                    <div class="mt-5 col-12 text-center"><label for="opponent" class="select-label">Choose an
-                            opponent: </label>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-light active board-options">
-                                <input type="radio" name="opponent" id="opponent1" value="computer" checked> Computer
-                            </label>
-                            <label class="btn btn-light board-options">
-                                <input type="radio" name="opponent" id="opponent2" value="player2"> Local
-                            </label>
-                        </div>
-                    </div>
-                    <div class="mt-5 col-7">
-                        <input type="submit" class="btn btn-info col-12" value="Set Board">
+</div>
+{% if result != "" %}
+<div class="result container-fluid">
+    <h1 class="col-12 text-center mt-5">{{ result }}</h1>
+    <div class="row">
+        <form method="POST" class="board-set offset-sm-1 offset-lg-3 col-sm-10 col-lg-6" id="set_board"
+            action="{{ url_for('play') }}">
+            <div class="row justify-content-around">
+                <div class="mt-5 col-12 text-center"><label for="opponent" class="select-label">Choose
+                        board width: </label>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-light active board-options">
+                            <input type="radio" name="width" id="width1" value="3"> 3
+                        </label>
+                        <label class="btn btn-light board-options">
+                            <input type="radio" name="width" id="width2" value="4" checked> 4
+                        </label>
+                        <label class="btn btn-light board-options">
+                            <input type="radio" name="width" id="width3" value="5"> 5
+                        </label>
                     </div>
                 </div>
-            </form>
-        </div>
+                <div class="mt-5 col-12 text-center"><label for="opponent" class="select-label">Choose
+                        number of
+                        dimensions: </label>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-light active board-options">
+                            <input type="radio" name="dimensions" id="dimension1" value="3"> 3
+                        </label>
+                        <label class="btn btn-light board-options">
+                            <input type="radio" name="dimensions" id="dimension2" value="4" checked> 4
+                        </label>
+                    </div>
+                </div>
+                <div class="mt-5 col-12 text-center"><label for="opponent" class="select-label">Choose an
+                        opponent: </label>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-light active board-options">
+                            <input type="radio" name="opponent" id="opponent1" value="computer" checked> Computer
+                        </label>
+                        <label class="btn btn-light board-options">
+                            <input type="radio" name="opponent" id="opponent2" value="player2"> Local
+                        </label>
+                    </div>
+                </div>
+                <div class="mt-5 col-7">
+                    <input type="submit" class="btn btn-info col-12" value="Set Board">
+                </div>
+            </div>
+        </form>
     </div>
-    {% else %}
-    {% if player_turn == "player1" %}
-    <h1 class="player-turn">{{ username|upper }}'s turn</h1>
-    {% elif player_turn == "player2" %}
-    <h1 class="player-turn">Guest's turn</h1>
-    {% endif %}
-    <a href="{{ url_for('reset_board') }}" class="btn btn-outline-info">Reset Board</a>
-    <a href="{{ url_for('set_new_board') }}" class="btn btn-outline-info">Set New Board</a>
-    <div class="container-fluid pt-1 pb-5 px-0 mx-0">
-        {% for i in range(width) %}
-        <div class="row">
-            {% if i >= 1 %}
-            <div class="col-1 d-md-none d-lg-block border-right"></div>
-            {% else %}
-            <div class="col-1 d-md-none d-lg-block"></div>
-            {% endif %}
-            <div class="col-12 col-lg-10 justify-content-around plane">
-                {% for j in range(width) %}
-                <div class="row across-{{j}} justify-content-around t-col">
-                    {% for k in range(width) %}
-                    <div class="col px-0 row-{{j}} t-row">
-                        <div class="row px-0 mx-0 section section-{{j}} align-items-center">
-                            {% if dimensions == 3 %}
-                            {% if [i,j,k] in player1coordinates %}
-                            <form method="POST" action="{{ url_for('play') }}">
-                                <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                                <input class="r-tic tic-button border-dark rounded-circle" type="submit" value=""
-                                    disabled>
+</div>
+{% else %}
+{% if player_turn == "player1" %}
+<h1 class="player-turn">{{ username|upper }}'s turn</h1>
+{% elif player_turn == "player2" %}
+<h1 class="player-turn">Guest's turn</h1>
+{% endif %}
+<a href="{{ url_for('reset_board') }}" class="btn btn-outline-info">Reset Board</a>
+<a href="{{ url_for('set_new_board') }}" class="btn btn-outline-info">Set New Board</a>
+<div class="container-fluid pt-1 pb-5 px-0 mx-0">
+    {% for i in range(width) %}
+    <div class="row">
+        {% if i >= 1 %}
+        <div class="col-1 d-md-none d-lg-block border-right"></div>
+        {% else %}
+        <div class="col-1 d-md-none d-lg-block"></div>
+        {% endif %}
+        <div class="col-12 col-lg-10 justify-content-around plane">
+            {% for j in range(width) %}
+            <div class="row across-{{j}} justify-content-around t-col">
+                {% for k in range(width) %}
+                <div class="col px-0 row-{{j}} t-row">
+                    <div class="row px-0 mx-0 section section-{{j}} align-items-center">
+                        {% if dimensions == 3 %}
+                        {% if [i,j,k] in player1coordinates %}
+                        <form method="POST" action="{{ url_for('play') }}">
+                            <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
+                            <input class="r-tic tic-button border-dark rounded-circle" type="submit" value="" disabled>
+                        </form>
+                        {% elif [i,j,k] in player2coordinates %}
+                        <form method="POST" action="{{ url_for('play') }}">
+                            <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
+                            <input class="b-tic tic-button border-dark rounded-circle" type="submit" value="" disabled>
+                        </form>
+                        {% else %}
+                        <form method="POST" action="{{ url_for('play') }}">
+                            <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
+                            <input class="tic-button yet-to-tic rounded border-dark rounded-circle" type="submit"
+                                value="">
+                        </form>
+                        {% endif %}
+                        {% else %}
+                        {% for h in range(width) %}
+                        <div class="row px-0 mx-0 segment">
+                            {% if h == 0 %}
+                            {% if [i,j,k,h] in player1coordinates %}
+                            <form method="POST" class="col px-0" action="{{ url_for('play') }}">
+                                <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
+                                <input class="r-tic r-{{ h }} tic-button left-button border-dark border-left-0"
+                                    type="submit" value="" disabled>
                             </form>
-                            {% elif [i,j,k] in player2coordinates %}
-                            <form method="POST" action="{{ url_for('play') }}">
-                                <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                                <input class="b-tic tic-button border-dark rounded-circle" type="submit" value=""
-                                    disabled>
+                            {% elif [i,j,k,h] in player2coordinates %}
+                            <form method="POST" class="col px-0" action="{{ url_for('play') }}">
+                                <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
+                                <input class="b-tic b-{{ h }} tic-button left-button border-dark border-left-0"
+                                    type="submit" value="" disabled>
                             </form>
                             {% else %}
-                            <form method="POST" action="{{ url_for('play') }}">
-                                <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                                <input class="tic-button yet-to-tic rounded border-dark rounded-circle" type="submit" value="">
+                            <form method="POST" class="col px-0" action="{{ url_for('play') }}">
+                                <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
+                                <input class="tic-button yet-to-tic left-button border-dark border-left-0" type="submit"
+                                    value="">
+                            </form>
+                            {% endif %}
+                            {% elif h == width-1 %}
+                            {% if [i,j,k,h] in player1coordinates %}
+                            <form method="POST" class="col px-0" action="{{ url_for('play') }}">
+                                <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
+                                <input class="r-tic r-{{ h }} tic-button right-button border-dark border-right-0"
+                                    type="submit" value="" disabled>
+                            </form>
+                            {% elif [i,j,k,h] in player2coordinates %}
+                            <form method="POST" class="col px-0" action="{{ url_for('play') }}">
+                                <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
+                                <input class="b-tic b-{{ h }} tic-button right-button border-dark border-right-0"
+                                    type="submit" value="" disabled>
+                            </form>
+                            {% else %}
+                            <form method="POST" class="col px-0" action="{{ url_for('play') }}">
+                                <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
+                                <input class="tic-button yet-to-tic right-button border-dark border-right-0"
+                                    type="submit" value="">
                             </form>
                             {% endif %}
                             {% else %}
-                            {% for h in range(width) %}
-                            <div class="row px-0 mx-0 segment">
-                                {% if h == 0 %}
-                                {% if [i,j,k,h] in player1coordinates %}
-                                <form method="POST" class="col px-0" action="{{ url_for('play') }}">
-                                    <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                    <input class="r-tic r-{{ h }} tic-button left-button border-dark border-left-0"
-                                        type="submit" value="" disabled>
-                                </form>
-                                {% elif [i,j,k,h] in player2coordinates %}
-                                <form method="POST" class="col px-0" action="{{ url_for('play') }}">
-                                    <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                    <input class="b-tic b-{{ h }} tic-button left-button border-dark border-left-0"
-                                        type="submit" value="" disabled>
-                                </form>
-                                {% else %}
-                                <form method="POST" class="col px-0" action="{{ url_for('play') }}">
-                                    <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                    <input class="tic-button yet-to-tic left-button border-dark border-left-0" type="submit"
-                                        value="">
-                                </form>
-                                {% endif %}
-                                {% elif h == width-1 %}
-                                {% if [i,j,k,h] in player1coordinates %}
-                                <form method="POST" class="col px-0" action="{{ url_for('play') }}">
-                                    <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                    <input class="r-tic r-{{ h }} tic-button right-button border-dark border-right-0"
-                                        type="submit" value="" disabled>
-                                </form>
-                                {% elif [i,j,k,h] in player2coordinates %}
-                                <form method="POST" class="col px-0" action="{{ url_for('play') }}">
-                                    <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                    <input class="b-tic b-{{ h }} tic-button right-button border-dark border-right-0"
-                                        type="submit" value="" disabled>
-                                </form>
-                                {% else %}
-                                <form method="POST" class="col px-0" action="{{ url_for('play') }}">
-                                    <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                    <input class="tic-button yet-to-tic right-button border-dark border-right-0" type="submit"
-                                        value="">
-                                </form>
-                                {% endif %}
-                                {% else %}
-                                {% if [i,j,k,h] in player1coordinates %}
-                                <form method="POST" class="col px-0" action="{{ url_for('play') }}">
-                                    <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                    <input class="r-tic r-{{ h }} tic-button rounded border-dark" type="submit" value=""
-                                        disabled>
-                                </form>
-                                {% elif [i,j,k,h] in player2coordinates %}
-                                <form method="POST" class="col px-0" action="{{ url_for('play') }}">
-                                    <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                    <input class="b-tic b-{{ h }} tic-button rounded border-dark" type="submit" value=""
-                                        disabled>
-                                </form>
-                                {% else %}
-                                <form method="POST" class="col px-0" action="{{ url_for('play') }}">
-                                    <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                    <input class="tic-button yet-to-tic rounded border-dark" type="submit" value="">
-                                </form>
-                                {% endif %}
-                                {% endif %}
-                            </div>
-                            {% endfor %}
+                            {% if [i,j,k,h] in player1coordinates %}
+                            <form method="POST" class="col px-0" action="{{ url_for('play') }}">
+                                <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
+                                <input class="r-tic r-{{ h }} tic-button rounded border-dark" type="submit" value=""
+                                    disabled>
+                            </form>
+                            {% elif [i,j,k,h] in player2coordinates %}
+                            <form method="POST" class="col px-0" action="{{ url_for('play') }}">
+                                <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
+                                <input class="b-tic b-{{ h }} tic-button rounded border-dark" type="submit" value=""
+                                    disabled>
+                            </form>
+                            {% else %}
+                            <form method="POST" class="col px-0" action="{{ url_for('play') }}">
+                                <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
+                                <input class="tic-button yet-to-tic rounded border-dark" type="submit" value="">
+                            </form>
+                            {% endif %}
                             {% endif %}
                         </div>
+                        {% endfor %}
+                        {% endif %}
                     </div>
-                    {% endfor %}
                 </div>
                 {% endfor %}
             </div>
-            {% if i >= 1 %}
-            <div class="col-1 d-md-none d-lg-block border-left"></div>
-            {% else %}
-            <div class="col-1 d-md-none d-lg-block"></div>
-            {% endif %}
+            {% endfor %}
         </div>
-        <div class="row">
-            <div class="col-12 col-lg-10 border-left offset-lg-1 border-right plane-spacer"></div>
-        </div>
-        {% endfor %}
+        {% if i >= 1 %}
+        <div class="col-1 d-md-none d-lg-block border-left"></div>
+        {% else %}
+        <div class="col-1 d-md-none d-lg-block"></div>
+        {% endif %}
     </div>
-    {% endif %}
+    <div class="row">
+        <div class="col-12 col-lg-10 border-left offset-lg-1 border-right plane-spacer"></div>
+    </div>
+    {% endfor %}
 </div>
+{% endif %}
 {% endblock %}
