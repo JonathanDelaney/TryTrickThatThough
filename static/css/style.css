@@ -25,11 +25,7 @@ main {
     width: 110%;
 }
 
-.navbar-collapse {
-    display: -ms-flexbox!important;
-    display: flex!important;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
+.menu-items {
     margin-left: 30px;
 }
 
@@ -225,12 +221,12 @@ a{
     width: auto;
     max-height: 38px;
     max-width: 38px;
-    background-color: whitesmoke;
+    background-color: #e7f1fe;
 }
 
 .comment {
     background-color: #40e0d045;
-    padding: 0px 20px;
+    padding: 10px 20px 0px;
     border-radius: 4px;
     margin-bottom: 5px;
 }
@@ -284,9 +280,6 @@ a{
     height: 110vh;
     margin-left: 47vw;
     background: transparent;
-    /* background: url('/static/images/space_bg.png') center, radial-gradient(circle at 50%, #eee, #888 40%, #333 75%, #222 95%);
-    background-blend-mode: multiply;
-    background-position: cover; */
 }
 
 .spinner-border {
