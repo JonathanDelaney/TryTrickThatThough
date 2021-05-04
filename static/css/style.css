@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
 * {
     margin: 0px;
     padding: 0px;
@@ -11,8 +13,24 @@ html, body {
     overflow-x: hidden;
 }
 
+h1 {
+    font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
 main {
     width: 110%;
+}
+
+.navbar-collapse {
+    display: -ms-flexbox!important;
+    display: flex!important;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    margin-left: 30px;
 }
 
 .alert {
@@ -39,15 +57,15 @@ a{
     background: url('/static/images/space_bg.png') center, radial-gradient(circle at 50%, #eee, #888 40%, #333 75%, #222 95%);
     background-blend-mode: multiply;
     background-position: cover;
-    min-height: 96vh;
+    min-height: 102vh;
     height: auto;
     color: whitesmoke;
 }
 
 .lets-play-title {
-    text-shadow: 0px 1px 5px #491212, 0px 1px 6px #b61313, 0px 1px 7px #eb9545,
-    0px 1px 8px #c98c32, 0px 1px 9px #e9e62d, 0px 1px 10px #9eeb45,
-    0px 1px 14px #3fe41f;
+    text-shadow: 0px 1px 5px #585858, 0px 1px 6px #47b613, 0px 1px 7px #eb9545,
+    0px 1px 8px #c98c32, 0px 1px 9px #e9e62d, 0px 1px 10px #eb9e45,
+    0px 1px 14px #1fe488;
 }
 
 .board-set {
@@ -167,7 +185,7 @@ a{
     height: 22px;
     min-width: 7px;
     max-width: 38px;
-    box-shadow: 0px;
+    /* box-shadow: 0px; */
 }
 
 .row-1 .tic-button {
@@ -175,7 +193,7 @@ a{
     height: 25px;
     min-width: 8px;
     max-width: 47px;
-    box-shadow: 0px 0px 52px 3px white;
+    /* box-shadow: 0px 0px 52px 3px white; */
 }
 
 .row-2 .tic-button {
@@ -183,7 +201,7 @@ a{
     height: 28px;
     min-width: 9px;
     max-width: 56px;
-    box-shadow: 0px 0px 52px 3px white;
+    /* box-shadow: 0px 0px 52px 3px white; */
 }
 
 .row-3 .tic-button {
@@ -191,7 +209,7 @@ a{
     height: 31px;
     min-width: 10px;
     max-width: 65px;
-    box-shadow: 0px 0px 52px 3px white;
+    /* box-shadow: 0px 0px 52px 3px white; */
 }
 
 .row-4 .tic-button {
@@ -199,7 +217,7 @@ a{
     height: 34px;
     min-width: 11px;
     max-width: 74px;
-    box-shadow: 0px 0px 52px 3px white;
+    /* box-shadow: 0px 0px 52px 3px white; */
 }
 
 .buttress {
@@ -208,6 +226,13 @@ a{
     max-height: 38px;
     max-width: 38px;
     background-color: whitesmoke;
+}
+
+.comment {
+    background-color: #40e0d045;
+    padding: 0px 20px;
+    border-radius: 4px;
+    margin-bottom: 5px;
 }
 
 .right-button {
@@ -230,12 +255,15 @@ a{
 
 .yet-to-tic {
     transform: scale(1);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, filter 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0px;
 }
 
 .yet-to-tic:hover {
     transform: scale(1.1);
+    box-shadow: 0px 0px 52px 3px white;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    z-index: 3;
 }
 
 #edited_message {

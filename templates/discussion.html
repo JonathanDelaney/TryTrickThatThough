@@ -43,7 +43,7 @@
         <div class="col-12 pb-4">
             <h1 class="border-bottom">Comments</h1>
             {% for comment in comments %}
-            <div class="border-bottom">
+            <div class="border-bottom comment">
                 <h4>{{ comment.name }}</h4>
                 {% if comment.name == session['user'] %}
                 <div class="float-right">
