@@ -138,8 +138,9 @@
                         {% else %}
                         <form method="POST" action="{{ url_for('play') }}">
                             <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                            <input class="tic-button yet-to-tic rounded border-dark rounded-circle" type="submit"
-                                value="">
+                            <button class="tic-button yet-to-tic rounded border-dark rounded-circle" type="submit"
+                                data-toggle="tooltip" data-placement="left" title="{{ i }},{{ j }},{{ k }}"
+                                    value=""></button>
                         </form>
                         {% endif %}
                         {% else %}
@@ -161,8 +162,8 @@
                             {% else %}
                             <form method="POST" class="col px-0" action="{{ url_for('play') }}">
                                 <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                <input class="tic-button yet-to-tic left-button border-dark border-left-0" type="submit"
-                                    value="">
+                                <button class="tic-button yet-to-tic left-button border-dark border-left-0" type="submit" data-toggle="tooltip" data-placement="left" title="{{ i }},{{ j }},{{ k }},{{ h }}"
+                                    value=""></button>
                             </form>
                             {% endif %}
                             {% elif h == width-1 %}
@@ -181,8 +182,8 @@
                             {% else %}
                             <form method="POST" class="col px-0" action="{{ url_for('play') }}">
                                 <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                <input class="tic-button yet-to-tic right-button border-dark border-right-0"
-                                    type="submit" value="">
+                                <button class="tic-button yet-to-tic right-button border-dark border-right-0"
+                                    type="submit"  data-toggle="tooltip" data-placement="left" title="{{ i }},{{ j }},{{ k }},{{ h }}" value=""></button>
                             </form>
                             {% endif %}
                             {% else %}
@@ -201,7 +202,7 @@
                             {% else %}
                             <form method="POST" class="col px-0" action="{{ url_for('play') }}">
                                 <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }},{{ h }}">
-                                <input class="tic-button yet-to-tic rounded border-dark" type="submit" value="">
+                                <button class="tic-button yet-to-tic rounded border-dark" type="submit"  data-toggle="tooltip" data-placement="left" title="{{ i }},{{ j }},{{ k }},{{ h }}" value=""></button>
                             </form>
                             {% endif %}
                             {% endif %}
