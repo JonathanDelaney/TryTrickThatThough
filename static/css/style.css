@@ -50,7 +50,7 @@ a{
 
 .space-bg {
     padding-top: 10px;
-    background: url('/static/images/space_bg.png') center, radial-gradient(circle at 50%, #eee, #888 40%, #333 75%, #222 95%);
+    background: url('/static/images/space_bg.png') center, radial-gradient(circle at 50%, #eee, #888 40%, #7d5a5a 75%, #222 95%);
     background-blend-mode: multiply;
     background-position: cover;
     min-height: 102vh;
@@ -79,17 +79,21 @@ a{
     background-color: rgba(46, 248, 204, 0.315);
 }
 
+.user-turn{
+    color: #e7f1fe;
+}
+
 .plane {
     clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
     background: url('/static/images/nebula.png') center;
     background-size: cover;
     background-blend-mode: multiply;
     box-shadow: 40px 30px 41px 4px rgb(1 1 1) inset;
+    opacity: 80%;
 }
 
 .plane-spacer {
-    background-color: #797979;
-    height: 10px;
+    background: linear-gradient(0.25turn, #faa689ab, #142a49bf, #4b75ab8f);    height: 10px;
 }
 
 .t-row {

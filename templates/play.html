@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <div class="mt-5 col-7">
-                    <input type="submit" class="btn btn-info col-12" value="Set Board">
+                    <input type="submit" class="btn btn-info col-12" value="PLAY">
                 </div>
             </div>
         </form>
@@ -104,9 +104,9 @@
 </div>
 {% else %}
 {% if player_turn == "player1" %}
-<h1 class="player-turn">{{ username|upper }}'s turn</h1>
+<h1 class="user-turn">{{ username|upper }}'s turn</h1>
 {% elif player_turn == "player2" %}
-<h1 class="player-turn">Guest's turn</h1>
+<h1 class="guest-turn">Guest's turn</h1>
 {% endif %}
 <a href="{{ url_for('reset_board') }}" class="btn btn-outline-info">Reset Board</a>
 <a href="{{ url_for('set_new_board') }}" class="btn btn-outline-info">Set New Board</a>

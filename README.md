@@ -5,27 +5,27 @@ Live website :arrow_down:<br>
 
 ## About
 
-This webapp is the first ever flask/jinja game and the only representation of 4d tic-tac-toe on one board. This 'look mom, no JS!' website is an example of what can be done to create front-end interactivity with just html, css and python with flask. The game uses innovative methods, to solve for win scenarios and (dumb) computer opposition, which allow for online mutliplayer playing that I plan to implement in the future using a rest-api.
+Having looked online for examples of flask games, none could be found so I decided to see if I could programme one myself, without the use of JS. This webapp is possibly the only example of a flask/jinja game and the only representation of 4d tic-tac-toe on one board. This 'look mom, no JS!' website is an example of what can be done to create front-end interactivity with just html, css and python with flask. The game uses innovative methods, to solve for win scenarios and create, dumb, computer opposition. In the future I plan to use this method to allow for online mutliplayer playing, implemented using a rest-api.
 
 ## User Stories
 
 - The Avid Gamer
 
   - I expect to be able to have an engrossing experience gaming.
-  - I expect the website to allow me to play quickly and easily with little loading/buffering.
+  - The website should allow me to play quickly and easily with little loading/buffering.
   - I expect there to be a competetive element and for there to be a learning curve and a difficulty that requires surpassing.
 
 - The Casual Gamer
 
   - I expect to be able to play quickly and easily as a priority.
-  - I expect that the game can have an intermediate difficulty and an easy option.
+  - The game should have an intermediate difficulty and an easy option.
   - I expect to be engaged and kept interested while I waste some time playing the game.
 
 - A Younger, Older or Noob Gamer
 
-  - I expect it to be clear and easy to use and understand.
+  - The website should be clear and easy to use and understand.
   - I expect there to be a community of players and administrators to provide feedback about the game.
-  - I expect there to be instructions on how to use the gamew and they should be thurough.
+  - There should be instructions on how to use the game and they should be thurough.
   - I expect to be given an easy playing option.
 
 ## Design and Creation
@@ -60,15 +60,22 @@ The computer can block the user by completing a potential run of the opponent. I
 
 * ### Sign In and Register Pages
 
+    - These pages are quite simple and I didn't want to distract from the overall intention behind these pages which is to get the user to register or sign in. The user gets a feel for the website's theme with the space background whcih is present throuhgout the website. I have added two boxes either side of the input fields which are a shape found on the game board. This is a motif which is a thread to tie together the beginning of the user experience to the end and also the beginning and end of a section in the game.
+
 
 * ### Discussion Page
 
-
-* ### Leaderboard
+    - This page contains all the relevant information for a user to see how they fare compared with other users and to be able to discuss this and features and quirks of multidimensional ti-tac-toe.
+    - The page starts with a top 10 leasderboard and a button to allow you to view the entire leaderboard. This is to get the user interested in playing the game more to improve their own score.
+    - The Page provides the user with a commenting function. I wanted to create a community which could discuss the quirks of the game and have some banter about positions on the leaderboard.
+    - The user can edit or delete any comment they have made and the comments are displayed in chronological order so that the most recent comments are displayed at the top. Any new user can get the latest in the discussion.
 
 
 * ### Games Page
 
+    - The game page provides the user with an initial welcome message and a provocative 'let's play'.
+    - The user is given the settings options to setup the board properties and these are presented to the user in the form of select inputs so the user doesn't have to type.
+    - When the user has chosen a set of parameters and an opponent they can press the 'play' button and begin playing.
 
 
 ## Technologies Used
