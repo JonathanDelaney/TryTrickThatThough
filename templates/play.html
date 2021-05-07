@@ -12,7 +12,7 @@
     {% endif %}
 </h2>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-info ml-1" data-toggle="modal" data-target="#instructionModal">
+<button type="button" class="btn btn-warning ml-1" data-toggle="modal" data-target="#instructionModal">
     Instructions
 </button>
 
@@ -104,15 +104,15 @@
 </div>
 {% else %}
 {% if player_turn == "player1" %}
-<h1 class="user-turn">{{ username|upper }}'s turn</h1>
+<h1 class="user-turn mx-4">{{ username|upper }}'s turn</h1>
 {% elif player_turn == "player2" %}
-<h1 class="guest-turn">Guest's turn</h1>
+<h1 class="guest-turn text-right mx-4">The Guest's turn</h1>
 {% endif %}
 <a href="{{ url_for('reset_board') }}" class="btn btn-outline-info">Reset Board</a>
 <a href="{{ url_for('set_new_board') }}" class="btn btn-outline-info">Set New Board</a>
 <div class="container-fluid pt-1 pb-5 px-0 mx-0">
     {% for i in range(width) %}
-    <div class="row">
+    <div class="row plane-height-{{i}}">
         {% if i >= 1 %}
         <div class="col-1 d-md-none d-lg-block border-right"></div>
         {% else %}
@@ -122,7 +122,7 @@
             {% for j in range(width) %}
             <div class="row across-{{j}} justify-content-around t-col">
                 {% for k in range(width) %}
-                <div class="col px-0 row-{{j}} t-row">
+                <div class="col px-0 row-{{j}} t-row t-row-{{i}}">
                     <div class="row px-0 mx-0 section section-{{j}} align-items-center">
                         {% if dimensions == 3 %}
                         {% if [i,j,k] in player1coordinates %}

@@ -80,7 +80,11 @@ a{
 }
 
 .user-turn{
-    color: #e7f1fe;
+    color: #ecdbd4;
+}
+
+.guest-turn{
+    color: #c2d7f3;
 }
 
 .plane {
@@ -101,6 +105,26 @@ a{
     display: flex;
     justify-content: space-evenly;
     height: 30px;
+}
+
+.t-row-0 {
+    margin-top: 0px;
+}
+
+.t-row-1 {
+    margin-top: 4px;
+}
+
+.t-row-2 {
+    margin-top: 8px;
+}
+
+.t-row-3 {
+    margin-top: 12px;
+}
+
+.t-row-4 {
+    margin-top: 16px;
 }
 
 .across-0 {
@@ -146,6 +170,14 @@ a{
 
 .row-4 {
     margin: 0px;
+}
+
+.border-left {
+    border-left: 1px solid #4e79af!important;
+}
+
+.border-right {
+    border-right: 1px solid #9e7667!important;
 }
 
 .section {
