@@ -43,10 +43,9 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
             # displacement values
             # then it is a win scenario.
             if len(run) == (width*2 - 1):
-                print(player, " wins!!! with : ", run)
                 part_runs = []
                 prev_coords = []
-                return player
+                return "There is a winner!"
     # Get the displacement values between the new point and all other previous points
     for coords in prev_coords:
         diff = [abs(c1-c2) for c1, c2 in zip(coords, new_coords)]
@@ -112,7 +111,6 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
         elif width == 5:
             part_runs.append([coords, new_coords, diff, diff2, diff3, diff4])
         ref = []
-    print("Partial runs for ", player, ": ", part_runs)
     ref = []
 
 

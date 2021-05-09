@@ -128,17 +128,17 @@
                         {% if [i,j,k] in player1coordinates %}
                         <form method="POST" action="{{ url_for('play') }}">
                             <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                            <input class="r-tic tic-button border-dark rounded-circle" type="submit" value="" disabled>
+                            <input class="r-tic tic-button border-dark rounded-circle threed-point" type="submit" value="" disabled>
                         </form>
                         {% elif [i,j,k] in player2coordinates %}
                         <form method="POST" action="{{ url_for('play') }}">
                             <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                            <input class="b-tic tic-button border-dark rounded-circle" type="submit" value="" disabled>
+                            <input class="b-tic tic-button border-dark rounded-circle threed-point" type="submit" value="" disabled>
                         </form>
                         {% else %}
                         <form method="POST" action="{{ url_for('play') }}">
                             <input type="hidden" name="coordinate" value="{{ i }},{{ j }},{{ k }}">
-                            <button class="tic-button yet-to-tic rounded border-dark rounded-circle" type="submit"
+                            <button class="tic-button yet-to-tic rounded border-dark rounded-circle threed-point" type="submit"
                                 data-toggle="tooltip" data-placement="left" title="{{ i }},{{ j }},{{ k }}"
                                     value=""></button>
                         </form>
