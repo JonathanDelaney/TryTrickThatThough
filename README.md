@@ -56,11 +56,11 @@ The computer can block the user by completing a potential run of the opponent. I
 
 ## Mockups
 
-<img src="./static/images/phone-sign-in.png" width="30%" /><img src="./static/images/phone-discussion.png" width="30%" /><img src="./static/images/phone-game.png" width="30%" />
+<img src="./static/images/phone-sign-in.png" width="30%" margin="1%" /><img src="./static/images/phone-discussion.png" width="30%" margin="1%" /><img src="./static/images/phone-game.png" width="30%" margin="1%" />
 
 * ### Tablet
 
-<img src="./static/images/tablet-sign-in.png" width="33%" /><img src="./static/images/tablet-discussion.png" width="33%" /><img src="./static/images/tablet-game.png" width="33%" />
+<img src="./static/images/tablet-sign-in.png" width="30%" margin="1%" /><img src="./static/images/tablet-discussion.png" width="30%" margin="1%" /><img src="./static/images/tablet-game.png" width="30%" margin="1%" />
 
 * ### Desktop
 
