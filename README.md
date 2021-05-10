@@ -56,6 +56,22 @@ The computer can block the user by completing a potential run of the opponent. I
 
 ## Mockups
 
+<img src="./static/images/phone-sign-in.png" width="30%" />
+<img src="./static/images/phone-discussion.png" width="30%" />
+<img src="./static/images/phone-game.png" width="30%" />
+
+* ### Tablet
+
+<img src="./static/images/tablet-sign-in.png" width="33%" />
+<img src="./static/images/tablet-discussion.png" width="33%" />
+<img src="./static/images/tablet-game.png" width="33%" />
+
+* ### Desktop
+
+<img src="./static/images/web-sign-in.png" width="100%" />
+<img src="./static/images/web-discussion.png" width="100%" />
+<img src="./static/images/web-game.png" width="100%" />
+
 ## Features
 
 * ### Sign In and Register Pages
@@ -112,16 +128,16 @@ The computer can block the user by completing a potential run of the opponent. I
 
 -My JavaScript passed using the jshint.com validator.
 
-<img src="./assets/flag_images/webtest.png" height="100px" />
+<img src="./static/images/webtest.png" height="100px" />
 Testing of the webpage was carried out using <a href="https://www.webpagetest.org/">webpagetest.org</a>
 <br>
 <br>
 The CSS validating was done using <a href="https://jigsaw.w3.org/css-validator/">W3</a><br>
-<img src="./assets/flag_images/CSStest.png" height="100px" />
+<img src="./static/images/CSStest.png" height="100px" />
 <br>
 <br>
-The Html validating was done using <a href="https://en.rakko.tools/tools/58/">Rakko</a><br>
-<img src="./assets/flag_images/HTMLtest.png" /><br>
+
+HTML Test:
 
  - Sign In and Register pages - Pass
  - The Discussion Page - Pass

@@ -42,18 +42,18 @@
     </header>
 
 
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
     <section>
         <!-- flash messages -->
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
         {% for message in messages %}
         <div class="row-12">
             <h4 class="alert alert-primary">{{ message }}</h4>
         </div>
         {% endfor %}
-        {% endif %}
-        {% endwith %}
     </section>
+    {% endif %}
+    {% endwith %}
 
 
     <main class="container-fluid px-0 space-bg">
