@@ -11,7 +11,7 @@ Having looked online for examples of flask games, none could be found so I decid
 
 - The Avid Gamer
 
-  - I expect to be able to have an engrossing experience gaming.
+  - I expect to be able to have an enthralling experience gaming.
   - The website should allow me to play quickly and easily with little loading/buffering.
   - I expect there to be a competetive element and for there to be a learning curve and a difficulty that requires surpassing.
 
@@ -56,20 +56,20 @@ The computer can block the user by completing a potential run of the opponent. I
 
 ## Mockups
 
-<img src="./static/images/phone-sign-in.png" width="30%" />
-<img src="./static/images/phone-discussion.png" width="30%" />
+<img src="./static/images/phone-sign-in.png" style="width:30%;margin-right:4.5%;" />
+<img src="./static/images/phone-discussion.png" style="width:30%;margin-right:4.5%;" />
 <img src="./static/images/phone-game.png" width="30%" />
 
 * ### Tablet
 
-<img src="./static/images/tablet-sign-in.png" width="33%" />
-<img src="./static/images/tablet-discussion.png" width="33%" />
-<img src="./static/images/tablet-game.png" width="33%" />
+<img src="./static/images/tablet-sign-in.png" style="width:32%;margin-right:1.5%;" />
+<img src="./static/images/tablet-discussion.png" style="width:32%;margin-right:1.5%;" />
+<img src="./static/images/tablet-game.png" width="32%" />
 
 * ### Desktop
 
-<img src="./static/images/web-sign-in.png" width="100%" />
-<img src="./static/images/web-discussion.png" width="100%" />
+<img src="./static/images/web-sign-in.png" style="width:100%;margin-bottom:20px;"  />
+<img src="./static/images/web-discussion.png" style="width:100%;margin-bottom:20px;" />
 <img src="./static/images/web-game.png" width="100%" />
 
 ## Features
