@@ -180,11 +180,34 @@ a{
     border-right: 1px solid #9e7667!important;
 }
 
-.threed-point {
-    transform: scale(2)
+.threed-point-0 {
+    border-radius: 50%;
+    width: calc(0.6vw + 18px);
+    height: calc(0.6vw + 18px);
 }
 
-.section {
+.threed-point-1 {
+    border-radius: 50%;
+    width: calc(0.6vw + 21px);
+    height: calc(0.6vw + 21px);
+}
+
+.threed-point-2 {
+    border-radius: 50%;
+    width: calc(0.6vw + 24px);
+    height: calc(0.6vw + 24px);
+}
+
+.threed-point-3 {
+    border-radius: 50%;
+    width: calc(0.6vw + 27px);
+    height: calc(0.6vw + 27px);
+}
+
+.threed-point-4 {
+    border-radius: 50%;
+    width: calc(0.6vw + 30px);
+    height: calc(0.6vw + 30px);
 }
 
 .section-0 {
@@ -217,9 +240,6 @@ a{
 }
 
 .tic-button {
-    width: 100%;
-    height: 25px;
-    min-width: calc(5vw - 13px);
     filter: brightness(0.5);
     border: 1px solid black;
 }
