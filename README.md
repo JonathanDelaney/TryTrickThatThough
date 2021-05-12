@@ -56,6 +56,7 @@ The computer can block the user by completing a potential run of the opponent. I
 
 ## Mockups
 
+<<<<<<< HEAD
 <img src="./static/images/phone-sign-in.png" style="width:30%;margin-right:4.5%;" />
 <img src="./static/images/phone-discussion.png" style="width:30%;margin-right:4.5%;" />
 <img src="./static/images/phone-game.png" width="30%" />
@@ -65,6 +66,13 @@ The computer can block the user by completing a potential run of the opponent. I
 <img src="./static/images/tablet-sign-in.png" style="width:32%;margin-right:1.5%;" />
 <img src="./static/images/tablet-discussion.png" style="width:32%;margin-right:1.5%;" />
 <img src="./static/images/tablet-game.png" width="32%" />
+=======
+<img src="./static/images/phone-sign-in.png" width="30%" margin-right="10px" /><img src="./static/images/phone-discussion.png" width="30%" margin="10px" /><img src="./static/images/phone-game.png" width="30%" margin="10px" />
+
+* ### Tablet
+
+<img src="./static/images/tablet-sign-in.png" width="30%" margin="10px" /><img src="./static/images/tablet-discussion.png" width="30%" margin="10px" /><img src="./static/images/tablet-game.png" width="30%" margin="10px" />
+>>>>>>> 26e195abeaaa623ae3b303df74627d5b059103c3
 
 * ### Desktop
 
