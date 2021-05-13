@@ -28,11 +28,12 @@ def discussion():
         new_comment = {
             "name": session["user"],
             "message": request.form.get("message"),
-            "date": datetime.now().strftime("%d-%m-%Y")
+            "date": datetime.now().strftime("%d-%m-%Y"),
+            "timestamp": datetime.now()
         }
         mongo.db.comments.insert_one(new_comment)
     contenders = mongo.db.users.find().sort('score', -1)[:10]
-    comments = mongo.db.comments.find().sort('date', -1)
+    comments = mongo.db.comments.find().sort('timestamp', -1)
     return render_template("discussion.html",
                            contenders=contenders,
                            comments=comments)
