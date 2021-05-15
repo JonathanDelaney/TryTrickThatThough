@@ -12,32 +12,34 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
     # First let's check if a run is completed.
     if part_runs:
         for run in part_runs:
-            # Check if the new point has the same displacement
-            # as two ot more other points with qualifying displacements.
+            # Check if the new point shares the same symmetric displacement
+            # with two or more other points with qualifying displacements.
+            line_ref1 = [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)]
+            line_ref2 = [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)]
             if width == 3:
-                if (([abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-1]
-                    or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-2])
-                        and ([abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-1]
-                            or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-2])):
+                if ((line_ref1 == run[-1]
+                    or line_ref1 == run[-2])
+                        and (line_ref2 == run[-1]
+                            or line_ref2 == run[-2])):
             # If it does, add it to that partial run.
                     run.insert(-2, new_coords)
             elif width == 4:
-                if (([abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-1]
-                    or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-2]
-                        or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-3])
-                            and ([abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-1]
-                                or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-2]
-                                    or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-3])):
+                if ((line_ref1 == run[-1]
+                    or line_ref1 == run[-2]
+                        or line_ref1 == run[-3])
+                            and (line_ref2 == run[-1]
+                                or line_ref2 == run[-2]
+                                    or line_ref2 == run[-3])):
                     run.insert(-3, new_coords)
             elif width == 5:
-                if (([abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-1]
-                    or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-2]
-                        or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-3]
-                            or [abs(c1-c2) for c1, c2 in zip(run[0], new_coords)] == run[-4])
-                                and ([abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-1]
-                                    or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-2]
-                                        or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-3]
-                                            or [abs(c1-c2) for c1, c2 in zip(run[1], new_coords)] == run[-4])):
+                if ((line_ref1 == run[-1]
+                    or line_ref1 == run[-2]
+                        or line_ref1 == run[-3]
+                            or line_ref1 == run[-4])
+                                and (line_ref2 == run[-1]
+                                    or line_ref2 == run[-2]
+                                        or line_ref2 == run[-3]
+                                            or line_ref2 == run[-4])):
                     run.insert(-4, new_coords)
             # If its length is the width of the board plus the
             # displacement values
@@ -94,6 +96,9 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
                 ref.append(new_coords[i])
         # If There are the following pairs of values in the
         # axis experiencing displacement ignore that point.
+        # If these pairings exist the point is invalid due
+        # to the potential for a line to wrap around the board,
+        # as vectors may be the same for different lines.
         if (((set([0, 1]).issubset(ref) or set([1, 2]).issubset(ref)) and width == 3)
             or ((set([0, 2]).issubset(ref) or set([0, 1]).issubset(ref)
                 or set([1, 3]).issubset(ref) or set([2, 3]).issubset(ref)) and width == 4)
@@ -101,8 +106,6 @@ def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
                             or set([0, 3]).issubset(ref) or set([1, 2]).issubset(ref)
                                 or set([1, 4]).issubset(ref) or set([2, 3]).issubset(ref)
                                     or set([2, 4]).issubset(ref) or set([3, 4]).issubset(ref)) and width == 5)):
-            print("ineligable: ", ref, ", and relavent diff: ", diff,
-            ", and new_coords: ", new_coords, ", and other coords: ", coords)
             pass
         elif width == 3:
             part_runs.append([coords, new_coords, diff, diff2])
@@ -120,14 +123,26 @@ def CompPlay(player_part_runs,
                 computer_coords,
                 width,
                 dimensions):
+    # This number list will be cross referenced by the computer to see which
+    # values have not been filled and create a coordinate with those values
+    # to complete that run.
     number_list = [0, 1, 2, 3, 4][:width]
     ref_list = []
     comp_coords = []
+    loop_breaker = True
+    # Check if there are partially completed runs
     if player_part_runs:
+        # Go through the runs in reverse order so the lastes attempt is blocked
         for run in reversed(player_part_runs):
             comp_coords = []
+            # The run should be one away from completion
+            # for the computer to block it.
             if (len(run) == ((width*2)-2) and run not in spent_runs):
                 for i in range(dimensions):
+                    # If an axis in the diff list does not experience 
+                    # displacement, i.e. has a value of 0 in the diff list
+                    # then make the same as the other values for that axis
+                    # in that run.
                     if run[width-1][i] == 0:
                         comp_coords.append(run[0][i])
                     else:
@@ -136,18 +151,22 @@ def CompPlay(player_part_runs,
                         comp_coords.append(list(set(
                             number_list) - set(ref_list))[0])
                         ref_list = []
+                # If the coordinate created already exists ditch it and the
+                # potential run which it blocks and create a random point.
                 if (comp_coords in computer_coords
                         or comp_coords in human_coords):
                     spent_runs.append(run)
                     comp_coords = []
                     if len(computer_coords) == 1:
+                        # Radom point generator.
                         for i in range(dimensions):
                             n = random.randint(0, width-1)
                             comp_coords.append(n)
                         return comp_coords[:dimensions]
                 else:
                     return comp_coords[:dimensions]
-        while True:
+        while loop_breaker:
+            # Radom point generator.
             for i in range(dimensions):
                 n = random.randint(0, width-1)
                 comp_coords.append(n)
@@ -155,9 +174,11 @@ def CompPlay(player_part_runs,
                     or comp_coords in human_coords):
                 comp_coords = []
             else:
+                loop_breaker = False
                 return comp_coords[:dimensions]
     else:
-        while True:
+        while loop_breaker:
+            # Radom point generator.
             for i in range(dimensions):
                 n = random.randint(0, width-1)
                 comp_coords.append(n)
@@ -165,5 +186,6 @@ def CompPlay(player_part_runs,
                     or comp_coords in human_coords):
                 comp_coords = []
             else:
+                loop_breaker = False
                 return comp_coords[:dimensions]
     return comp_coords[:dimensions]
