@@ -56,7 +56,8 @@ The computer can block the user by completing a potential run of the opponent. I
 
 ## Mockups
 
-<<<<<<< HEAD
+* ### Mobile
+
 <img src="./static/images/phone-sign-in.png" style="width:30%;margin-right:4.5%;" />
 <img src="./static/images/phone-discussion.png" style="width:30%;margin-right:4.5%;" />
 <img src="./static/images/phone-game.png" width="30%" />
@@ -66,13 +67,6 @@ The computer can block the user by completing a potential run of the opponent. I
 <img src="./static/images/tablet-sign-in.png" style="width:32%;margin-right:1.5%;" />
 <img src="./static/images/tablet-discussion.png" style="width:32%;margin-right:1.5%;" />
 <img src="./static/images/tablet-game.png" width="32%" />
-=======
-<img src="./static/images/phone-sign-in.png" width="30%" margin-right="10px" /><img src="./static/images/phone-discussion.png" width="30%" margin="10px" /><img src="./static/images/phone-game.png" width="30%" margin="10px" />
-
-* ### Tablet
-
-<img src="./static/images/tablet-sign-in.png" width="30%" margin="10px" /><img src="./static/images/tablet-discussion.png" width="30%" margin="10px" /><img src="./static/images/tablet-game.png" width="30%" margin="10px" />
->>>>>>> 26e195abeaaa623ae3b303df74627d5b059103c3
 
 * ### Desktop
 
@@ -117,7 +111,7 @@ The computer can block the user by completing a potential run of the opponent. I
 
 - Gitpod was the IDE used to code the website.
 - AdobeXd for the design of the mockups.
-- Vectr to edit images for free.
+- Vectr to edit images.
 - TnyJPG to compress images.
 - Googles Fonts
 - Git
@@ -128,13 +122,53 @@ The computer can block the user by completing a potential run of the opponent. I
 
 ### Known Bugs
 
+On mobile devices the user may have to zoom in, in order to play in the correct section. I did not want to disable the option of playing the 4D tic-tac-toe on smaller screen sizes as the user can still play, albeit with greater difficulty than a desktop or tablet player. The entire premise behind the 4 dimensional tic-tac-toe would be lost to all those playing on mobile devices.
+<br>
+<br>
+All users can play the game on any sized device if they wish, I want every user to be able to enjoy the 4D experience, at home or on the go.
+<br>
+<br>
+<br>
+Another feature which could be seen as a bug is the movement back up to the top of the page after the user plays. This is unavoidable given I am only using flask and jinja on the front-end and would require the use of Ajax to solve. I haven't learned Ajax and have not had the time to for this project but may do in the future and return to this project to remedy this bug.
 
 ### User experience
 
+- Friends, family and peer review testing.
+
+    - I asked friends and family of all different ages and abilities to play around with the website and explore its features. No issues were found in the final round of testing.
+    - The design of the game board was influenced by the feedback I received during this phase of testing. The lines either side and the definition of each plane along with other minor style features were added to the game off the back of feedback received.
+<hr>
+
+- The Avid Gamer
+
+  - <em>I expect to be able to have an enthralling experience gaming.</em>
+    - The game has an exciting aesthetic with the space theme and 3D effect and engages the user with the potential to climb the leaderboard and compete with other players from around the world.
+  - <em>The website should allow me to play quickly and easily with little loading/buffering.</em>
+    - Once a player has signed in/registered they are redirected straight to the game page where they need waste no time in getting down to playing. The game's backend I have programmed to run and load as quickly as possible and should give the user a seemless experience.
+  - <em>I expect there to be a competetive element and for there to be a learning curve and a difficulty that requires surpassing.</em>
+    - The leaderboard is there to give the users the drive to continue playing and to provide them with this competetive element. The game itself has a range of difficulty which is inherent in the width and dimensionality of the board. The computer provides the user with ample resistance to force them to strategise.
+
+- The Casual Gamer
+
+  - <em>I expect to be able to play quickly and easily as a priority.</em>
+    - The redirection from the sign-in to the game page is to satisfy this demand which every kind of user is likely to have. The game set-up board does not require the user to type anything in and if they wish they can just press play without changing anything and be thrown straight into a game.
+  - <em>The game should have an intermediate difficulty and an easy option.</em>
+    - The default select options are an intermediate level difficulty set-up. The user can change this and during a game can quickly opt out of the game if they'd like to change the board settings. The instructions modal gives the user information on the difficulty of different set-ups.
+  - <em>I expect to be engaged and kept interested while I waste some time playing the game.</em>
+    - The aesthetics, the competition put up by the computer, and the novelty of a new game should make for some engaging playtime. A new game like this will present a learning curve but the features mentioned above should make learning an enjoyable process. The short game format will give the user a quick bout of enjoyment and does not require a large investment of time.
+
+- A Younger, Older or Noob Gamer
+
+  - <em>The website should be clear and easy to use and understand.</em>
+    - The simple layout of the navigation and redirection from sign-in will make the navigating easy for the user. The instructions on the game page will provide the noob with enough reading to be able to grasp the concept of how to play 4D tic-tac-toe. The 3D and width of 3 options will make for a very easy introductory level game which this kind of player to enjoy getting started.
+  - <em>I expect there to be a community of players and administrators to provide feedback about the game.</em>
+    - The discussions page provides the user with a platform to air their opinions, tips, questions and responses. The administrators of the website can monitor the activity and address any queries that users may have if other users haven't. The edit and delete options also allow them to backtrack or change the wording of their questions if necessary.
+  - <em>There should be instructions on how to use the game and they should be thurough.</em>
+    - The instructions give the user a description of how to play the 4D tic-tac-toe. The pictures provided and the details at the beginning are all a user should need to get started playing higher dimesnional tic-tac-toe. The images give an example of most kinds of possible winning runs that can be achieved and should give them all the info they need without telling them how to beat the computer or explain too much and take away from the challenge the game should present.
+  - <em>I expect to be given an easy playing option.</em>
+    - When the user changes the settings to 3 dimensions with a width of 3 as per the instructions on which settings are the least difficult, they will be given the easiest possible board set-up to almost guarantee them a win if they make even the slightest effort. The user can then increase the width and dimensionof the board to increase the difficulty.
 
 ### Performance Testing
-
--My JavaScript passed using the jshint.com validator.
 
 <img src="./static/images/webtest.png" height="100px" />
 Testing of the webpage was carried out using <a href="https://www.webpagetest.org/">webpagetest.org</a>
