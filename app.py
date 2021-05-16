@@ -245,7 +245,8 @@ def edit_comment(comment_id, comment_date):
         edited = {
             "name": session["user"],
             "message": request.form.get("edited_message"),
-            "date": comment_date
+            "date": comment_date,
+            "timestamp": datetime.now()
         }
         mongo.db.comments.update({"_id": ObjectId(comment_id)}, edited)
         flash("Comment Successfully Edited")

@@ -122,7 +122,7 @@ The computer can block the user by completing a potential run of the opponent. I
 
 ### Known Bugs
 
-On mobile devices the user may have to zoom in, in order to play in the correct section. I did not want to disable the option of playing the 4D tic-tac-toe on smaller screen sizes as the user can still play, albeit with greater difficulty than a desktop or tablet player. The entire premise behind the 4 dimensional tic-tac-toe would be lost to all those playing on mobile devices.
+On mobile devices the user may have to zoom in, in order to play in the correct section. I did not want to disable the option of playing the 4D tic-tac-toe on smaller screen sizes as the user can still play, albeit with greater difficulty than on a desktop or tablet. The entire premise behind the 4 dimensional tic-tac-toe would be lost to all those playing on mobile devices.
 <br>
 <br>
 All users can play the game on any sized device if they wish, I want every user to be able to enjoy the 4D experience, at home or on the go.
