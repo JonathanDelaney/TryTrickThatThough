@@ -32,20 +32,20 @@ def discussion():
             "timestamp": datetime.now()
         }
         mongo.db.comments.insert_one(new_comment)
-    username = session["user"]
     contenders = mongo.db.users.find().sort('score', -1)[:10]
     comments = mongo.db.comments.find().sort('timestamp', -1)
     return render_template("discussion.html",
                            contenders=contenders,
-                           comments=comments,
-                           username=username)
+                           comments=comments)
 
 
 @app.route("/leaderboard")
 def leaderboard():
+    username = session["user"]
     contenders = mongo.db.users.find().sort('score', -1)
     return render_template("leaderboard.html",
-                            contenders=contenders)
+                            contenders=contenders,
+                            username=username)
 
 
 player_turn = "player1"
