@@ -43,11 +43,9 @@ def discussion():
 
 @app.route("/leaderboard")
 def leaderboard():
-    username = session["user"]
     contenders = mongo.db.users.find().sort('score', -1)
     return render_template("leaderboard.html",
-                            contenders=contenders,
-                            username=username)
+                            contenders=contenders)
 
 
 player_turn = "player1"

@@ -19,19 +19,11 @@
     <tbody>
         {% for contender in contenders %}
         {% if loop.index <= 10 %}
-        {% if contender.username == username %}
-        <tr>
-            <td class="text-center text-danger">{{ loop.index }}</td>
-            <td class="text-center text-danger">{{ contender.username }}</td>
-            <td class="text-center text-danger">{{ contender.score }}</td>
-        </tr>
-        {% else %}
         <tr>
             <td class="text-center">{{ loop.index }}</td>
             <td class="text-center">{{ contender.username }}</td>
             <td class="text-center">{{ contender.score }}</td>
         </tr>
-        {% endif %}
         {% endif %}
         {% endfor %}
     </tbody>
