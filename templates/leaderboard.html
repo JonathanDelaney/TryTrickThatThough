@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Leaderboard -->
 <h2 class="text-center"><b>Leaderboard</b></h2>
 <a class="btn btn-outline-info ml-1 mb-1" href="{{ url_for('discussion') }}">Discussions Page</a>
 
-
+<!-- Leaderboard table -->
 <table class="table table-striped table-dark mb-0">
     <thead>
         <tr>
@@ -13,7 +14,7 @@
             <th class="text-center" scope="col">Score</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody><!-- Loop to generate table from contenders import -->
         {% for contender in contenders %}
         {% if contender.username == username %}
         <tr>

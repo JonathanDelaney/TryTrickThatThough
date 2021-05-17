@@ -14,16 +14,19 @@ if os.path.exists("env.py"):
 
 app = Flask(__name__)
 
+# Configuring Database
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-
+# Landing Page with Top 10 and Comments
 @app.route("/")
 @app.route("/discussion", methods=["GET", "POST"])
 def discussion():
+    # If posting to DB insert the comment posted
+    # with timestamp and other details
     if request.method == "POST":
         new_comment = {
             "name": session["user"],
@@ -32,6 +35,7 @@ def discussion():
             "timestamp": datetime.now()
         }
         mongo.db.comments.insert_one(new_comment)
+    # Get contenders and comments from DB for display on discussion page
     contenders = mongo.db.users.find().sort('score', -1)[:10]
     comments = mongo.db.comments.find().sort('timestamp', -1)
     return render_template("discussion.html",
@@ -41,13 +45,15 @@ def discussion():
 
 @app.route("/leaderboard")
 def leaderboard():
+    # Get username to highlight for the user so they
+    # can see their position easily on full leaderboard
     username = session["user"]
     contenders = mongo.db.users.find().sort('score', -1)
     return render_template("leaderboard.html",
                             contenders=contenders,
                             username=username)
 
-
+# Variables for game
 player_turn = "player1"
 opponent = "player2"
 player1coordinates = []
@@ -62,21 +68,26 @@ result = "Set Board"
 
 @app.route("/play", methods=["GET", "POST"])
 def play():
+    # Bring variables in for use
     global player_turn, dimensions, width, opponent
     global player1coordinates, player2coordinates
     global partial_runsP1, partial_runsP2, spent_runs
     global result
     new_coordinate = ""
     comp_coordinate = ""
+    # If there is a post then begin the game checking
     if request.method == "POST":
         if result != "":
+            # Get game settings
             width = int(request.form.get('width'))
             dimensions = int(request.form.get('dimensions'))
             opponent = request.form.get('opponent')
             result = ""
         elif player_turn == "player1":
+            # Get the coordinate that is inputted by player 1 once boad is set
             new_coordinate = list(map(int, request.form.get(
                 'coordinate').split(',')))
+            # If the gameresult function returns a win scenraio then do things
             if tictactoe.GameResult(
                     player1coordinates,
                     new_coordinate,
@@ -84,12 +95,14 @@ def play():
                     dimensions,
                     width,
                     partial_runsP1) == player_turn:
+                # Set result message for page and clear variables and lists
                 result = f'{session["user"].upper()} wins!! +{width**dimensions}pts'
                 player1coordinates = []
                 player2coordinates = []
                 partial_runsP1 = []
                 partial_runsP2 = []
                 spent_runs = []
+                # Get the players score and add on to it the win score
                 player_file = mongo.db.users.find_one(
                     {"username": session["user"]})
                 player_score = player_file['score']
@@ -98,14 +111,17 @@ def play():
                     "score": new_score
                 }
                 mongo.db.users.update_one(player_file, {"$set": player_update})
+            # When the computer is set as the opponent
             elif opponent == "computer":
                 player1coordinates.append(new_coordinate)
+                # Get the computers move from its function
                 comp_coordinate = tictactoe.CompPlay(partial_runsP1,
                                                      spent_runs,
                                                      player1coordinates,
                                                      player2coordinates,
                                                      width,
                                                      dimensions)
+                #  If there is a win scenario for the computer do these things
                 if tictactoe.GameResult(
                         player2coordinates,
                         comp_coordinate,
@@ -120,11 +136,15 @@ def play():
                     partial_runsP2 = []
                     spent_runs = []
                 else:
+                    # else just add the coordinate to the list
                     player2coordinates.append(comp_coordinate)
             else:
+                # If the opponent is set to local just add the coord
+                # and change turn to player 2.
                 player1coordinates.append(new_coordinate)
                 player_turn = "player2"
         elif player_turn == "player2":
+            # Get the coordinate that is inputted by player 2
             new_coordinate = list(map(int, request.form.get(
                 'coordinate').split(',')))
             if tictactoe.GameResult(
@@ -135,14 +155,19 @@ def play():
                     width,
                     partial_runsP2) == player_turn:
                 result = "The Guest wins!!"
+                # Clear the variables and lists
                 player1coordinates = []
                 player2coordinates = []
                 partial_runsP1 = []
                 partial_runsP2 = []
             else:
+                # Else add the coordinates to the list and
+                # change back to player one
                 player2coordinates.append(new_coordinate)
                 player_turn = "player1"
     username = session["user"]
+    # If there is a user logged-in move the variables
+    # to the front end and render the page, otherwise redirect to log-in.
     if session["user"]:
         return render_template("play.html",
                                username=username,
@@ -155,7 +180,8 @@ def play():
     else:
         return redirect(url_for("login"))
 
-
+# If the user resets the board then the lists
+# are cleared and they are redirected back to the play page
 @app.route("/reset_board")
 def reset_board():
     global player1coordinates, player2coordinates, player_turn
@@ -165,7 +191,9 @@ def reset_board():
     partial_runsP1, partial_runsP2, spent_runs = [], [], []
     return redirect(url_for("play"))
 
-
+# If the user sets new board then the lists
+# are cleared and the variables too
+# and they are redirected back to the play page to set new board.
 @app.route("/set_new_board")
 def set_new_board():
     global player1coordinates, player2coordinates, player_turn
@@ -176,18 +204,19 @@ def set_new_board():
     partial_runsP1, partial_runsP2, spent_runs = [], [], []
     return redirect(url_for("play", result=result))
 
-
+# Register page
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-
+        # If the name already exists redirect them back to try again
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
-
+        # Take the name and password they inputted and
+        # create an object for the DB
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
@@ -239,11 +268,12 @@ def sign_out():
     session.pop("user")
     return redirect(url_for("sign_in"))
 
-
+# Edit a comment from the modal
 @app.route("/edit_comment/<comment_id>/<comment_date>",
             methods=["GET", "POST"])
 def edit_comment(comment_id, comment_date):
     if request.method == "POST":
+        # Take the editted version and put in object for DB
         edited = {
             "name": session["user"],
             "message": request.form.get("edited_message"),
@@ -255,7 +285,7 @@ def edit_comment(comment_id, comment_date):
 
     return redirect(url_for("discussion"))
 
-
+# Delete comment by comment id
 @app.route("/delete_comment/<comment_id>")
 def delete_comment(comment_id):
     mongo.db.comments.remove({"_id": ObjectId(comment_id)})

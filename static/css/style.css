@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Roboto&display=swap');
 
+
+/* Main settings */
+
 * {
     margin: 0px;
     padding: 0px;
@@ -25,18 +28,27 @@ main {
     width: 110%;
 }
 
+
+/* Navbar */
+
 .menu-items {
     margin-left: 30px;
-}
-
-.alert {
-    margin-bottom: 0px;
 }
 
 a{
     text-decoration: none;
     color: #4d555d;
 }
+
+
+/* Alert notification */
+
+.alert {
+    margin-bottom: 0px;
+}
+
+
+/* Modal features */
 
 .modal-dialog {
     color: black;
@@ -48,6 +60,9 @@ a{
     border-radius: 8px;
 }
 
+
+/* Space background */
+
 .space-bg {
     padding-top: 10px;
     background: url('/static/images/space_bg.png') center, radial-gradient(circle at 50%, #eee, #888 40%, #7d5a5a 75%, #222 95%);
@@ -58,13 +73,8 @@ a{
     color: whitesmoke;
 }
 
-#tooltip-box {
-    width: 100px;
-    height: 50px;
-    position: absolute;
-    color: red;
-    z-index: 2;
-}
+
+/* Glitzy Heading */
 
 .lets-play-title {
     font-family: 'Roboto', sans-serif;
@@ -73,12 +83,18 @@ a{
     0px 1px 14px #1fe488;
 }
 
+
+/* Board Settings */
+
 .board-set {
     border-radius: 7px;
     height: 50vh;
     font-size: 26px;
     background-color: rgba(46, 248, 204, 0.315);
 }
+
+
+/* Whose turn it is */
 
 .user-turn{
     color: #ecdbd4;
@@ -87,6 +103,9 @@ a{
 .guest-turn{
     color: #c2d7f3;
 }
+
+
+/* Each plane of the board */
 
 .plane {
     clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
@@ -101,32 +120,18 @@ a{
     background: linear-gradient(0.25turn, #faa689ab, #142a49bf, #4b75ab8f);    height: 10px;
 }
 
+
+/* Each 4D section*/
+
 .t-row {
-    margin-bottom: 2px;
+    margin: 0px;
     display: flex;
     justify-content: space-evenly;
     height: 30px;
 }
 
-.t-row-0 {
-    margin-top: 0px;
-}
 
-.t-row-1 {
-    margin-top: 4px;
-}
-
-.t-row-2 {
-    margin-top: 8px;
-}
-
-.t-row-3 {
-    margin-top: 12px;
-}
-
-.t-row-4 {
-    margin-top: 16px;
-}
+/* Each Row numbered by distance from back */
 
 .across-0 {
     padding: 0px 15%;
@@ -153,25 +158,8 @@ a{
     margin: 11px 0px;
 }
 
-.row-0 {
-    margin: 0x;
-}
 
-.row-1 {
-    margin: 0px;
-}
-
-.row-2 {
-    margin: 0px;
-}
-
-.row-3 {
-    margin: 0px;
-}
-
-.row-4 {
-    margin: 0px;
-}
+/* The legs of the board either side */
 
 .border-left {
     border-left: 1px solid #4e79af!important;
@@ -180,6 +168,9 @@ a{
 .border-right {
     border-right: 1px solid #9e7667!important;
 }
+
+
+/* 3D setup point size */
 
 .threed-point-0 {
     border-radius: 50%;
@@ -211,23 +202,10 @@ a{
     height: calc(0.6vw + 30px);
 }
 
-.section-0 {
-    width: auto;
-}
 
-.section-1 {
-    width: auto;
-}
+/* Each 4D section and the contained segments */
 
-.section-2 {
-    width: auto;
-}
-
-.section-3 {
-    width: auto;
-}
-
-.section-4 {
+.section {
     width: auto;
 }
 
@@ -240,6 +218,9 @@ a{
     margin: 0px;
 }
 
+
+/* The 4D buttons and their sizes for 3D effect */
+
 .tic-button {
     filter: brightness(0.5);
     border: 1px solid black;
@@ -250,7 +231,6 @@ a{
     height: 22px;
     min-width: 7px;
     max-width: 38px;
-    /* box-shadow: 0px; */
 }
 
 .row-1 .tic-button {
@@ -258,7 +238,6 @@ a{
     height: 25px;
     min-width: 8px;
     max-width: 47px;
-    /* box-shadow: 0px 0px 52px 3px white; */
 }
 
 .row-2 .tic-button {
@@ -266,7 +245,6 @@ a{
     height: 28px;
     min-width: 9px;
     max-width: 56px;
-    /* box-shadow: 0px 0px 52px 3px white; */
 }
 
 .row-3 .tic-button {
@@ -274,7 +252,6 @@ a{
     height: 31px;
     min-width: 10px;
     max-width: 65px;
-    /* box-shadow: 0px 0px 52px 3px white; */
 }
 
 .row-4 .tic-button {
@@ -282,8 +259,10 @@ a{
     height: 34px;
     min-width: 11px;
     max-width: 74px;
-    /* box-shadow: 0px 0px 52px 3px white; */
 }
+
+
+/* Buttress either side of input fields */
 
 .buttress {
     height: auto;
@@ -293,12 +272,18 @@ a{
     background-color: #e7f1fe;
 }
 
+
+/* Comments on discussion page */
+
 .comment {
     background-color: #40e0d045;
     padding: 10px 20px 0px;
     border-radius: 4px;
     margin-bottom: 5px;
 }
+
+
+/* 4D button on the right and left */
 
 .right-button {
     clip-path: polygon(0% 0%, 70% 0%, 100% 50%, 70% 100%, 0% 100%);
@@ -307,6 +292,9 @@ a{
 .left-button {
     clip-path: polygon(30% 0%, 100% 1%, 100% 100%, 30% 100%, 0% 50%);
 }
+
+
+/* Red for player one coord and blue for opponent */
 
 .r-tic {
     background-color: rgb(255, 103, 82);
@@ -317,6 +305,9 @@ a{
     background-color: rgb(49, 104, 255);
     filter: brightness(150%);
 }
+
+
+/* Unclicked button */
 
 .yet-to-tic {
     transform: scale(1);
@@ -331,10 +322,16 @@ a{
     z-index: 3;
 }
 
+
+/* Edit Modal input field */
+
 #edited_message {
     height: 200px;
     width: 100%;
 }
+
+
+/* Board setup options section */
 
 .select-label {
     margin-right: 1vh;
@@ -343,6 +340,9 @@ a{
 .board-options {
     bottom: 1vh;
 }
+
+
+/* Loading spinner */
 
 .spinner-cont {
     position: absolute;
@@ -357,15 +357,14 @@ a{
     height: 5vw;
 }
 
+
+/* Small and large screen changes */
+
 @media only screen and (min-width: 1200px) {
 
     .board-set {
         max-height: 430px;
     }
-
-}
-
-@media only screen and (max-width: 700px) {
 
 }
 
