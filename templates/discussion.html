@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
+<h3 class="text-center lets-play-title mt-2">Welcome to the world of higher dimensional Tic-Tac-Toe</h3>
+<h4 class="text-center mb-5">Play 3D and 4D Tic-Tac-Toe by creating an account and joining the community of players exploring this new game.</h4>
+
 <h2 class="text-center"><b>Top 10</b></h2>
 <a class="btn btn-outline-info ml-1 mb-1" href="{{ url_for('leaderboard') }}">Full Leaderboard</a>
 
@@ -16,11 +19,19 @@
     <tbody>
         {% for contender in contenders %}
         {% if loop.index <= 10 %}
+        {% if contender.username == username %}
+        <tr>
+            <td class="text-center text-danger">{{ loop.index }}</td>
+            <td class="text-center text-danger">{{ contender.username }}</td>
+            <td class="text-center text-danger">{{ contender.score }}</td>
+        </tr>
+        {% else %}
         <tr>
             <td class="text-center">{{ loop.index }}</td>
             <td class="text-center">{{ contender.username }}</td>
             <td class="text-center">{{ contender.score }}</td>
         </tr>
+        {% endif %}
         {% endif %}
         {% endfor %}
     </tbody>

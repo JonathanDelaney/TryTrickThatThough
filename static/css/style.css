@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Roboto&display=swap');
 
 * {
     margin: 0px;
@@ -67,6 +67,7 @@ a{
 }
 
 .lets-play-title {
+    font-family: 'Roboto', sans-serif;
     text-shadow: 0px 1px 5px #585858, 0px 1px 6px #47b613, 0px 1px 7px #eb9545,
     0px 1px 8px #c98c32, 0px 1px 9px #e9e62d, 0px 1px 10px #eb9e45,
     0px 1px 14px #1fe488;
