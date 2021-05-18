@@ -55,7 +55,7 @@ Using coordinates instead meant that vectors were needed to create lines which c
 The computer can block the user by completing a potential run of the opponent. If the computer sees that there exists a potential run that is equal to the width of the board minus one then it will submit the remaning coordinate that would complete that run. If a run of such length does not exist then the computer will play randomly. This behaviour of the computer makes it easy enough to beat but requires some setting up.
 <br>
 <br>
-This method, I derived myself, uses something akin to symmetric vectors and I could not find anything similar, anywhere online, so perhaps I can say it is a first for this method to be used to solve tic-tac-toe. It is ideally suited for multidimensional tic-tac-toe as not much tweeking of the function is required as dimensions are added. This project serves as a proof of concept for this method and an exhibition of what can be achieved on the front-end with just python and flask.
+This method, I derived myself, uses something akin to symmetric vectors and I could not find anything similar, anywhere online, so perhaps I can say it is a first for this method to be used to solve tic-tac-toe. It is ideally suited for multidimensional tic-tac-toe as not much tweeking of the function is required as dimensions are added. This project serves as a proof of concept for this method and as a demonstration of what can be achieved on the front-end with just python and flask.
 
 ## Mockups
 
