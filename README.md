@@ -130,17 +130,17 @@ I used MongoDB for the database. It allows you to set up a database with collect
 #### The user collection
 <img src="./static/images/user-collection.png" style="width:100%;margin-bottom:20px;"  />
 
-- This collection stores the users' usernames, passwords and score. A user's username and password would be set when they register and their score will be begin at 0.
-- A user's score is updated each time they win a game, the score is calculated by taking the width and setting it to the power of the number of dimenions (width**dimensions). Their score is retrieved amd then the winning score is added on to that figure and then the database is updated with the new score replacing the old one. This uses the find_one and update_one pymongo operations.
+- This collection stores the users' usernames, passwords and score. A user's username and password is set when they register and their score will begin as 0.
+- A user's score is updated each time they win a game, the score is calculated by taking the width and setting it to the power of the number of dimenions (width**dimensions). Their score is retrieved and then the winning score is added on to that figure and then the database is updated with the new score replacing the old one. This uses the find_one and update_one pymongo operations.
 - The leaderboard retrieves and displays the users in order of highest scoring. This requires the find() and sort operations which take the entire collection and sorts it with respect to a property and in an ascending or descending order (1, -1).
 
 #### The comments collection
 <img src="./static/images/comments-collection.png" style="width:100%;margin-bottom:20px;"  />
 
 - This collection stores the comments made by registered users in the discussion page. The comments are stored with the name being the username, the message being the comment, and the date of the message being posted in dd,mm,yy format, along with a timestamp, in ISO format, which will reflect the last time the message was edited or just the date it was posted if no editing occurs.
-- The comments are subjected to full CRUD operations. The user can write a comments, read comments, edit their comments and delete them.
+- The comments are subjected to full CRUD operations. The user can write comments, read comments, edit their comments and delete them.
 - When a comment is written and posted the code executes an insert_one operation with a dictionary containing the aforementioned properties.
-- The page will display the existing comments by using the find() and sort operations it will get them and arrange them in order of most reently posted/edited, using the timestamp.
+- The page will display the existing comments by using the find() and sort operations it will get them and arrange them in order of most recently posted/edited, using the timestamp.
 - A user can edit their comments and this will invoke the update operation after flask retrieves the updated message, and the comment is found using the object id.
 - Finally a comment can be deleted by the user who posted it. This uses the remove operation on the document, targeted using the object id.
 
