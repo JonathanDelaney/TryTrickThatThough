@@ -52,7 +52,7 @@ The game board is generated via Jinja for loops, as I touched on. The play html 
 Each section/segment, the user can select to play on, is a form with a hidden input which has a value attribute that contains Jinja variable values - {i},{j},{k},{h}. 'i' is the loop index of the first loop which indicates the number plane the point is on, 'j' is the next loop, nested in the first, which indicates the row on that plane, 'k' the section of that row, and 'h' the segment of that section. These integers combine to give the coordinate of the point on the board in the form (i,j,k,h); (2,0,3,1), for example, which would be a point on the third plane, first row, fourth section, and second segment.
 <br>
 <br>
-When a user clicks on a button they are submitting this hidden form with the coordinates for that point, to the back-end using flask. At the back-end the coordinate is passed to a function which will determine a variety of factors about the state of the game (described below). The coordinate is added to a list and the opponent, computer or local, will create another coordinate which will be added to seperate list, for that opponent. The jinja on the front end will colour the segment/button red or blue and disable it's function if the coordinate exists in either the user's or their opponent's list.
+When a user clicks on a button they are submitting this hidden form with the coordinates for that point, to the back-end using flask. At the back-end the coordinate is passed to a function which will determine a variety of factors about the state of the game (described below). The coordinate is added to a list and the opponent, computer or local, will create another coordinate which will be added to a seperate list, for that opponent. The jinja on the front end will colour the segment/button red or blue and disable it's function if the coordinate exists in either the user's or their opponent's list.
 <br>
 <br>
 When an if statement is triggered by a win result, the set-up options get displayed and a banner above displays the winning message along with the points earned by the result, if the user is victorious.
@@ -110,6 +110,8 @@ This method, I derived myself, uses something akin to symmetric vectors and I co
     - The game page provides the user with an initial welcome message and a provocative 'let's play'.
     - The user is given the settings options to setup the board properties and these are presented to the user in the form of select inputs so the user doesn't have to type.
     - When the user has chosen a set of parameters and an opponent they can press the 'play' button and begin playing.
+    - The game board is made up of buttons for the user to select where to play. There is a button above the board to 'Reset' the board and a button to set-up a new board.
+    - In the top-left of the page their is an instructions button for the user to display a modal with information about the game on it.
 
 
 ## Technologies Used
@@ -178,7 +180,7 @@ Another feature which could be seen as a bug is the movement back up to the top 
     - The design of the game board was influenced by the feedback I received during this phase of testing. The lines either side and the definition of each plane along with other minor style features were added to the game off the back of feedback received.
     <br>
     <br>
-    - When multiple people played the game at once on different devices, there would be interference because they were effecting the same lists in the python code. Not having accounted for this I, instead of putting the lists in the database, created dictionaries instead which contained unique key/value pairs for each user's lists so that multiple users could play the game online separately without impacting on eachother's games.
+    - When multiple people played the game at once on different devices, there would be interference because they were effecting the same lists in the python code. Not having accounted for this I, instead of putting the lists in the database, created dictionaries which contained unique key/value pairs for each user's lists so that multiple users could play the game online separately without impacting on eachother's games.
 <hr>
 
 - The Avid Gamer
