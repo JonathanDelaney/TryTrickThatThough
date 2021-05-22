@@ -25,7 +25,7 @@ Having looked online for examples of flask games, none could be found so I decid
 
   - The website should be clear and easy to use and understand.
   - I expect there to be a community of players and administrators to provide feedback about the game.
-  - There should be instructions on how to use the game and they should be thurough.
+  - There should be instructions on how to use the game and they should be thorough.
   - I expect to be given an easy playing option.
 
 ## Design and Creation
@@ -43,6 +43,19 @@ The aesthetic I opted for is a space theme. I thought this fit the multidimensio
 <br>
 <br>
 Some difficulty lay in making the layout intuitive to understand in its representation of 4 dimensions. I opted for sections of squares with pointed squares on either end to signify the fourth dimension corners and edges. To explain, there are 2 4D corners per 3D corner and 2 4D edges per 3D edge and with the inner sections and face sections there are 2 4D end points within each section. This was the best way I could think of representing 4D tic-tac-toe in a 3D grid. I have to admit that it does require explanation but there are few 4D concepts which don't, if the fourth dimenion is physical. I believe this design achieves the best possible way of making higher dimensional tic-tac-toe intuitive.
+
+### The Jinja Game-Board
+
+The game board is generated via Jinja for loops, as I touched on. The play html page contains if statments which determine whether or not to begin generating the board. Only after the user has submitted the settings for the board will a Jinja if statement trigger the for loops to firstly create a number (equal to the width selected) of planes, rows, columns (and segments, if 4D) in that order.
+<br>
+<br>
+Each section/segment, the user can select to play on, is a form with a hidden input which has a value attribute that contains Jinja variable values - {i},{j},{k},{h}. 'i' is the loop index of the first loop which indicates the number plane the point is on, 'j' is the next loop, nested in the first, which indicates the row on that plane, 'k' the section of that row, and 'h' the segment of that section. These integers combine to give the coordinate of the point on the board in the form (i,j,k,h); (2,0,3,1), for example, which would be a point on the third plane, first row, fourth section, and second segment.
+<br>
+<br>
+When a user clicks on a button they are submitting this hidden form with the coordinates for that point, to the back-end using flask. At the back-end the coordinate is passed to a function which will determine a variety of factors about the state of the game (described below). The coordinate is added to a list and the opponent, computer or local, will create another coordinate which will be added to seperate list, for that opponent. The jinja on the front end will colour the segment/button red or blue and disable it's function if the coordinate exists in either the user's or their opponent's list.
+<br>
+<br>
+When an if statement is triggered by a win result, the set-up options get displayed and a banner above displays the winning message along with the points earned by the result, if the user is victorious.
 
 ### The Solution Function
 
@@ -163,6 +176,9 @@ Another feature which could be seen as a bug is the movement back up to the top 
 
     - I asked friends and family of all different ages and abilities to play around with the website and explore its features. No issues were found in the final round of testing.
     - The design of the game board was influenced by the feedback I received during this phase of testing. The lines either side and the definition of each plane along with other minor style features were added to the game off the back of feedback received.
+    <br>
+    <br>
+    - When multiple people played the game at once on different devices, there would be interference because they were effecting the same lists in the python code. Not having accounted for this I, instead of putting the lists in the database, created dictionaries instead which contained unique key/value pairs for each user's lists so that multiple users could play the game online separately without impacting on eachother's games.
 <hr>
 
 - The Avid Gamer
@@ -189,7 +205,7 @@ Another feature which could be seen as a bug is the movement back up to the top 
     - The simple layout of the navigation and redirection from sign-in will make the navigating easy for the user. The instructions on the game page will provide the noob with enough reading to be able to grasp the concept of how to play 4D tic-tac-toe. The 3D and width of 3 options will make for a very easy introductory level game which this kind of player to enjoy getting started.
   - <em>I expect there to be a community of players and administrators to provide feedback about the game.</em>
     - The discussions page provides the user with a platform to air their opinions, tips, questions and responses. The administrators of the website can monitor the activity and address any queries that users may have if other users haven't. The edit and delete options also allow them to backtrack or change the wording of their questions if necessary.
-  - <em>There should be instructions on how to use the game and they should be thurough.</em>
+  - <em>There should be instructions on how to use the game and they should be thorough.</em>
     - The instructions give the user a description of how to play the 4D tic-tac-toe. The pictures provided and the details at the beginning are all a user should need to get started playing higher dimesnional tic-tac-toe. The images give an example of most kinds of possible winning runs that can be achieved and should give them all the info they need without telling them how to beat the computer or explain too much and take away from the challenge the game should present.
   - <em>I expect to be given an easy playing option.</em>
     - When the user changes the settings to 3 dimensions with a width of 3 as per the instructions on which settings are the least difficult, they will be given the easiest possible board set-up to almost guarantee them a win if they make even the slightest effort. The user can then increase the width and dimensionof the board to increase the difficulty.
