@@ -90,9 +90,16 @@ def play():
         player1coordinates = playerCoordinates[username]
         partial_runsP1 = playerCoordinates[partialp1]
         spent_runs = playerCoordinates[spent]
+    else:
+        player1coordinates = []
+        partial_runsP1 = []
+        spent_runs = []
     if opposition in playerCoordinates:
         player2coordinates = playerCoordinates[opposition]
         partial_runsP2 = playerCoordinates[partialp2]
+    else:
+        player2coordinates = []
+        partial_runsP2 = []
     # If there is a post then begin the game checking
     if request.method == "POST":
         if result != "":
