@@ -70,6 +70,10 @@ The computer can block the user by completing a potential run of the opponent. I
 <br>
 This method, I derived myself, uses something akin to symmetric vectors and I could not find anything similar, anywhere online, so perhaps I can say it is a first for this method to be used to solve tic-tac-toe. It is ideally suited for multidimensional tic-tac-toe as not much tweeking of the function is required as dimensions are added. This project serves as a proof of concept for this method and as a demonstration of what can be achieved on the front-end with just python and flask.
 
+### Security
+
+Werkzeug was used to hash the passwords of the users and no information which could compromise the security of the website or users' information was left visible in the url or elswhere on the website or in the code.
+
 ## Mockups
 
 * ### Mobile

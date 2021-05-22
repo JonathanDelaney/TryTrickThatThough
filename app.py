@@ -217,7 +217,6 @@ def play():
                 player_turn = "player1"
     # If there is a user logged-in move the variables
     # to the front end and render the page, otherwise redirect to log-in.
-    print(playerCoordinates)
     if session["user"]:
         return render_template("play.html",
                                username=username,
