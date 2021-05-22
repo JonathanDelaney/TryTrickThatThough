@@ -53,11 +53,13 @@ def leaderboard():
                             contenders=contenders,
                             username=username)
 
+
 # Variables for game
 player_turn = "player1"
 opponent = "player2"
 player1coordinates = []
 player2coordinates = []
+playerCoordinates = {}
 partial_runsP1 = []
 partial_runsP2 = []
 spent_runs = []
@@ -70,11 +72,27 @@ result = "Set Board"
 def play():
     # Bring variables in for use
     global player_turn, dimensions, width, opponent
-    global player1coordinates, player2coordinates
+    global player1coordinates, player2coordinates, playerCoordinates
     global partial_runsP1, partial_runsP2, spent_runs
     global result
+    # Create a set of lists for each user if there are
+    # mutliple users playing at once. A dictionary holds the lists
+    # with each corresponding to the user's username.
+    username = session["user"]
+    opposition = username + "Opp"
+    partialp1 = username + "Partialp1"
+    partialp2 = username + "Partialp2"
+    spent = username + "Spent"
     new_coordinate = ""
     comp_coordinate = ""
+    # Asign each list to its corresponding user-list in the dictionary
+    if username in playerCoordinates:
+        player1coordinates = playerCoordinates[username]
+        partial_runsP1 = playerCoordinates[partialp1]
+        spent_runs = playerCoordinates[spent]
+    if opposition in playerCoordinates:
+        player2coordinates = playerCoordinates[opposition]
+        partial_runsP2 = playerCoordinates[partialp2]
     # If there is a post then begin the game checking
     if request.method == "POST":
         if result != "":
@@ -97,11 +115,11 @@ def play():
                     partial_runsP1) == player_turn:
                 # Set result message for page and clear variables and lists
                 result = f'{session["user"].upper()} wins!! +{width**dimensions}pts'
-                player1coordinates = []
-                player2coordinates = []
-                partial_runsP1 = []
-                partial_runsP2 = []
-                spent_runs = []
+                playerCoordinates[username] = []
+                playerCoordinates[opposition] = []
+                playerCoordinates[partialp1] = []
+                playerCoordinates[partialp2] = []
+                playerCoordinates[spent] = []
                 # Get the players score and add on to it the win score
                 player_file = mongo.db.users.find_one(
                     {"username": session["user"]})
@@ -114,6 +132,13 @@ def play():
             # When the computer is set as the opponent
             elif opponent == "computer":
                 player1coordinates.append(new_coordinate)
+                if username in playerCoordinates:
+                    playerCoordinates[username].append(new_coordinate)
+                else:
+                    playerCoordinates[username] = []
+                    playerCoordinates[partialp1] = []
+                    playerCoordinates[spent] = []
+                    playerCoordinates[username].append(new_coordinate)
                 # Get the computers move from its function
                 comp_coordinate = tictactoe.CompPlay(partial_runsP1,
                                                      spent_runs,
@@ -130,18 +155,34 @@ def play():
                         width,
                         partial_runsP2) == "Computer":
                     result = "c0mPuTer WiN!"
-                    player1coordinates = []
-                    player2coordinates = []
-                    partial_runsP1 = []
-                    partial_runsP2 = []
-                    spent_runs = []
+                    # Clear the variables and lists
+                    playerCoordinates[username] = []
+                    playerCoordinates[opposition] = []
+                    playerCoordinates[partialp1] = []
+                    playerCoordinates[partialp2] = []
+                    playerCoordinates[spent] = []
+                    player_turn = "player1"
                 else:
                     # else just add the coordinate to the list
                     player2coordinates.append(comp_coordinate)
+                    if opposition in playerCoordinates:
+                        playerCoordinates[opposition].append(comp_coordinate)
+                    else:
+                        playerCoordinates[opposition] = []
+                        playerCoordinates[partialp2] = []
+                        playerCoordinates[spent] = []
+                        playerCoordinates[opposition].append(comp_coordinate)
             else:
                 # If the opponent is set to local just add the coord
                 # and change turn to player 2.
                 player1coordinates.append(new_coordinate)
+                if username in playerCoordinates:
+                    playerCoordinates[username].append(new_coordinate)
+                else:
+                    playerCoordinates[username] = []
+                    playerCoordinates[partialp1] = []
+                    playerCoordinates[spent] = []
+                    playerCoordinates[username].append(new_coordinate)
                 player_turn = "player2"
         elif player_turn == "player2":
             # Get the coordinate that is inputted by player 2
@@ -156,18 +197,27 @@ def play():
                     partial_runsP2) == player_turn:
                 result = "The Guest wins!!"
                 # Clear the variables and lists
-                player1coordinates = []
-                player2coordinates = []
-                partial_runsP1 = []
-                partial_runsP2 = []
+                playerCoordinates[username] = []
+                playerCoordinates[opposition] = []
+                playerCoordinates[partialp1] = []
+                playerCoordinates[partialp2] = []
+                playerCoordinates[spent] = []
+                player_turn = "player1"
             else:
                 # Else add the coordinates to the list and
                 # change back to player one
                 player2coordinates.append(new_coordinate)
+                if opposition in playerCoordinates:
+                    playerCoordinates[opposition].append(new_coordinate)
+                else:
+                    playerCoordinates[opposition] = []
+                    playerCoordinates[partialp2] = []
+                    playerCoordinates[spent] = []
+                    playerCoordinates[opposition].append(new_coordinate)
                 player_turn = "player1"
-    username = session["user"]
     # If there is a user logged-in move the variables
     # to the front end and render the page, otherwise redirect to log-in.
+    print(playerCoordinates)
     if session["user"]:
         return render_template("play.html",
                                username=username,
@@ -184,11 +234,12 @@ def play():
 # are cleared and they are redirected back to the play page
 @app.route("/reset_board")
 def reset_board():
-    global player1coordinates, player2coordinates, player_turn
-    global partial_runsP1, partial_runsP2, spent_runs
+    global player_turn, playerCoordinates
     player_turn = "player1"
-    player1coordinates, player2coordinates = [], []
-    partial_runsP1, partial_runsP2, spent_runs = [], [], []
+    username = session['user']
+    opposition = username + "Opp"
+    playerCoordinates[username] = []
+    playerCoordinates[opposition] = []
     return redirect(url_for("play"))
 
 # If the user sets new board then the lists
@@ -196,12 +247,13 @@ def reset_board():
 # and they are redirected back to the play page to set new board.
 @app.route("/set_new_board")
 def set_new_board():
-    global player1coordinates, player2coordinates, player_turn
-    global partial_runsP1, partial_runsP2, spent_runs, result
+    global player_turn, result, playerCoordinates
     result = "Set Board"
     player_turn = "player1"
-    player1coordinates, player2coordinates = [], []
-    partial_runsP1, partial_runsP2, spent_runs = [], [], []
+    username = session['user']
+    opposition = username + "Opp"
+    playerCoordinates[username] = []
+    playerCoordinates[opposition] = []
     return redirect(url_for("play", result=result))
 
 # Register page
