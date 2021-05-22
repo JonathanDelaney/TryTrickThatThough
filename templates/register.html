@@ -9,8 +9,8 @@
                     class="fas fa-user-plus prefix teal-text text-lighten-1"></i>Username</label>
             <div class="row">
                 <div class="left-button buttress col"></div>
-                <input id="username" class="col form-control" name="username" type="text" minlength="5" maxlength="15"
-                    pattern="^[a-zA-Z0-9]{5,15}$" required>
+                <input id="username" class="col form-control" name="username" type="text" minlength="1" maxlength="20"
+                    pattern="^[a-zA-Z0-9]{1,20}$" placeholder="Letters and Numbers only" required>
                 <div class="right-button buttress col"></div>
             </div>
         </div>
@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="left-button buttress col"></div>
                 <input id="password" class="col form-control" name="password" type="password" minlength="5"
-                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required>
+                    maxlength="20" pattern=".{5,}$" placeholder="5 or more characters" required>
                 <div class="right-button buttress col"></div>
             </div>
         </div>
@@ -32,7 +32,7 @@
     <div class="offset-4 col-4">
         <p class="center-align">
             Already Registered?
-            <a href="{{ url_for('sign_in') }}" class="teal-text text-lighten-1">Sign In</a>
+            <a href="{{ url_for('sign_in') }}" class="text-danger">Sign In</a>
         </p>
     </div>
 </div>
