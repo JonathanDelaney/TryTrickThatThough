@@ -236,11 +236,6 @@ def play():
     if depth in playerCoordinates:
         width = playerCoordinates[depth]
         dimensions = playerCoordinates[dimensional]
-    else:
-        width = 4
-        dimensions = 4
-        result = "Set Board"
-        player_turn = "player1"
     # If there is a user logged-in move the variables
     # to the front end and render the page, otherwise redirect to log-in.
     if session["user"]:
