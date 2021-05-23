@@ -250,8 +250,14 @@ def reset_board():
     player_turn = "player1"
     username = session['user']
     opposition = username + "Opp"
+    partialp1 = username + "Partialp1"
+    partialp2 = username + "Partialp2"
+    spent = username + "Spent"
     playerCoordinates[username] = []
     playerCoordinates[opposition] = []
+    playerCoordinates[partialp1] = []
+    playerCoordinates[partialp2] = []
+    playerCoordinates[spent] = []
     return redirect(url_for("play"))
 
 # If the user sets new board then the lists
@@ -264,8 +270,14 @@ def set_new_board():
     username = session['user']
     state = username + "State"
     opposition = username + "Opp"
+    partialp1 = username + "Partialp1"
+    partialp2 = username + "Partialp2"
+    spent = username + "Spent"
     playerCoordinates[username] = []
     playerCoordinates[opposition] = []
+    playerCoordinates[partialp1] = []
+    playerCoordinates[partialp2] = []
+    playerCoordinates[spent] = []
     playerCoordinates[state] = "Set Board"
     return redirect(url_for("play", result=result))
 
