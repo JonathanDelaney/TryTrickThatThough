@@ -25,7 +25,7 @@ mongo = PyMongo(app)
 @app.errorhandler(404)
 def not_found(e):
     flash("""If you are looking for an extension to this website the page you
-    were looking for doesn't exist. have a look in our menu and register, if
+    were looking for doesn't exist. Have a look in our menu and register, if
     you haven't.""")
     return redirect(url_for("discussion"))
 
