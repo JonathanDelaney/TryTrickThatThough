@@ -20,15 +20,22 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 # For random
 @app.errorhandler(404)
 def not_found(e):
+    flash("""If you are looking for an extension to this website the page you
+    were looking for doesn't exist. have a look in our menu and register, if
+    you haven't.""")
     return redirect(url_for("discussion"))
 
 
 @app.errorhandler(500)
-def not_found(e):
+def not_signedin(e):
+    flash("""A server error occured, try signing in or if signed in already,
+    sign out and back in.""")
     return redirect(url_for("discussion"))
+
 
 # Landing Page with Top 10 and Comments
 @app.route("/")
@@ -90,11 +97,6 @@ def play():
     # Create a set of lists for each user if there are
     # mutliple users playing at once. A dictionary holds the lists
     # with each corresponding to the user's username.
-    if session["user"]:
-        pass
-    else:
-        print("trying to redirect")
-        return redirect(url_for("sign_in"))
     username = session["user"]
     state = username + "State"
     opposition = username + "Opp"
@@ -146,7 +148,8 @@ def play():
                     width,
                     partial_runsP1) == player_turn:
                 # Set result message for page and clear variables and lists
-                result = f'{session["user"].upper()} wins!! +{width**dimensions}pts'
+                result = f"""{session["user"].upper()} wins!!
+                     {width**dimensions}pts"""
                 playerCoordinates[username] = []
                 playerCoordinates[opposition] = []
                 playerCoordinates[partialp1] = []
@@ -270,15 +273,12 @@ def play():
     else:
         return redirect(url_for("sign_in"))
 
+
 # If the user resets the board then the lists
 # are cleared and they are redirected back to the play page
 @app.route("/reset_board")
 def reset_board():
     global player_turn, playerCoordinates
-    if session["user"]:
-        pass
-    else:
-        return redirect(url_for("sign_in"))
     player_turn = "player1"
     username = session['user']
     opposition = username + "Opp"
@@ -292,16 +292,13 @@ def reset_board():
     playerCoordinates[spent] = []
     return redirect(url_for("play"))
 
+
 # If the user sets new board then the lists
 # are cleared and the variables too
 # and they are redirected back to the play page to set new board.
 @app.route("/set_new_board")
 def set_new_board():
     global player_turn, playerCoordinates
-    if session["user"]:
-        pass
-    else:
-        return redirect(url_for("sign_in"))
     player_turn = "player1"
     username = session['user']
     state = username + "State"
@@ -316,6 +313,7 @@ def set_new_board():
     playerCoordinates[spent] = []
     playerCoordinates[state] = "Set Board"
     return redirect(url_for("play", result=result))
+
 
 # Register page
 @app.route("/register", methods=["GET", "POST"])
@@ -381,6 +379,7 @@ def sign_out():
     session.pop("user")
     return redirect(url_for("sign_in"))
 
+
 # Edit a comment from the modal
 @app.route("/edit_comment/<comment_id>/<comment_date>",
             methods=["GET", "POST"])
@@ -397,6 +396,7 @@ def edit_comment(comment_id, comment_date):
         flash("Comment Successfully Edited")
 
     return redirect(url_for("discussion"))
+
 
 # Delete comment by comment id
 @app.route("/delete_comment/<comment_id>")
