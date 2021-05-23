@@ -20,10 +20,15 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-# app name
+# For random
 @app.errorhandler(404)
 def not_found(e):
-    return redirect(url_for("sign_in"))
+    return redirect(url_for("discussion"))
+
+
+@app.errorhandler(500)
+def not_found(e):
+    return redirect(url_for("discussion"))
 
 # Landing Page with Top 10 and Comments
 @app.route("/")
@@ -51,12 +56,12 @@ def discussion():
 def leaderboard():
     # Get username to highlight for the user so they
     # can see their position easily on full leaderboard
-    username = session["user"]
-    contenders = mongo.db.users.find().sort('score', -1)
     if session["user"]:
+        username = session["user"]
+        contenders = mongo.db.users.find().sort('score', -1)
         return render_template("leaderboard.html",
-                                contenders=contenders,
-                                username=username)
+                                    contenders=contenders,
+                                    username=username)
     else:
         return redirect(url_for("sign_in"))
 
@@ -85,6 +90,11 @@ def play():
     # Create a set of lists for each user if there are
     # mutliple users playing at once. A dictionary holds the lists
     # with each corresponding to the user's username.
+    if session["user"]:
+        pass
+    else:
+        print("trying to redirect")
+        return redirect(url_for("sign_in"))
     username = session["user"]
     state = username + "State"
     opposition = username + "Opp"
@@ -265,6 +275,10 @@ def play():
 @app.route("/reset_board")
 def reset_board():
     global player_turn, playerCoordinates
+    if session["user"]:
+        pass
+    else:
+        return redirect(url_for("sign_in"))
     player_turn = "player1"
     username = session['user']
     opposition = username + "Opp"
@@ -284,6 +298,10 @@ def reset_board():
 @app.route("/set_new_board")
 def set_new_board():
     global player_turn, playerCoordinates
+    if session["user"]:
+        pass
+    else:
+        return redirect(url_for("sign_in"))
     player_turn = "player1"
     username = session['user']
     state = username + "State"
