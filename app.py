@@ -82,6 +82,8 @@ def play():
     opposition = username + "Opp"
     partialp1 = username + "Partialp1"
     partialp2 = username + "Partialp2"
+    depth = username + "Depth"
+    dimensional = username + "Dimensions"
     spent = username + "Spent"
     new_coordinate = ""
     comp_coordinate = ""
@@ -110,6 +112,8 @@ def play():
             dimensions = int(request.form.get('dimensions'))
             opponent = request.form.get('opponent')
             playerCoordinates[state] = ""
+            playerCoordinates[depth] = width
+            playerCoordinates[dimensional] = dimensions
             result = playerCoordinates[state]
         elif player_turn == "player1":
             # Get the coordinate that is inputted by player 1 once boad is set
@@ -228,6 +232,10 @@ def play():
                     playerCoordinates[spent] = []
                     playerCoordinates[opposition].append(new_coordinate)
                 player_turn = "player1"
+    # Asign the width and dimensions the user values from the dictionary
+    if depth in playerCoordinates:
+        width = playerCoordinates[depth]
+        dimensions = playerCoordinates[dimensional]
     # If there is a user logged-in move the variables
     # to the front end and render the page, otherwise redirect to log-in.
     if session["user"]:
