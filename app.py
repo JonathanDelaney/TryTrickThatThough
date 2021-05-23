@@ -33,7 +33,7 @@ def not_found(e):
 @app.errorhandler(500)
 def not_signedin(e):
     flash("""Oops! Sorry about this. An internal server error occured. Please,
-     try again!""")
+     sign in or, if you are, try again!""")
     return redirect(url_for("discussion"))
 
 
