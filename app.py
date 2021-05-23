@@ -20,6 +20,11 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+# app name
+@app.errorhandler(404)
+def not_found(e):
+  return redirect(url_for("sign_in"))
+
 # Landing Page with Top 10 and Comments
 @app.route("/")
 @app.route("/discussion", methods=["GET", "POST"])
@@ -250,7 +255,7 @@ def play():
                                player2coordinates=player2coordinates,
                                player_turn=player_turn)
     else:
-        return redirect(url_for("login"))
+        return redirect(url_for("sign_in"))
 
 # If the user resets the board then the lists
 # are cleared and they are redirected back to the play page
