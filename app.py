@@ -23,7 +23,7 @@ mongo = PyMongo(app)
 # app name
 @app.errorhandler(404)
 def not_found(e):
-  return redirect(url_for("sign_in"))
+    return redirect(url_for("sign_in"))
 
 # Landing Page with Top 10 and Comments
 @app.route("/")
