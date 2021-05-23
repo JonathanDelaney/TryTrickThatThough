@@ -53,9 +53,12 @@ def leaderboard():
     # can see their position easily on full leaderboard
     username = session["user"]
     contenders = mongo.db.users.find().sort('score', -1)
-    return render_template("leaderboard.html",
-                            contenders=contenders,
-                            username=username)
+    if session["user"]:
+        return render_template("leaderboard.html",
+                                contenders=contenders,
+                                username=username)
+    else:
+        return redirect(url_for("sign_in"))
 
 
 # Variables for game
