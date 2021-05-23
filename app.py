@@ -1,5 +1,4 @@
 import os
-import random
 import tictactoe
 from datetime import datetime
 from flask import (
@@ -79,6 +78,7 @@ def play():
     # mutliple users playing at once. A dictionary holds the lists
     # with each corresponding to the user's username.
     username = session["user"]
+    state = username + "State"
     opposition = username + "Opp"
     partialp1 = username + "Partialp1"
     partialp2 = username + "Partialp2"
@@ -86,6 +86,8 @@ def play():
     new_coordinate = ""
     comp_coordinate = ""
     # Asign each list to its corresponding user-list in the dictionary
+    if state in playerCoordinates:
+        result = playerCoordinates[state]
     if username in playerCoordinates:
         player1coordinates = playerCoordinates[username]
         partial_runsP1 = playerCoordinates[partialp1]
@@ -107,7 +109,8 @@ def play():
             width = int(request.form.get('width'))
             dimensions = int(request.form.get('dimensions'))
             opponent = request.form.get('opponent')
-            result = ""
+            playerCoordinates[state] = ""
+            result = playerCoordinates[state]
         elif player_turn == "player1":
             # Get the coordinate that is inputted by player 1 once boad is set
             new_coordinate = list(map(int, request.form.get(
@@ -127,6 +130,7 @@ def play():
                 playerCoordinates[partialp1] = []
                 playerCoordinates[partialp2] = []
                 playerCoordinates[spent] = []
+                playerCoordinates[state] = "Set Board"
                 # Get the players score and add on to it the win score
                 player_file = mongo.db.users.find_one(
                     {"username": session["user"]})
@@ -153,7 +157,7 @@ def play():
                                                      player2coordinates,
                                                      width,
                                                      dimensions)
-                #  If there is a win scenario for the computer do these things
+                #  If there is a win scenario for the computer perform reset
                 if tictactoe.GameResult(
                         player2coordinates,
                         comp_coordinate,
@@ -168,6 +172,7 @@ def play():
                     playerCoordinates[partialp1] = []
                     playerCoordinates[partialp2] = []
                     playerCoordinates[spent] = []
+                    playerCoordinates[state] = "Set Board"
                     player_turn = "player1"
                 else:
                     # else just add the coordinate to the list
@@ -209,6 +214,7 @@ def play():
                 playerCoordinates[partialp1] = []
                 playerCoordinates[partialp2] = []
                 playerCoordinates[spent] = []
+                playerCoordinates[state] = "Set Board"
                 player_turn = "player1"
             else:
                 # Else add the coordinates to the list and
@@ -253,13 +259,14 @@ def reset_board():
 # and they are redirected back to the play page to set new board.
 @app.route("/set_new_board")
 def set_new_board():
-    global player_turn, result, playerCoordinates
-    result = "Set Board"
+    global player_turn, playerCoordinates
     player_turn = "player1"
     username = session['user']
+    state = username + "State"
     opposition = username + "Opp"
     playerCoordinates[username] = []
     playerCoordinates[opposition] = []
+    playerCoordinates[state] = "Set Board"
     return redirect(url_for("play", result=result))
 
 # Register page

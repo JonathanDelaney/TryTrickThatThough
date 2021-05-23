@@ -1,5 +1,4 @@
 import random
-import time
 
 
 def GameResult(prev_coords, new_coords, player, dimensions, width, part_runs):
