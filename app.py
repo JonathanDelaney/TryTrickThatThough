@@ -21,7 +21,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-# For random
+# For non existant pages
 @app.errorhandler(404)
 def not_found(e):
     flash("""If you are looking for an extension to this website the page you
@@ -30,6 +30,7 @@ def not_found(e):
     return redirect(url_for("discussion"))
 
 
+# For server errors
 @app.errorhandler(500)
 def not_signedin(e):
     flash("""Oops! Sorry about this. An internal server error occured. Please
