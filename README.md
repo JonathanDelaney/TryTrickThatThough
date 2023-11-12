@@ -1,13 +1,15 @@
 <h1 align="center">Trick That Though</h1>
 
-<span style="color=red;">Not currently available</span>
+```diff
+- Not currently available
+```
 
 Live website :arrow_down:<br>
 <a href="https://trick-that-though.herokuapp.com/">![alt](./static/images/response.png)</a>
 
 ## About
 
-This may be the only example of a flask/jinja board game, without the use of JS. Possibly the only representation of 4D tic-tac-toe on a single 3D board; 4D tic-tac-toe creations found online currently consist of **n** side-by-side 3D or 2D boards:three 3x3x3 tic tac toe blocks next to eachother OR nine 3x3 in a grid, for a 4D board of width 3. The design used in this game uses one 3x3x3 with a nested 3 in each for a 4D board of width 3. 
+This may be the only example of a flask/jinja board game, without the use of JS. Possibly the only representation of 4D tic-tac-toe on a single 3D board; 4D tic-tac-toe creations found online currently consist of **n** side-by-side 3D or 2D boards:three 3x3x3 tic tac toe blocks next to eachother OR nine 3x3 in a grid, for a 4D board of width 3. The design used in this game has one 3x3x3 with a nested 3 in each for a 4D board of width 3.
 
 This 'look mom, no JS!' website is an example of what can be done to create front-end interactivity with just html, css and python (with flask). The game uses innovative methods, to solve for win scenarios and utilizes dumb, computer opposition for local single player mode. In the future I plan to use this method to allow for online mutliplayer playing, implemented using a rest-api.
 
