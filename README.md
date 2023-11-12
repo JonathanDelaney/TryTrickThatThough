@@ -1,13 +1,15 @@
 <h1 align="center">Trick That Though</h1>
 
-<p style="color=red;">Not currently available</p>
+<span style="color=red;">Not currently available</span>
 
 Live website :arrow_down:<br>
 <a href="https://trick-that-though.herokuapp.com/">![alt](./static/images/response.png)</a>
 
 ## About
 
-Having looked online for examples of flask games, none could be found so I decided to see if I could programme one myself, without the use of JS. This webapp is possibly the only example of a flask/jinja game and (also possibly) the only representation of 4d tic-tac-toe on one board. This 'look mom, no JS!' website is an example of what can be done to create front-end interactivity with just html, css and python with flask. The game uses innovative methods, to solve for win scenarios and create dumb, computer opposition. In the future I plan to use this method to allow for online mutliplayer playing, implemented using a rest-api.
+This may be the only example of a flask/jinja board game, without the use of JS. Possibly the only representation of 4D tic-tac-toe on a single 3D board; 4D tic-tac-toe creations found online currently consist of **n** side-by-side 3D or 2D boards:three 3x3x3 tic tac toe blocks next to eachother OR nine 3x3 in a grid, for a 4D board of width 3. The design used in this game uses one 3x3x3 with a nested 3 in each for a 4D board of width 3. 
+
+This 'look mom, no JS!' website is an example of what can be done to create front-end interactivity with just html, css and python (with flask). The game uses innovative methods, to solve for win scenarios and utilizes dumb, computer opposition for local single player mode. In the future I plan to use this method to allow for online mutliplayer playing, implemented using a rest-api.
 
 ## User Stories
 
@@ -32,7 +34,7 @@ Having looked online for examples of flask games, none could be found so I decid
 
 ## Design and Creation
 
-For this project I had initially intended on creating an online multiplayer game but, in the end, ran out of time to implement the rest api to support this feature and had to settle for a local game to be played against the computer or a friend on the one device.
+For this project I had initially intended on creating an online multiplayer game but, in the end, ran out of time to implement the api.
 <br>
 <br>
 Tic-tac-toe had occured to me as being the easiest to create and one which would be ideal as a proof of concept. The addition of higher dimensions came as I developed the vector method for solving the game. This method allowed me to up the dimensions easily without adding much complexity to the code. I was also forced to use this method as I didn't want to use JS and flask could only return coordinates.
@@ -281,4 +283,3 @@ I sourced images from [pixabay.com](https://pixabay.com/) and [freepngimg.com](h
 I looked at a lot of youtube videos with mixed input from too many to name.<br><br>
 Of course I have to mention the course material was referenced and an honorable mention should be made to all the contributors to the CodeInstitute's course material.<br>
 Also to the good people in the slack group chats who helped out with general feedback.
-Thank you.
