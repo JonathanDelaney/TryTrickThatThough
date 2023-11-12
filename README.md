@@ -1,11 +1,13 @@
 <h1 align="center">Trick That Though</h1>
 
+<p style="color=red;">Not currently available</p>
+
 Live website :arrow_down:<br>
 <a href="https://trick-that-though.herokuapp.com/">![alt](./static/images/response.png)</a>
 
 ## About
 
-Having looked online for examples of flask games, none could be found so I decided to see if I could programme one myself, without the use of JS. This webapp is possibly the only example of a flask/jinja game and (also possibly) the only representation of 4d tic-tac-toe on one board. This 'look mom, no JS!' website is an example of what can be done to create front-end interactivity with just html, css and python with flask. The game uses innovative methods, to solve for win scenarios and create, dumb, computer opposition. In the future I plan to use this method to allow for online mutliplayer playing, implemented using a rest-api.
+Having looked online for examples of flask games, none could be found so I decided to see if I could programme one myself, without the use of JS. This webapp is possibly the only example of a flask/jinja game and (also possibly) the only representation of 4d tic-tac-toe on one board. This 'look mom, no JS!' website is an example of what can be done to create front-end interactivity with just html, css and python with flask. The game uses innovative methods, to solve for win scenarios and create dumb, computer opposition. In the future I plan to use this method to allow for online mutliplayer playing, implemented using a rest-api.
 
 ## User Stories
 
