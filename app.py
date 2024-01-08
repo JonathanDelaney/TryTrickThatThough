@@ -409,7 +409,7 @@ def set_new_board():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
-    # host=os.environ.get("IP"),
-    #         port=int(os.environ.get("PORT")),
-    #         debug=False)
+    app.run(debug=False)
+    host=os.environ.get("IP"),
+            port=int(os.environ.get("PORT")),
+            debug=False)
