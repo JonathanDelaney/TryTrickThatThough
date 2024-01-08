@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Roboto&display=swap');
+
+
+/* Main settings */
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+*:focus {
+    outline: none;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+main {
+    width: 110%;
+}
+
+
+/* Navbar */
+
+.menu-items {
+    margin-left: 30px;
+}
+
+a{
+    text-decoration: none;
+    color: #4d555d;
+}
+
+
+/* Alert notification */
+
+.alert {
+    border-radius: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.alert-primary {
+    color: #010101;
+    background-color: #7dbbb4;
+    border-color: #7d8447;
+}
+
+
+/* Modal features */
+
+.modal-dialog {
+    color: black;
+}
+
+.modal-body img {
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+
+/* Space background */
+
+.space-bg {
+    padding-top: 10px;
+    background: url('/static/images/space_bg.png') center, radial-gradient(circle at 50%, #eee, #888 40%, #7d5a5a 75%, #222 95%);
+    background-blend-mode: multiply;
+    background-position: cover;
+    min-height: 102vh;
+    height: auto;
+    color: whitesmoke;
+}
+
+
+/* Glitzy Heading */
+
+.lets-play-title {
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 0px 1px 5px #585858, 0px 1px 6px #47b613, 0px 1px 7px #eb9545,
+    0px 1px 8px #c98c32, 0px 1px 9px #e9e62d, 0px 1px 10px #eb9e45,
+    0px 1px 14px #1fe488;
+}
+
+
+/* Board Settings */
+
+.board-set {
+    border-radius: 7px;
+    height: 50vh;
+    font-size: 26px;
+    background-color: rgba(46, 248, 204, 0.315);
+}
+
+
+/* Whose turn it is */
+
+.user-turn{
+    color: #ecdbd4;
+}
+
+.guest-turn{
+    color: #c2d7f3;
+}
+
+
+/* Each plane of the board */
+
+.plane {
+    clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+    background: url('/static/images/nebula.png') center;
+    background-size: cover;
+    background-blend-mode: multiply;
+    box-shadow: 40px 30px 41px 4px rgb(1 1 1) inset;
+    opacity: 90%;
+}
+
+.plane-spacer {
+    background: linear-gradient(0.25turn, #faa689ab, #142a49bf, #4b75ab8f);    height: 10px;
+}
+
+
+/* Each 4D section*/
+
+.t-row {
+    margin: 0px;
+    display: flex;
+    justify-content: space-evenly;
+    height: 30px;
+}
+
+
+/* Each Row numbered by distance from back */
+
+.across-0 {
+    padding: 0px 15%;
+    margin: 5px 0px 0px;
+}
+
+.across-1 {
+    padding: 0px 12%;
+    margin: 0px 0px;
+}
+
+.across-2 {
+    padding: 0px 9%;
+    margin: 5px 0px;
+}
+
+.across-3 {
+    padding: 0px 6%;
+    margin: 8px 0px;
+}
+
+.across-4 {
+    padding: 0px 3%;
+    margin: 11px 0px;
+}
+
+
+/* The legs of the board either side */
+
+.border-left {
+    border-left: 1px solid #4e79af!important;
+}
+
+.border-right {
+    border-right: 1px solid #9e7667!important;
+}
+
+
+/* 3D setup point size */
+
+.threed-point-0 {
+    border-radius: 50%;
+    width: calc(0.6vw + 18px);
+    height: calc(0.6vw + 18px);
+}
+
+.threed-point-1 {
+    border-radius: 50%;
+    width: calc(0.6vw + 21px);
+    height: calc(0.6vw + 21px);
+}
+
+.threed-point-2 {
+    border-radius: 50%;
+    width: calc(0.6vw + 24px);
+    height: calc(0.6vw + 24px);
+}
+
+.threed-point-3 {
+    border-radius: 50%;
+    width: calc(0.6vw + 27px);
+    height: calc(0.6vw + 27px);
+}
+
+.threed-point-4 {
+    border-radius: 50%;
+    width: calc(0.6vw + 30px);
+    height: calc(0.6vw + 30px);
+}
+
+
+/* Each 4D section and the contained segments */
+
+.section {
+    width: auto;
+}
+
+.segment {
+    width: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+}
+
+
+/* The 4D buttons and their sizes for 3D effect */
+
+.tic-button {
+    filter: brightness(0.5);
+    border: 1px solid black;
+}
+
+.row-0 .tic-button {
+    width: calc(3vw - 13px);
+    height: 22px;
+    min-width: 7px;
+    max-width: 38px;
+}
+
+.row-1 .tic-button {
+    width: calc(3vw - 10px);
+    height: 25px;
+    min-width: 8px;
+    max-width: 47px;
+}
+
+.row-2 .tic-button {
+    width: calc(3vw - 7px);
+    height: 28px;
+    min-width: 9px;
+    max-width: 56px;
+}
+
+.row-3 .tic-button {
+    width: calc(3vw - 4px);
+    height: 31px;
+    min-width: 10px;
+    max-width: 65px;
+}
+
+.row-4 .tic-button {
+    width: calc(3vw - 1px);
+    height: 34px;
+    min-width: 11px;
+    max-width: 74px;
+}
+
+
+/* Buttress either side of input fields */
+
+.buttress {
+    height: auto;
+    width: auto;
+    max-height: 38px;
+    max-width: 38px;
+    background-color: #e7f1fe;
+}
+
+
+/* Comments on discussion page */
+
+.comment {
+    background-color: #40e0d045;
+    padding: 10px 20px 0px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+
+/* 4D button on the right and left */
+
+.right-button {
+    clip-path: polygon(0% 0%, 70% 0%, 100% 50%, 70% 100%, 0% 100%);
+}
+
+.left-button {
+    clip-path: polygon(30% 0%, 100% 1%, 100% 100%, 30% 100%, 0% 50%);
+}
+
+
+/* Red for player one coord and blue for opponent */
+
+.r-tic {
+    background-color: rgb(255, 103, 82);
+    filter: brightness(150%);
+}
+
+.b-tic {
+    background-color: rgb(49, 104, 255);
+    filter: brightness(150%);
+}
+
+
+/* Unclicked button */
+
+.yet-to-tic {
+    transform: scale(1);
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0px;
+}
+
+.yet-to-tic:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 52px 3px white;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    z-index: 3;
+}
+
+
+/* Edit Modal input field */
+
+#edited_message {
+    height: 200px;
+    width: 100%;
+}
+
+
+/* Board setup options section */
+
+.select-label {
+    margin-right: 1vh;
+}
+
+.board-options {
+    bottom: 1vh;
+}
+
+
+/* Loading spinner */
+
+.spinner-cont {
+    position: absolute;
+    height: 110vh;
+    margin-left: 47vw;
+    background: transparent;
+}
+
+.spinner-border {
+    margin-top: 30vh;
+    width: 5vw;
+    height: 5vw;
+}
+
+
+/* Small and large screen changes */
+
+@media only screen and (min-width: 1200px) {
+
+    .board-set {
+        max-height: 430px;
+    }
+
+}
+
+@media only screen and (max-width: 470px) {
+
+    .heading-h1 {
+        font-size: 1.8rem;
+    }
+
+    .board-set {
+        height: 92vh;
+    }
+
+}
